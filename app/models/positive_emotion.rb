@@ -1,0 +1,2 @@
+class PositiveEmotion < ApplicationRecord
+end

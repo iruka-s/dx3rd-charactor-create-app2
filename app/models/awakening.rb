@@ -1,0 +1,2 @@
+class Awakening < ApplicationRecord
+end
