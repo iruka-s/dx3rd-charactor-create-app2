@@ -22,7 +22,7 @@ import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import {
-  emptyName, effectRow, effectContentNum, generalName, timingArray, targetArray,
+  emptyName, effectRow, generalName, timingArray, targetArray,
   rangeArray, limitArray, skillArray, effectSyndromeNum, effectSyndromeArray
 } from '../utils/CommonConst';
 
@@ -193,7 +193,7 @@ export default function AddEffectDialog(props) {
     let list = props.selectEffects;
 
     for (var index in props.mySyndromeEffectList) {
-      if (selected.indexOf(props.mySyndromeEffectList[index][effectContentNum.NAME]) !== -1) {
+      if (selected.indexOf(props.mySyndromeEffectList[index].name) !== -1) {
         list.push({ level: "1", dbInfo: props.mySyndromeEffectList[index] });
       }
     }
@@ -243,7 +243,7 @@ export default function AddEffectDialog(props) {
     let array = [];
 
     for (var index in mySyndromeEffectList) {
-      if (isContentFilter(effectSyndromeArray[effectSyndromeNum[mySyndromeEffectList[index][effectContentNum.SYNDROME]]])) {
+      if (isContentFilter(effectSyndromeArray[effectSyndromeNum[mySyndromeEffectList[index].syndrome]])) {
         array.push(mySyndromeEffectList[index]);
       }
     }
@@ -318,17 +318,17 @@ export default function AddEffectDialog(props) {
                 {effectFilter(props.mySyndromeEffectList)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((mySyndromeEffect, index) => {
-                    const isItemSelected = isSelected(mySyndromeEffect[effectContentNum.NAME]);
+                    const isItemSelected = isSelected(mySyndromeEffect.name);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <Dx3rdTableRow
                         hover
-                        onClick={event => handleClick(event, mySyndromeEffect[effectContentNum.NAME])}
+                        onClick={event => handleClick(event, mySyndromeEffect.name)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={mySyndromeEffect[effectContentNum.NAME]}
+                        key={mySyndromeEffect.name}
                         selected={isItemSelected}
                       >
                         <Dx3rdTableCell padding="checkbox">
@@ -340,47 +340,47 @@ export default function AddEffectDialog(props) {
 
                         {/* シンドローム */}
                         <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
-                          {effectSyndromeArray[effectSyndromeNum[mySyndromeEffect[effectContentNum.SYNDROME]]]}
+                          {effectSyndromeArray[effectSyndromeNum[mySyndromeEffect.syndrome]]}
                         </Dx3rdTableCell>
 
                         {/* エフェクト名 */}
                         <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
-                          {mySyndromeEffect[effectContentNum.NAME]}
+                          {mySyndromeEffect.name}
                         </Dx3rdTableCell>
 
                         {/* 最大レベル */}
                         <Dx3rdTableCell align="center">
-                          {mySyndromeEffect[effectContentNum.MAXLEVEL]}
+                          {mySyndromeEffect.max_level}
                         </Dx3rdTableCell>
 
                         {/* タイミング */}
                         <Dx3rdTableCell align="center">
-                          {timingArray[Number(mySyndromeEffect[effectContentNum.TIMING])]}
+                          {timingArray[Number(mySyndromeEffect.timing)]}
                         </Dx3rdTableCell>
 
                         {/* 判定技能 */}
                         <Dx3rdTableCell align="center">
-                          {skillArray[Number(mySyndromeEffect[effectContentNum.SKILL])]}
+                          {skillArray[Number(mySyndromeEffect.skill)]}
                         </Dx3rdTableCell>
 
                         {/* 対象 */}
                         <Dx3rdTableCell align="center">
-                          {targetArray[Number(mySyndromeEffect[effectContentNum.TARGET])]}
+                          {targetArray[Number(mySyndromeEffect.target)]}
                         </Dx3rdTableCell>
 
                         {/* 射程 */}
                         <Dx3rdTableCell align="center">
-                          {rangeArray[Number(mySyndromeEffect[effectContentNum.RANGE])]}
+                          {rangeArray[Number(mySyndromeEffect.range)]}
                         </Dx3rdTableCell>
 
                         {/* 侵食値 */}
                         <Dx3rdTableCell align="center">
-                          {mySyndromeEffect[effectContentNum.EROSION]}
+                          {mySyndromeEffect.erosion_point}
                         </Dx3rdTableCell>
 
                         {/* 制限 */}
                         <Dx3rdTableCell align="center">
-                          {limitArray[Number(mySyndromeEffect[effectContentNum.LIMIT])]}
+                          {limitArray[Number(mySyndromeEffect.limit)]}
                         </Dx3rdTableCell>
 
                         {/* 効果 */}

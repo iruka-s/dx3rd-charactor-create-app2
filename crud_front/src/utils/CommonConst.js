@@ -405,13 +405,13 @@ export const armorSortArray = ["防具"];
 
 export const itemSortArray = ["ヴィークル", "コネ", "その他", "使い捨て"];
 
-export const resurrect = [
-  "general", "リザレクト", "3", "3", "0", "1", "1", "1", "LVd10", "0", "0", "19", "0", "5", "BD:-戦闘不能", "6", "+LVD", "0", ""
-];
+export const resurrect = {
+  syndrome : 'general', name : 'リザレクト', max_level : '3', timing : '3', skill : '0', difficulty : '1', target : '1', range : '1', erosion_point : 'LVd10', limit : '0', count : '0', other : '19', sort : '0', effect_sort1 : '5', effect_content1 : 'BD:-戦闘不能', effect_sort2 : '6',  effect_content2 : '+LVD', effect_sort3 : '0', effect_content3 : ''
+}
 
-export const wording = [
-  "general", "ワーディング", "1", "3", "0", "1", "6", "3", "0", "0", "0", "0", "0", "33", "", "0", "", "0", ""
-];
+export const wording = {
+  syndrome : 'general', name : 'ワーディング', max_level : '1', timing : '3', skill : '0', difficulty : '1', target : '6', range : '3', erosion_point : '0', limit : '0', count : '0', other : '0', sort : '0', effect_sort1 : '33', effect_content1 : '', effect_sort2 : '0',  effect_content2 : '', effect_sort3 : '0', effect_content3 : ''
+}
 
 export const nullEffect = [
   "none", "", "", "", "", "", "", "", "-", "", "", "", "", "", "", "", "", "", ""

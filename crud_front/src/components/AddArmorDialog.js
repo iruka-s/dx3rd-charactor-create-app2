@@ -21,7 +21,7 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
-import { armorSortArray, armorsRow, armorSortNum, armorContentNum } from '../utils/CommonConst';
+import { armorSortArray, armorsRow, armorSortNum } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -165,7 +165,7 @@ export default function AddArmorDialog(props) {
   const handleAdd = () => {
     let list = props.selectArmors;
     for (var index in props.dbArmors) {
-      if (selected.indexOf(props.dbArmors[index][armorContentNum.ID]) !== -1) {
+      if (selected.indexOf(props.dbArmors[index].id) !== -1) {
         list.push({ memo: "", dbInfo: props.dbArmors[index] });
       }
     }
@@ -202,7 +202,7 @@ export default function AddArmorDialog(props) {
     let array = [];
 
     for (var index in dbArmors) {
-      if (isContentFilter(dbArmors[index][armorContentNum.SORT])) {
+      if (isContentFilter(dbArmors[index].sort)) {
         array.push(dbArmors[index]);
       }
     }
@@ -271,17 +271,17 @@ export default function AddArmorDialog(props) {
                 {ArmorFilter(props.dbArmors)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((dbArmor, index) => {
-                    const isItemSelected = isSelected(dbArmor[armorContentNum.ID]);
+                    const isItemSelected = isSelected(dbArmor.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <Dx3rdTableRow
                         hover
-                        onClick={event => handleClick(event, dbArmor[armorContentNum.ID])}
+                        onClick={event => handleClick(event, dbArmor.id)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={dbArmor[armorContentNum.NAME]}
+                        key={dbArmor.name}
                         selected={isItemSelected}
                       >
                         <Dx3rdTableCell padding="checkbox">
@@ -293,27 +293,27 @@ export default function AddArmorDialog(props) {
 
                         {/* 武器名 */}
                         <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
-                          {dbArmor[armorContentNum.NAME]}
+                          {dbArmor.name}
                         </Dx3rdTableCell>
 
                         {/* 装甲 */}
                         <Dx3rdTableCell align="center">
-                          {dbArmor[armorContentNum.ARMOR]}
+                          {dbArmor.armor_point}
                         </Dx3rdTableCell>
 
                         {/* 回避 */}
                         <Dx3rdTableCell align="center">
-                          {dbArmor[armorContentNum.DODGE]}
+                          {dbArmor.dodge}
                         </Dx3rdTableCell>
 
                         {/* 行動 */}
                         <Dx3rdTableCell align="center">
-                          {dbArmor[armorContentNum.ACTION]}
+                          {dbArmor.action_point}
                         </Dx3rdTableCell>
 
                         {/* コスト */}
                         <Dx3rdTableCell align="center">
-                          {dbArmor[armorContentNum.PURCHASE]}/{dbArmor[armorContentNum.STANDING]}
+                          {dbArmor.purchase_point}/{dbArmor.standby_point}
                         </Dx3rdTableCell>
                       </Dx3rdTableRow>
                     );

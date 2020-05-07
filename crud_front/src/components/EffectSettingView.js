@@ -8,7 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import AddEffectDialog from './AddEffectDialog';
-import { effectRow, wording, generalID, syndromeContentNum, effectContentNum, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
+import { effectRow, wording, generalID, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({
@@ -38,10 +38,10 @@ class EffectSettingView extends React.Component {
     for (var index in this.props.dbEffects) {
 
       // 能力値設定画面で選択したシンドロームと一致しているエフェクトを追加
-      if ((this.props.dbEffects[index][effectContentNum.SYNDROME] === this.props.syndrome1[syndromeContentNum.ID])
-        || (this.props.dbEffects[index][effectContentNum.SYNDROME] === this.props.syndrome2[syndromeContentNum.ID])
-        || (this.props.dbEffects[index][effectContentNum.SYNDROME] === this.props.optional[syndromeContentNum.ID])
-        || (this.props.dbEffects[index][effectContentNum.SYNDROME] === generalID)) {
+      if ((this.props.dbEffects[index].syndrome === this.props.syndrome1.english_name)
+        || (this.props.dbEffects[index].syndrome === this.props.syndrome2.english_name)
+        || (this.props.dbEffects[index].syndrome === this.props.optional.english_name)
+        || (this.props.dbEffects[index].syndrome === generalID)) {
         list.push(this.props.dbEffects[index]);
       }
     }
@@ -53,6 +53,7 @@ class EffectSettingView extends React.Component {
     const { classes } = this.props;
 
     let mySyndromeEffectList = this.getMySyndromeEffectList();
+    console.log(this.props.syndrome1);
 
     return (
       <div>
@@ -61,9 +62,9 @@ class EffectSettingView extends React.Component {
           mySyndromeEffectList={mySyndromeEffectList}
           selectEffects={this.props.selectEffects}
           setSelectEffects={this.props.setSelectEffects}
-          syndrome1Name={this.props.syndrome1[syndromeContentNum.NAME]}
-          syndrome2Name={this.props.syndrome2[syndromeContentNum.NAME]}
-          optionalName={this.props.optional[syndromeContentNum.NAME]}
+          syndrome1Name={this.props.syndrome1.name}
+          syndrome2Name={this.props.syndrome2.name}
+          optionalName={this.props.optional.name}
         />
 
         <Paper className={classes.root}>
@@ -88,16 +89,18 @@ class EffectSettingView extends React.Component {
 
               {this.props.selectEffects.map((effect, index) => {
 
+                console.log(effect.dbInfo);
+
                 return (
                   <Dx3rdTableRow>
 
                     {/* エフェクト名 */}
                     <Dx3rdTableCell align="center">
-                      {effect.dbInfo[effectContentNum.NAME]}
+                      {effect.dbInfo.name}
                     </Dx3rdTableCell>
 
                     {/* レベル */}
-                    {(effect.dbInfo[effectContentNum.SYNDROME] === "none") ?
+                    {(effect.dbInfo.syndrome === "none") ?
 
                       <Dx3rdTableCell align="center">
                         <TextField
@@ -120,7 +123,7 @@ class EffectSettingView extends React.Component {
                       </Dx3rdTableCell>
                     }
 
-                    {(effect.dbInfo[effectContentNum.SYNDROME] === "none") ?
+                    {(effect.dbInfo.syndrome === "none") ?
                       // タイミング
                       <Dx3rdTableCell align="center">
                         -
@@ -128,33 +131,33 @@ class EffectSettingView extends React.Component {
                       :
                       // タイミング
                       <Dx3rdTableCell align="center">
-                        {timingArray[Number(effect.dbInfo[effectContentNum.TIMING])]}
+                        {timingArray[Number(effect.dbInfo.timing)]}
                       </Dx3rdTableCell>
                     }
 
                     {/* 技能 */}
                     <Dx3rdTableCell align="center">
-                      {skillArray[Number(effect.dbInfo[effectContentNum.SKILL])]}
+                      {skillArray[Number(effect.dbInfo.skill)]}
                     </Dx3rdTableCell>
 
                     {/* 対象 */}
                     <Dx3rdTableCell align="center">
-                      {targetArray[Number(effect.dbInfo[effectContentNum.TARGET])]}
+                      {targetArray[Number(effect.dbInfo.target)]}
                     </Dx3rdTableCell>
 
                     {/* 射程 */}
                     <Dx3rdTableCell align="center">
-                      {rangeArray[Number(effect.dbInfo[effectContentNum.RANGE])]}
+                      {rangeArray[Number(effect.dbInfo.range)]}
                     </Dx3rdTableCell>
 
                     {/* 侵食値 */}
                     <Dx3rdTableCell align="center">
-                      {effect.dbInfo[effectContentNum.EROSION]}
+                      {effect.dbInfo.erosion_point}
                     </Dx3rdTableCell>
 
                     {/* 制限 */}
                     <Dx3rdTableCell align="center">
-                      {limitArray[Number(effect.dbInfo[effectContentNum.LIMIT])]}
+                      {limitArray[Number(effect.dbInfo.limit)]}
                     </Dx3rdTableCell>
 
                     {/* 効果 */}

@@ -21,7 +21,7 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
-import { weaponSortArray, weaponsRow, weaponSortNum, weaponContentNum } from '../utils/CommonConst';
+import { weaponSortArray, weaponsRow, weaponSortNum } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -165,7 +165,7 @@ export default function AddWeaponDialog(props) {
   const handleAdd = () => {
     let list = props.selectWeapons;
     for (var index in props.dbWeapons) {
-      if (selected.indexOf(props.dbWeapons[index][weaponContentNum.ID]) !== -1) {
+      if (selected.indexOf(props.dbWeapons[index].id) !== -1) {
         list.push({ memo: "", dbInfo: props.dbWeapons[index] });
       }
     }
@@ -205,7 +205,7 @@ export default function AddWeaponDialog(props) {
     let array = [];
 
     for (var index in dbWeapons) {
-      if (isContentFilter(dbWeapons[index][weaponContentNum.SORT])) {
+      if (isContentFilter(dbWeapons[index].sort)) {
         array.push(dbWeapons[index]);
       }
     }
@@ -276,17 +276,17 @@ export default function AddWeaponDialog(props) {
                 {weaponFilter(props.dbWeapons)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((dbWeapon, index) => {
-                    const isItemSelected = isSelected(dbWeapon[weaponContentNum.ID]);
+                    const isItemSelected = isSelected(dbWeapon.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <Dx3rdTableRow
                         hover
-                        onClick={event => handleClick(event, dbWeapon[weaponContentNum.ID])}
+                        onClick={event => handleClick(event, dbWeapon.id)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={dbWeapon[weaponContentNum.NAME]}
+                        key={dbWeapon.name}
                         selected={isItemSelected}
                       >
                         <Dx3rdTableCell padding="checkbox">
@@ -298,37 +298,37 @@ export default function AddWeaponDialog(props) {
 
                         {/* 武器名 */}
                         <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
-                          {dbWeapon[weaponContentNum.NAME]}
+                          {dbWeapon.name}
                         </Dx3rdTableCell>
 
                         {/* 技能 */}
                         <Dx3rdTableCell align="center">
-                          {dbWeapon[weaponContentNum.SKILL]}
+                          {dbWeapon.skill}
                         </Dx3rdTableCell>
 
                         {/* 命中 */}
                         <Dx3rdTableCell align="center">
-                          {dbWeapon[weaponContentNum.HIT]}
+                          {dbWeapon.hit}
                         </Dx3rdTableCell>
 
                         {/* 攻撃力 */}
                         <Dx3rdTableCell align="center">
-                          {dbWeapon[weaponContentNum.ATTACK]}
+                          {dbWeapon.offensive_power}
                         </Dx3rdTableCell>
 
                         {/* 射程 */}
                         <Dx3rdTableCell align="center">
-                          {dbWeapon[weaponContentNum.RANGE]}
+                          {dbWeapon.range}
                         </Dx3rdTableCell>
 
                         {/* ガード */}
                         <Dx3rdTableCell align="center">
-                          {dbWeapon[weaponContentNum.GUARD]}
+                          {dbWeapon.guard_point}
                         </Dx3rdTableCell>
 
                         {/* コスト */}
                         <Dx3rdTableCell align="center">
-                          {dbWeapon[weaponContentNum.PURCHASE]}/{dbWeapon[weaponContentNum.STANDING]}
+                          {dbWeapon.purchase_point}/{dbWeapon.standby_point}
                         </Dx3rdTableCell>
                       </Dx3rdTableRow>
 

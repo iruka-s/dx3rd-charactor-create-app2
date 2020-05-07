@@ -18,7 +18,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { worksContentNum, impulseContentNum, awakeningContentNum, abilitiesArray, abilityTableRowNum } from '../utils/CommonConst';
+import { abilitiesArray, abilityTableRowNum } from '../utils/CommonConst';
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdResultTableCell } from './Dx3rdStyledComponent';
 
 const styles = theme => ({
@@ -317,7 +317,7 @@ class CharactorDetailView extends React.Component {
             >
               {this.props.dbWorks.map(dbWork => (
                 <MenuItem id={"works"} value={dbWork}>
-                  {dbWork[worksContentNum.NAME]}
+                  {dbWork.name}
                 </MenuItem>
               ))}
             </TextField>
@@ -369,9 +369,9 @@ class CharactorDetailView extends React.Component {
               value={this.props.impulse}
               onChange={(e) => this.props.addSelectImpulse(e.target.value)}
             >
-              {this.props.dbImpulse.map(impulse => (
+              {this.props.dbImpulses.map(impulse => (
                 <MenuItem id={"impulse"} value={impulse}>
-                  {impulse[impulseContentNum.NAME]}
+                  {impulse.name}
                 </MenuItem>
               ))}
             </TextField>
@@ -385,9 +385,9 @@ class CharactorDetailView extends React.Component {
               value={this.props.awakening}
               onChange={(e) => this.props.addSelectAwakening(e.target.value)}
             >
-              {this.props.dbAwakening.map(awakening => (
+              {this.props.dbAwakenings.map(awakening => (
                 <MenuItem id={"awakening"} value={awakening}>
-                  {awakening[awakeningContentNum.NAME]}
+                  {awakening.name}
                 </MenuItem>
               ))}
             </TextField>

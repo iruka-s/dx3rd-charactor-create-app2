@@ -10,7 +10,7 @@ import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import AddWeaponDialog from './AddWeaponDialog';
 import AddArmorDialog from './AddArmorDialog';
 import AddItemDialog from './AddItemDialog';
-import { weaponsRow, armorsRow, itemsRow, weaponContentNum, armorContentNum, itemContentNum, itemSortArray, targetArray, rangeArray, limitArray } from '../utils/CommonConst';
+import { weaponsRow, armorsRow, itemsRow, itemSortArray, targetArray, rangeArray, limitArray } from '../utils/CommonConst';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({
@@ -71,37 +71,37 @@ class ItemSettingView extends React.Component {
 
                     {/* 武器名 */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo[weaponContentNum.NAME]}
+                      {weapon.dbInfo.name}
                     </Dx3rdTableCell>
 
                     {/* 技能 */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo[weaponContentNum.SKILL]}
+                      {weapon.dbInfo.skill}
                     </Dx3rdTableCell>
 
                     {/* 命中 */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo[weaponContentNum.HIT]}
+                      {weapon.dbInfo.hit}
                     </Dx3rdTableCell>
 
                     {/* 攻撃力 */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo[weaponContentNum.ATTACK]}
+                      {weapon.dbInfo.offensive_power}
                     </Dx3rdTableCell>
 
                     {/* 射程 */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo[weaponContentNum.RANGE]}
+                      {weapon.dbInfo.range}
                     </Dx3rdTableCell>
 
                     {/* ガード */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo[weaponContentNum.GUARD]}
+                      {weapon.dbInfo.guard_point}
                     </Dx3rdTableCell>
 
                     {/* コスト */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo[weaponContentNum.PURCHASE]}/{weapon.dbInfo[weaponContentNum.STANDING]}
+                      {weapon.dbInfo.purchase_point}/{weapon.dbInfo.standby_point}
                     </Dx3rdTableCell>
 
                     {/* メモ */}
@@ -171,27 +171,27 @@ class ItemSettingView extends React.Component {
 
                     {/* 防具名 */}
                     <Dx3rdTableCell align="center">
-                      {armor.dbInfo[armorContentNum.NAME]}
+                      {armor.dbInfo.name}
                     </Dx3rdTableCell>
 
                     {/* 装甲 */}
                     <Dx3rdTableCell align="center">
-                      {armor.dbInfo[armorContentNum.ARMOR]}
+                      {armor.dbInfo.armor_point}
                     </Dx3rdTableCell>
 
                     {/* 回避 */}
                     <Dx3rdTableCell align="center">
-                      {armor.dbInfo[armorContentNum.DODGE]}
+                      {armor.dbInfo.dodge}
                     </Dx3rdTableCell>
 
                     {/* 行動 */}
                     <Dx3rdTableCell align="center">
-                      {armor.dbInfo[armorContentNum.ACTION]}
+                      {armor.dbInfo.action_point}
                     </Dx3rdTableCell>
 
                     {/* コスト */}
                     <Dx3rdTableCell align="center">
-                      {armor.dbInfo[armorContentNum.PURCHASE]}/{armor.dbInfo[armorContentNum.STANDING]}
+                      {armor.dbInfo.purchase_point}/{armor.dbInfo.standby_point}
                     </Dx3rdTableCell>
 
                     {/* メモ */}
@@ -260,22 +260,22 @@ class ItemSettingView extends React.Component {
 
                     {/* アイテム名 */}
                     <Dx3rdTableCell align="center">
-                      {item.dbInfo[itemContentNum.NAME]}
+                      {item.dbInfo.name}
                     </Dx3rdTableCell>
 
                     {/* 種別 */}
                     <Dx3rdTableCell align="center">
-                      {itemSortArray[Number(item.dbInfo[itemContentNum.SORT])]}
+                      {itemSortArray[Number(item.dbInfo.sort)]}
                     </Dx3rdTableCell>
 
                     {/* 技能 */}
                     <Dx3rdTableCell align="center">
-                      {item.dbInfo[itemContentNum.SKILL]}
+                      {item.dbInfo.skill}
                     </Dx3rdTableCell>
 
                     {/* コスト */}
                     <Dx3rdTableCell align="center">
-                      {item.dbInfo[itemContentNum.PURCHASE]}/{item.dbInfo[itemContentNum.STANDING]}
+                      {item.dbInfo.purchase_point}/{item.dbInfo.standby_point}
                     </Dx3rdTableCell>
 
                     {/* メモ */}

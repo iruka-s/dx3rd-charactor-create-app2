@@ -21,7 +21,7 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
-import { itemSortArray, itemsRow, itemSortNum, itemContentNum } from '../utils/CommonConst';
+import { itemSortArray, itemsRow, itemSortNum } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -165,7 +165,7 @@ export default function AddItemDialog(props) {
   const handleAdd = () => {
     let list = props.selectItems;
     for (var index in props.dbItems) {
-      if (selected.indexOf(props.dbItems[index][itemContentNum.ID]) !== -1) {
+      if (selected.indexOf(props.dbItems[index].id) !== -1) {
         list.push({ memo: "", dbInfo: props.dbItems[index] });
       }
     }
@@ -211,7 +211,7 @@ export default function AddItemDialog(props) {
     let array = [];
 
     for (var index in dbItems) {
-      if (isContentFilter(dbItems[index][itemContentNum.SORT])) {
+      if (isContentFilter(dbItems[index].sort)) {
         array.push(dbItems[index]);
       }
     }
@@ -279,19 +279,19 @@ export default function AddItemDialog(props) {
                 {itemFilter(props.dbItems)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((dbItem, index) => {
-                    const isItemSelected = isSelected(dbItem[itemContentNum.ID]);
+                    const isItemSelected = isSelected(dbItem.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
-                    if (isContentFilter(dbItem[itemContentNum.SORT])) {
+                    if (isContentFilter(dbItem.id)) {
 
                       return (
                         <Dx3rdTableRow
                           hover
-                          onClick={event => handleClick(event, dbItem[itemContentNum.ID])}
+                          onClick={event => handleClick(event, dbItem.id)}
                           role="checkbox"
                           aria-checked={isItemSelected}
                           tabIndex={-1}
-                          key={dbItem[itemContentNum.NAME]}
+                          key={dbItem.name}
                           selected={isItemSelected}
                         >
                           <Dx3rdTableCell padding="checkbox">
@@ -303,22 +303,22 @@ export default function AddItemDialog(props) {
 
                           {/* アイテム名 */}
                           <Dx3rdTableCell align="center">
-                            {dbItem[itemContentNum.NAME]}
+                            {dbItem.name}
                           </Dx3rdTableCell>
 
                           {/* 種別 */}
                           <Dx3rdTableCell align="center">
-                            {itemSortArray[Number(dbItem[itemContentNum.SORT])]}
+                            {itemSortArray[Number(dbItem.sort)]}
                           </Dx3rdTableCell>
 
                           {/* 技能 */}
                           <Dx3rdTableCell align="center">
-                            {dbItem[itemContentNum.SKILL]}
+                            {dbItem.skill}
                           </Dx3rdTableCell>
 
                           {/* コスト */}
                           <Dx3rdTableCell align="center">
-                            {dbItem[itemContentNum.PURCHASE]}/{dbItem[itemContentNum.STANDING]}
+                            {dbItem.purchase_point}/{dbItem.standby_point}
                           </Dx3rdTableCell>
                         </Dx3rdTableRow>
 

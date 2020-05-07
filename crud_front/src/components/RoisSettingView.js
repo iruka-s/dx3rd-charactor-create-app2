@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
-import { roisRow, emotionContentNum } from '../utils/CommonConst';
+import { roisRow } from '../utils/CommonConst';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({
@@ -87,9 +87,9 @@ class RoisSettingView extends React.Component {
                       value={selectRoi.favor}
                       onChange={(e) => this.props.selectFavor(index, e.target.value)}
                     >
-                      {this.props.dbPositiveEmotion.map(pEmotion => (
+                      {this.props.dbPositiveEmotions.map(pEmotion => (
                         <MenuItem id={"proi" + String(index)} value={pEmotion}>
-                          {pEmotion[emotionContentNum.NAME]}
+                          {pEmotion.name}
                         </MenuItem>
                       ))}
                     </TextField>
@@ -105,9 +105,9 @@ class RoisSettingView extends React.Component {
                       value={selectRoi.malice}
                       onChange={(e) => this.props.selectMalice(index, e.target.value)}
                     >
-                      {this.props.dbNegativeEmotion.map(nEmotion => (
+                      {this.props.dbNegativeEmotions.map(nEmotion => (
                         <MenuItem id={"nroi" + String(index)} value={nEmotion}>
-                          {nEmotion[emotionContentNum.NAME]}
+                          {nEmotion.name}
                         </MenuItem>
                       ))}
                     </TextField>

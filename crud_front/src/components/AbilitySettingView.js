@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdResultTableCell } from './Dx3rdStyledComponent';
-import { abilityRow, syndromeList, abilityTableRowNum, syndromeContentNum } from "../utils/CommonConst";
+import { abilityRow, syndromeList, abilityTableRowNum } from "../utils/CommonConst";
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({
@@ -64,9 +64,9 @@ class AbilitySettingView extends React.Component {
                   value={this.props.syndrome1}
                   onChange={(e) => this.props.handleSyndromeChange(1, e.target.value)}
                 >
-                  {this.props.dbSyndrome.map(syndrome => (
-                    <MenuItem key={syndrome[syndromeContentNum.NAME]} value={syndrome}>
-                      {syndrome[syndromeContentNum.NAME]}
+                  {this.props.dbSyndromes.map(syndrome => (
+                    <MenuItem key={syndrome.name} value={syndrome}>
+                      {syndrome.name}
                     </MenuItem>
                   ))}
                 </TextField>
@@ -121,7 +121,7 @@ class AbilitySettingView extends React.Component {
                 {this.props.abilityValues[abilityTableRowNum.SYNDROME2].name}
               </Dx3rdTableCell>
 
-              {(this.props.syndrome1[syndromeContentNum.ID] === "empty") ?
+              {(this.props.syndrome1.english_name === "empty") ?
                 <Dx3rdTableCell align="center">
                   <TextField
                     id="standard-select-currency"
@@ -132,9 +132,9 @@ class AbilitySettingView extends React.Component {
                     value={this.props.syndrome2}
                     onChange={(e) => this.props.handleSyndromeChange(2, e.target.value)}
                   >
-                    {this.props.dbSyndrome.map(syndrome => (
-                      <MenuItem key={syndrome[syndromeContentNum.NAME]} value={syndrome}>
-                        {syndrome[syndromeContentNum.NAME]}
+                    {this.props.dbSyndromes.map(syndrome => (
+                      <MenuItem key={syndrome.name} value={syndrome}>
+                        {syndrome.name}
                       </MenuItem>
                     ))}
                   </TextField>
@@ -149,9 +149,9 @@ class AbilitySettingView extends React.Component {
                     value={this.props.syndrome2}
                     onChange={(e) => this.props.handleSyndromeChange(2, e.target.value)}
                   >
-                    {this.props.dbSyndrome.map(syndrome => (
-                      <MenuItem key={syndrome[syndromeContentNum.NAME]} value={syndrome}>
-                        {syndrome[syndromeContentNum.NAME]}
+                    {this.props.dbSyndromes.map(syndrome => (
+                      <MenuItem key={syndrome.name} value={syndrome}>
+                        {syndrome.name}
                       </MenuItem>
                     ))}
                   </TextField>
@@ -208,7 +208,7 @@ class AbilitySettingView extends React.Component {
                 {this.props.abilityValues[abilityTableRowNum.OPTIONAL].name}
               </Dx3rdTableCell>
 
-              {(this.props.syndrome2[syndromeContentNum.ID] === "empty") ?
+              {(this.props.syndrome2.english_name === "empty") ?
                 <Dx3rdTableCell align="center">
                   <TextField
                     id="standard-select-currency"
@@ -219,9 +219,9 @@ class AbilitySettingView extends React.Component {
                     value={this.props.optional}
                     onChange={(e) => this.props.handleSyndromeChange(3, e.target.value)}
                   >
-                    {this.props.dbSyndrome.map(syndrome => (
-                      <MenuItem key={syndrome[syndromeContentNum.NAME]} value={syndrome}>
-                        {syndrome[syndromeContentNum.NAME]}
+                    {this.props.dbSyndromes.map(syndrome => (
+                      <MenuItem key={syndrome.name} value={syndrome}>
+                        {syndrome.name}
                       </MenuItem>
                     ))}
                   </TextField>
@@ -236,9 +236,9 @@ class AbilitySettingView extends React.Component {
                     value={this.props.optional}
                     onChange={(e) => this.props.handleSyndromeChange(3, e.target.value)}
                   >
-                    {this.props.dbSyndrome.map(syndrome => (
-                      <MenuItem key={syndrome[syndromeContentNum.NAME]} value={syndrome}>
-                        {syndrome[syndromeContentNum.NAME]}
+                    {this.props.dbSyndromes.map(syndrome => (
+                      <MenuItem key={syndrome.name} value={syndrome}>
+                        {syndrome.name}
                       </MenuItem>
                     ))}
                   </TextField>

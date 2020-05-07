@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -42,7 +42,7 @@ import EffectSettingView from '../components/EffectSettingView';
 import ItemSettingView from "../components/ItemSettingView";
 import RoisSettingView from "../components/RoisSettingView";
 import { skillTableInputTypes, abilityTableInputTypes, roisTableInputTypes } from "../action/ActionCreators";
-import { mainSkillSortNum, abilityTableRowNum, syndromeContentNum, ScreenPath, resurrect, nullEffect, impulseContentNum, awakeningContentNum, worksContentNum, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
+import { mainSkillSortNum, abilityTableRowNum, ScreenPath, resurrect, nullEffect, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
 
 const jsonIcon = '../images/json_icon.png';
 const pdfIcon = '../images/pdf_icon.png';
@@ -131,8 +131,8 @@ export default function Dx3rdDrawer(props) {
   const [experience, setExperience] = React.useState("");
   const [encounter, setEncounter] = React.useState("");
   const [works, setWorks] = React.useState(props.dbWorks[0]);
-  const [impulse, setImpulse] = React.useState(props.dbImpulse[0]);
-  const [awakening, setAwakening] = React.useState(props.dbAwakening[0]);
+  const [impulse, setImpulse] = React.useState(props.dbImpulses[0]);
+  const [awakening, setAwakening] = React.useState(props.dbAwakenings[0]);
   const [mainSkills, setMainSkills] = React.useState([
     { id: mainSkillSortName.MELEE.ID, name: mainSkillSortName.MELEE.NAME, initVal: "0", growVal: "0", otherVal: "0", judgeVal: "0d + 0", memo: "" },
     { id: mainSkillSortName.AVOID.ID, name: mainSkillSortName.AVOID.NAME, initVal: "0", growVal: "0", otherVal: "0", judgeVal: "0d + 0", memo: "" },
@@ -156,9 +156,9 @@ export default function Dx3rdDrawer(props) {
     },
   ]);
   const [growRowDeleteDialogOpen, setGrowRowDeleteDialogOpen] = React.useState(false);
-  const [syndrome1, setSyndrome1] = React.useState(props.dbSyndrome[0]);
-  const [syndrome2, setSyndrome2] = React.useState(props.dbSyndrome[0]);
-  const [optional, setOptional] = React.useState(props.dbSyndrome[0]);
+  const [syndrome1, setSyndrome1] = React.useState(props.dbSyndromes[0]);
+  const [syndrome2, setSyndrome2] = React.useState(props.dbSyndromes[0]);
+  const [optional, setOptional] = React.useState(props.dbSyndromes[0]);
   const [abilityValues, setAbilityValues] = React.useState([
     { id: "syndrome1", name: "シンドローム1：", body: "0", sense: "0", spirit: "0", society: "0" },
     { id: "syndrome2", name: "シンドローム2：", body: "0", sense: "0", spirit: "0", society: "0" },
@@ -179,36 +179,92 @@ export default function Dx3rdDrawer(props) {
   const [selectArmors, setSelectArmors] = React.useState([]);
   const [selectItems, setSelectItems] = React.useState([]);
   const [selectRois, setSelectRois] = React.useState([
-    { srois: "0", name: "", favor: props.dbPositiveEmotion[0], malice: props.dbNegativeEmotion[0], memo: "" },
-    { srois: "0", name: "", favor: props.dbPositiveEmotion[0], malice: props.dbNegativeEmotion[0], memo: "" },
-    { srois: "0", name: "", favor: props.dbPositiveEmotion[0], malice: props.dbNegativeEmotion[0], memo: "" },
-    { srois: "0", name: "", favor: props.dbPositiveEmotion[0], malice: props.dbNegativeEmotion[0], memo: "" },
-    { srois: "0", name: "", favor: props.dbPositiveEmotion[0], malice: props.dbNegativeEmotion[0], memo: "" },
-    { srois: "0", name: "", favor: props.dbPositiveEmotion[0], malice: props.dbNegativeEmotion[0], memo: "" },
-    { srois: "0", name: "", favor: props.dbPositiveEmotion[0], malice: props.dbNegativeEmotion[0], memo: "" }
+    { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
+    { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
+    { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
+    { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
+    { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
+    { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
+    { srois: "0", name: "", favor: {}, malice: {}, memo: "" }
   ]);
+
+  // ワークス初期化
+  useEffect(() => {
+
+    setWorks(props.dbWorks[0]);
+
+  }, [props.dbWorks]);
+
+  // 衝動初期化
+  useEffect(() => {
+
+    setImpulse(props.dbImpulses[0]);
+
+  }, [props.dbImpulses]);
+
+  // 覚醒初期化
+  useEffect(() => {
+
+    setAwakening(props.dbAwakenings[0]);
+
+  }, [props.dbAwakenings]);
+
+  // シンドローム初期化
+  useEffect(() => {
+
+    setSyndrome1(props.dbSyndromes[0]);
+    setSyndrome2(props.dbSyndromes[0]);
+    setOptional(props.dbSyndromes[0]);
+
+  }, [props.dbSyndromes]);
+
+  // ポジティブ感情初期化
+  useEffect(() => {
+
+    let list = selectRois;
+
+    for (var num in list) {
+      list[Number(num)].favor = props.dbPositiveEmotions[0];
+    }
+
+    setSelectRois(Object.assign([], list));
+
+  }, [props.dbPositiveEmotions]);
+
+  // ネガティブ感情初期化
+  useEffect(() => {
+
+    let list = selectRois;
+
+    for (var num in list) {
+      list[Number(num)].malice = props.dbNegativeEmotions[0];
+    }
+
+    setSelectRois(Object.assign([], list));
+
+  }, [props.dbNegativeEmotions]);
 
   const createSkillList = (useWorks) => {
     let list = [];
 
-    if (worksContentNum.SKILL1 !== "") {
-      list.push({ id: useWorks[worksContentNum.SKILL1], value: useWorks[worksContentNum.VALUE1] });
+    if (useWorks.skill1 !== "") {
+      list.push({ id: useWorks.skill1, value: useWorks.value1 });
     }
 
-    if (worksContentNum.SKILL2 !== "") {
-      list.push({ id: useWorks[worksContentNum.SKILL2], value: useWorks[worksContentNum.VALUE2] });
+    if (useWorks.skill2 !== "") {
+      list.push({ id: useWorks.skill2, value: useWorks.value2 });
     }
 
-    if (worksContentNum.SKILL3 !== "") {
-      list.push({ id: useWorks[worksContentNum.SKILL3], value: useWorks[worksContentNum.VALUE3] });
+    if (useWorks.skill3 !== "") {
+      list.push({ id: useWorks.skill3, value: useWorks.value3 });
     }
 
-    if (worksContentNum.SKILL4 !== "") {
-      list.push({ id: useWorks[worksContentNum.SKILL4], value: useWorks[worksContentNum.VALUE4] });
+    if (useWorks.skill4 !== "") {
+      list.push({ id: useWorks.skill4, value: useWorks.value4 });
     }
 
-    if (worksContentNum.SKILL5 !== "") {
-      list.push({ id: useWorks[worksContentNum.SKILL5], value: useWorks[worksContentNum.VALUE5] });
+    if (useWorks.skill5 !== "") {
+      list.push({ id: useWorks.skill5, value: useWorks.value5 });
     }
 
     return list;
@@ -408,10 +464,10 @@ export default function Dx3rdDrawer(props) {
   const setSyndrome1Ability = (value) => {
     let list = abilityValues;
 
-    list[abilityTableRowNum.SYNDROME1].body = value[syndromeContentNum.BODY];
-    list[abilityTableRowNum.SYNDROME1].sense = value[syndromeContentNum.SENSE];
-    list[abilityTableRowNum.SYNDROME1].spirit = value[syndromeContentNum.SPIRIT];
-    list[abilityTableRowNum.SYNDROME1].society = value[syndromeContentNum.SOCIETY];
+    list[abilityTableRowNum.SYNDROME1].body = value.body;
+    list[abilityTableRowNum.SYNDROME1].sense = value.sense;
+    list[abilityTableRowNum.SYNDROME1].spirit = value.spirit;
+    list[abilityTableRowNum.SYNDROME1].society = value.society;
 
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
@@ -421,10 +477,10 @@ export default function Dx3rdDrawer(props) {
   const setSyndrome2Ability = (value) => {
     let list = abilityValues;
 
-    list[abilityTableRowNum.SYNDROME2].body = value[syndromeContentNum.BODY];
-    list[abilityTableRowNum.SYNDROME2].sense = value[syndromeContentNum.SENSE];
-    list[abilityTableRowNum.SYNDROME2].spirit = value[syndromeContentNum.SPIRIT];
-    list[abilityTableRowNum.SYNDROME2].society = value[syndromeContentNum.SOCIETY];
+    list[abilityTableRowNum.SYNDROME2].body = value.body;
+    list[abilityTableRowNum.SYNDROME2].sense = value.sense;
+    list[abilityTableRowNum.SYNDROME2].spirit = value.spirit;
+    list[abilityTableRowNum.SYNDROME2].society = value.society;
 
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
@@ -437,7 +493,7 @@ export default function Dx3rdDrawer(props) {
 
     list = resetAbility(list);
 
-    switch (value[worksContentNum.ABILITY]) {
+    switch (value.ability) {
 
       case abilities.BODY:
         list[abilityTableRowNum.INITIALVAL].body = "1";
@@ -524,12 +580,12 @@ export default function Dx3rdDrawer(props) {
 
   const addSelectImpulse = (value) => {
     setImpulse(value);
-    setInitErosion(value[impulseContentNum.EROSION], awakening[awakeningContentNum.EROSION]);
+    setInitErosion(value.erosion_point, awakening.erosion_point);
   };
 
   const addSelectAwakening = (value) => {
     setAwakening(value);
-    setInitErosion(impulse[impulseContentNum.EROSION], value[awakeningContentNum.EROSION]);
+    setInitErosion(impulse.erosion_point, value.erosion_point);
   };
 
   const makeJudgeVal = (abilityVal, initVal, growVal, otherVal) => {
@@ -1064,7 +1120,7 @@ export default function Dx3rdDrawer(props) {
     if (num === 1) {
       setSyndrome1(value);
       setSyndrome1Ability(value);
-      if (value[syndromeContentNum.ID] === "empty") {
+      if (value.english_name === "empty") {
         setSyndrome2(value);
         setSyndrome2Ability(value);
         setOptional(value);
@@ -1073,7 +1129,7 @@ export default function Dx3rdDrawer(props) {
     if (num === 2) {
       setSyndrome2(value);
       setSyndrome2Ability(value);
-      if (value[syndromeContentNum.ID] === "empty") {
+      if (value.english_name === "empty") {
         setOptional(value);
       }
     }
@@ -1087,7 +1143,7 @@ export default function Dx3rdDrawer(props) {
     let list = selectRois;
 
     list[index].favor = value;
-    setSelectEffects(Object.assign([], list));
+    setSelectRois(Object.assign([], list));
   }
 
   // 選択した悪意を保存
@@ -1095,7 +1151,7 @@ export default function Dx3rdDrawer(props) {
     let list = selectRois;
 
     list[index].malice = value;
-    setSelectEffects(Object.assign([], list));
+    setSelectRois(Object.assign([], list));
   }
 
   const handleToPage = (id) => {
@@ -1350,8 +1406,8 @@ export default function Dx3rdDrawer(props) {
               handleToGrowMemo={handleToGrowMemo}
               handleToAddGrowRow={handleToAddGrowRow}
               deleteGrowRow={deleteGrowRow}
-              dbImpulse={props.dbImpulse}
-              dbAwakening={props.dbAwakening}
+              dbImpulses={props.dbImpulses}
+              dbAwakenings={props.dbAwakenings}
               dbWorks={props.dbWorks}
               name={name}
               addSelectName={addSelectName}
@@ -1405,7 +1461,7 @@ export default function Dx3rdDrawer(props) {
             path={ScreenPath.ABILITY.path}
             render={
               () => <AbilitySettingView
-                dbSyndrome={props.dbSyndrome}
+                dbSyndromes={props.dbSyndromes}
                 syndrome1={syndrome1}
                 syndrome2={syndrome2}
                 optional={optional}
@@ -1456,8 +1512,8 @@ export default function Dx3rdDrawer(props) {
             path={ScreenPath.ROIS.path}
             render={
               () => <RoisSettingView
-                dbPositiveEmotion={props.dbPositiveEmotion}
-                dbNegativeEmotion={props.dbNegativeEmotion}
+                dbPositiveEmotions={props.dbPositiveEmotions}
+                dbNegativeEmotions={props.dbNegativeEmotions}
                 selectRois={selectRois}
                 setSelectRois={setSelectRois}
                 selectFavor={selectFavor}
