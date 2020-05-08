@@ -127,7 +127,7 @@ class EffectSettingView extends React.Component {
                       // タイミング
                       <Dx3rdTableCell align="center">
                         -
-                    </Dx3rdTableCell>
+                      </Dx3rdTableCell>
                       :
                       // タイミング
                       <Dx3rdTableCell align="center">

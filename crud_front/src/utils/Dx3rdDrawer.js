@@ -1202,6 +1202,53 @@ export default function Dx3rdDrawer(props) {
     }
   };
 
+  const handleDownloadJsonFile = () => {
+
+    // ファイルネーム作成
+    var fileName = name;
+    if(fileName === ""){
+      fileName = "名無しさん";
+    }
+    fileName = fileName + ".json";
+
+    // Jsonの中身作成
+    var jsonFileContent = {};
+    jsonFileContent["name"] = name;
+    jsonFileContent["codeName"] = codeName;
+    jsonFileContent["sex"] = sex;
+    jsonFileContent["age"] = age;
+    jsonFileContent["cover"] = cover;
+    jsonFileContent["origin"] = origin;
+    jsonFileContent["experience"] = experience;
+    jsonFileContent["encounter"] = encounter;
+    jsonFileContent["works"] = works;
+    jsonFileContent["impulse"] = impulse;
+    jsonFileContent["awakening"] = awakening;
+    jsonFileContent["mainSkills"] = mainSkills;
+    jsonFileContent["subSkills"] = subSkills;
+    jsonFileContent["userAddSubSkills"] = userAddSubSkills;
+    jsonFileContent["growValues"] = growValues;
+    jsonFileContent["syndrome1"] = syndrome1;
+    jsonFileContent["syndrome2"] = syndrome2;
+    jsonFileContent["optional"] = optional;
+    jsonFileContent["abilityValues"] = abilityValues;
+    jsonFileContent["selectEffects"] = selectEffects;
+    jsonFileContent["selectWeapons"] = selectWeapons;
+    jsonFileContent["selectArmors"] = selectArmors;
+    jsonFileContent["selectItems"] = selectItems;
+    jsonFileContent["selectRois"] = selectRois;
+    console.log(jsonFileContent);
+
+    const data = new Blob([JSON.stringify(jsonFileContent)], { type: 'text/json' });
+    const jsonURL = window.URL.createObjectURL(data);
+    const link = document.createElement('a');
+    document.body.appendChild(link);
+    link.href = jsonURL;
+    link.setAttribute('download', fileName);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleTest = () => {
     console.log("push now");
   };
@@ -1291,7 +1338,7 @@ export default function Dx3rdDrawer(props) {
       <Divider />
 
       <List>
-        <ListItem button disabled key={"outputCsv"} onClick={handleTest}>
+        <ListItem button key={"outputCsv"} onClick={handleDownloadJsonFile}>
           <ListItemIcon>
             <Tooltip title="JSON出力">
               <img
