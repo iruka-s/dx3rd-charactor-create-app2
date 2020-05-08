@@ -130,9 +130,9 @@ export default function Dx3rdDrawer(props) {
   const [origin, setOrigin] = React.useState("");
   const [experience, setExperience] = React.useState("");
   const [encounter, setEncounter] = React.useState("");
-  const [works, setWorks] = React.useState(props.dbWorks[0]);
-  const [impulse, setImpulse] = React.useState(props.dbImpulses[0]);
-  const [awakening, setAwakening] = React.useState(props.dbAwakenings[0]);
+  const [works, setWorks] = React.useState();
+  const [impulse, setImpulse] = React.useState();
+  const [awakening, setAwakening] = React.useState();
   const [mainSkills, setMainSkills] = React.useState([
     { id: mainSkillSortName.MELEE.ID, name: mainSkillSortName.MELEE.NAME, initVal: "0", growVal: "0", otherVal: "0", judgeVal: "0d + 0", memo: "" },
     { id: mainSkillSortName.AVOID.ID, name: mainSkillSortName.AVOID.NAME, initVal: "0", growVal: "0", otherVal: "0", judgeVal: "0d + 0", memo: "" },
@@ -156,9 +156,9 @@ export default function Dx3rdDrawer(props) {
     },
   ]);
   const [growRowDeleteDialogOpen, setGrowRowDeleteDialogOpen] = React.useState(false);
-  const [syndrome1, setSyndrome1] = React.useState(props.dbSyndromes[0]);
-  const [syndrome2, setSyndrome2] = React.useState(props.dbSyndromes[0]);
-  const [optional, setOptional] = React.useState(props.dbSyndromes[0]);
+  const [syndrome1, setSyndrome1] = React.useState();
+  const [syndrome2, setSyndrome2] = React.useState();
+  const [optional, setOptional] = React.useState();
   const [abilityValues, setAbilityValues] = React.useState([
     { id: "syndrome1", name: "シンドローム1：", body: "0", sense: "0", spirit: "0", society: "0" },
     { id: "syndrome2", name: "シンドローム2：", body: "0", sense: "0", spirit: "0", society: "0" },
@@ -1237,7 +1237,6 @@ export default function Dx3rdDrawer(props) {
     jsonFileContent["selectArmors"] = selectArmors;
     jsonFileContent["selectItems"] = selectItems;
     jsonFileContent["selectRois"] = selectRois;
-    console.log(jsonFileContent);
 
     const data = new Blob([JSON.stringify(jsonFileContent)], { type: 'text/json' });
     const jsonURL = window.URL.createObjectURL(data);
