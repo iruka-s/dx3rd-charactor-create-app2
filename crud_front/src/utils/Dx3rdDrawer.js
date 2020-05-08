@@ -44,9 +44,9 @@ import RoisSettingView from "../components/RoisSettingView";
 import { skillTableInputTypes, abilityTableInputTypes, roisTableInputTypes } from "../action/ActionCreators";
 import { mainSkillSortNum, abilityTableRowNum, ScreenPath, resurrect, nullEffect, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
 
-const jsonIcon = '../images/json_icon.png';
-const pdfIcon = '../images/pdf_icon.png';
-const txtIcon = '../images/txt_icon.png';
+const jsonIcon = require('../images/json_icon.png');
+const pdfIcon = require('../images/pdf_icon.png');
+const txtIcon = require('../images/txt_icon.png');
 
 const drawerWidth = 240;
 
