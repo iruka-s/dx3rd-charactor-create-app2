@@ -1,23 +1,18 @@
 import React from 'react';
-import { lighten, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Button, Grid, Dialog, Fab, Toolbar, Typography, Tooltip,
-  Table, TableHead, TableBody, TableCell, TableRow, TablePagination,
+  Table, TableHead, TableBody, TablePagination,
   Checkbox, Paper, Input, ListItemText
 } from '@material-ui/core';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Switch from '@material-ui/core/Switch';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import FilterListIcon from "@material-ui/icons/FilterList";
 import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
@@ -80,7 +75,6 @@ const useToolbarStyles = makeStyles(theme => ({
 
 const EnhancedTableToolbar = props => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;

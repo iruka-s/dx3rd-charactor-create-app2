@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdResultTableCell } from './Dx3rdStyledComponent';
-import { abilityRow, syndromeList, abilityTableRowNum } from "../utils/CommonConst";
+import { abilityRow, abilityTableRowNum } from "../utils/CommonConst";
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({

@@ -2,9 +2,7 @@ import React from 'react';
 import { TextField, Grid, Fab, MenuItem } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
@@ -77,6 +75,8 @@ class CharactorDetailView extends React.Component {
       if ((growVal - greaterThanTwenty - elevenToTwenty) > 0) {
         experiencePoint = experiencePoint + ((growVal - greaterThanTwenty - elevenToTwenty) * 10)
       }
+
+      return null;
     });
 
     return experiencePoint;
@@ -116,6 +116,8 @@ class CharactorDetailView extends React.Component {
       if ((growVal - greaterThanTwenty - elevenToTwenty - sixToTen) > 0) {
         experiencePoint = experiencePoint + ((growVal - sixToTen - greaterThanTwenty - elevenToTwenty) * 2);
       }
+
+      return null;
     });
 
     return experiencePoint;
@@ -155,6 +157,8 @@ class CharactorDetailView extends React.Component {
       if ((growVal - greaterThanTwenty - elevenToTwenty - sixToTen) > 0) {
         experiencePoint = experiencePoint + ((growVal - sixToTen - greaterThanTwenty - elevenToTwenty) * 1);
       }
+
+      return null;
     });
 
     this.props.userAddSubSkills.map(skill => {
@@ -187,6 +191,8 @@ class CharactorDetailView extends React.Component {
       if ((growVal - greaterThanTwenty - elevenToTwenty - sixToTen) > 0) {
         experiencePoint = experiencePoint + ((growVal - sixToTen - greaterThanTwenty - elevenToTwenty) * 1);
       }
+
+      return null;
     });
 
     return experiencePoint;
@@ -198,6 +204,7 @@ class CharactorDetailView extends React.Component {
 
     this.props.selectEffects.map(effect => {
       experiencePoint = experiencePoint + 15 + ((Number(effect.level) - 1) * 5);
+      return null;
     });
 
     // リザレクトは初期から取得済みなので-15点
@@ -212,6 +219,7 @@ class CharactorDetailView extends React.Component {
 
     this.props.growValues.map(growVal => {
       possessionPoint = possessionPoint + Number(growVal.point);
+      return null;
     });
 
     return String(possessionPoint - Number(usedExperiencePoint));
@@ -227,6 +235,7 @@ class CharactorDetailView extends React.Component {
       } else {
         possessionPoint = possessionPoint + Number(targetVal);
       }
+      return null;
     });
 
     let remainPoint = possessionPoint - Number(this.state.usedExperiencePoint);

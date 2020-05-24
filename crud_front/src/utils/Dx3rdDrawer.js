@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,13 +11,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import LocalShipping from '@material-ui/icons/LocalShipping';
 import EmojiPeople from '@material-ui/icons/EmojiPeople';
 import EmojiObjects from '@material-ui/icons/EmojiObjects';
 import FitnessCenter from '@material-ui/icons/FitnessCenter';
@@ -29,9 +24,8 @@ import Work from '@material-ui/icons/Work';
 import People from '@material-ui/icons/People';
 import SportsHandball from '@material-ui/icons/SportsHandball';
 import SportsKabaddi from '@material-ui/icons/SportsKabaddi';
-import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
-import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import useReactRouter from 'use-react-router';
 
 import { numCheck } from './Dx3rdUtils';
@@ -42,7 +36,7 @@ import EffectSettingView from '../components/EffectSettingView';
 import ItemSettingView from "../components/ItemSettingView";
 import RoisSettingView from "../components/RoisSettingView";
 import { skillTableInputTypes, abilityTableInputTypes, roisTableInputTypes } from "../action/ActionCreators";
-import { mainSkillSortNum, abilityTableRowNum, ScreenPath, resurrect, nullEffect, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
+import { mainSkillSortNum, abilityTableRowNum, ScreenPath, resurrect, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
 
 const jsonIcon = require('../images/json_icon.png');
 const pdfIcon = require('../images/pdf_icon.png');
@@ -113,13 +107,16 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  input: {
+    display: "none"
+  }
 }));
 
 export default function Dx3rdDrawer(props) {
 
   const classes = useStyles();
   const theme = useTheme();
-  const { history, location, match } = useReactRouter();
+  const { history } = useReactRouter();
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [name, setName] = React.useState("");
@@ -288,6 +285,8 @@ export default function Dx3rdDrawer(props) {
 
     let worksSkillList = createSkillList(value);
 
+    var tempSubSkill;
+
     for (var index in worksSkillList) {
 
       switch (worksSkillList[index].id.split(":")[0]) {
@@ -348,28 +347,28 @@ export default function Dx3rdDrawer(props) {
           break;
 
         case subSkillSortName.DRIVING.ID:
-          var tempSubSkill = { id: subSkillSortName.DRIVING.ID, name: subSkillSortName.DRIVING.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
+          tempSubSkill = { id: subSkillSortName.DRIVING.ID, name: subSkillSortName.DRIVING.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
           tempSubSkill.judgeVal = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL][subSkillAbilityCheck(tempSubSkill.id)],
             tempSubSkill.initVal, tempSubSkill.growVal, tempSubSkill.otherVal);
           tempSubSkillList.push(tempSubSkill);
           break;
 
         case subSkillSortName.ART.ID:
-          var tempSubSkill = { id: subSkillSortName.ART.ID, name: subSkillSortName.ART.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
+          tempSubSkill = { id: subSkillSortName.ART.ID, name: subSkillSortName.ART.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
           tempSubSkill.judgeVal = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL][subSkillAbilityCheck(tempSubSkill.id)],
             tempSubSkill.initVal, tempSubSkill.growVal, tempSubSkill.otherVal);
           tempSubSkillList.push(tempSubSkill);
           break;
 
         case subSkillSortName.KNOWLEDGE.ID:
-          var tempSubSkill = { id: subSkillSortName.KNOWLEDGE.ID, name: subSkillSortName.KNOWLEDGE.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
+          tempSubSkill = { id: subSkillSortName.KNOWLEDGE.ID, name: subSkillSortName.KNOWLEDGE.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
           tempSubSkill.judgeVal = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL][subSkillAbilityCheck(tempSubSkill.id)],
             tempSubSkill.initVal, tempSubSkill.growVal, tempSubSkill.otherVal);
           tempSubSkillList.push(tempSubSkill);
           break;
 
         case subSkillSortName.INFOMATION.ID:
-          var tempSubSkill = { id: subSkillSortName.INFOMATION.ID, name: subSkillSortName.INFOMATION.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
+          tempSubSkill = { id: subSkillSortName.INFOMATION.ID, name: subSkillSortName.INFOMATION.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
           tempSubSkill.judgeVal = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL][subSkillAbilityCheck(tempSubSkill.id)],
             tempSubSkill.initVal, tempSubSkill.growVal, tempSubSkill.otherVal);
           tempSubSkillList.push(tempSubSkill);
@@ -858,6 +857,9 @@ export default function Dx3rdDrawer(props) {
       case skillRow.memo.id:
         list[index].memo = value;
         break;
+
+      default:
+        break;
     }
 
     setSubSkills(Object.assign([], list));
@@ -884,6 +886,9 @@ export default function Dx3rdDrawer(props) {
 
       case skillRow.memo.id:
         list[index].memo = value;
+        break;
+
+      default:
         break;
     }
 
@@ -941,6 +946,9 @@ export default function Dx3rdDrawer(props) {
       case abilityTableInputTypes.OTHERVALMOVE:
         list[abilityTableRowNum.OTHERVAL].move = numCheck(value);
         break;
+
+      default:
+        break;
     }
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
@@ -974,6 +982,9 @@ export default function Dx3rdDrawer(props) {
 
       case roisTableInputTypes.MEMO:
         list[index].memo = value;
+        break;
+
+      default:
         break;
     }
 
@@ -1057,15 +1068,6 @@ export default function Dx3rdDrawer(props) {
 
     setSelectEffects(Object.assign([], list));
   }
-
-  // 追加ボタン押下時にエフェクト行を追加する
-  const handleToAddEffectRow = () => {
-
-    let list = selectEffects;
-
-    list.push({ level: "1", dbInfo: nullEffect });
-    setSelectEffects(Object.assign([], list));
-  };
 
   // 削除ボタン押下時にエフェクト行を削除する
   const removeSelectEffects = (index) => {
@@ -1201,6 +1203,95 @@ export default function Dx3rdDrawer(props) {
         break;
     }
   };
+
+  const handleUploadJsonFile = (e) => {
+
+    if(e.target.files.len > 1){
+      console.log("niconico")
+    }
+    console.log(e.target.files.len);
+    
+    var reader = new FileReader();
+    reader.readAsText(e.target.files[0]);
+
+    reader.addEventListener('load', function() {
+      var characterData = JSON.parse(reader.result);
+      setName(characterData.name);
+      setCodeName(characterData.codeName);
+      setSex(characterData.sex);
+      setAge(characterData.age);
+      setCover(characterData.cover);
+      setOrigin(characterData.origin);
+      setExperience(characterData.experience);
+      setEncounter(characterData.encounter);
+      setMainSkills(characterData.mainSkills);
+      setSubSkills(characterData.subSkills);
+      setUserAddSubSkills(characterData.userAddSubSkills);
+      setGrowValues(characterData.growValues);
+      setAbilityValues(characterData.abilityValues);
+      setSelectEffects(characterData.selectEffects);
+      setSelectWeapons(characterData.selectWeapons);
+      setSelectArmors(characterData.selectArmors);
+      setSelectItems(characterData.selectItems);
+
+      // プルダウン要素
+      setWorks(props.getDBWorksValue(characterData.works.name));
+      setImpulse(props.getDBImpulseValue(characterData.impulse.name));
+      setAwakening(props.getDBAwakeningValue(characterData.awakening.name));
+      setSyndrome1(props.getDBSyndromeValue(characterData.syndrome1.name));
+      setSyndrome2(props.getDBSyndromeValue(characterData.syndrome2.name));
+      setOptional(props.getDBSyndromeValue(characterData.optional.name));
+
+
+      let copySelectRois = characterData.selectRois;
+
+      for(var index in copySelectRois){
+        copySelectRois[index].favor = props.getDBPositiveEmotionValue(characterData.selectRois[index].favor.name);
+        copySelectRois[index].malice = props.getDBNegativeEmotionValue(characterData.selectRois[index].malice.name);
+      }
+      setSelectRois(Object.assign([], copySelectRois));
+    });
+
+    // reader.onload = function() {
+
+    //   var characterData = JSON.parse(reader.result);
+    //   setName(characterData.name);
+    //   setCodeName(characterData.codeName);
+    //   setSex(characterData.sex);
+    //   setAge(characterData.age);
+    //   setCover(characterData.cover);
+    //   setOrigin(characterData.origin);
+    //   setExperience(characterData.experience);
+    //   setEncounter(characterData.encounter);
+    //   setMainSkills(characterData.mainSkills);
+    //   setSubSkills(characterData.subSkills);
+    //   setUserAddSubSkills(characterData.userAddSubSkills);
+    //   setGrowValues(characterData.growValues);
+    //   setAbilityValues(characterData.abilityValues);
+    //   setSelectEffects(characterData.selectEffects);
+    //   setSelectWeapons(characterData.selectWeapons);
+    //   setSelectArmors(characterData.selectArmors);
+    //   setSelectItems(characterData.selectItems);
+
+    //   // プルダウン要素
+    //   setWorks(props.getDBWorksValue(characterData.works.name));
+    //   setImpulse(props.getDBImpulseValue(characterData.impulse.name));
+    //   setAwakening(props.getDBAwakeningValue(characterData.awakening.name));
+    //   setSyndrome1(props.getDBSyndromeValue(characterData.syndrome1.name));
+    //   setSyndrome2(props.getDBSyndromeValue(characterData.syndrome2.name));
+    //   setOptional(props.getDBSyndromeValue(characterData.optional.name));
+
+
+    //   let copySelectRois = characterData.selectRois;
+
+    //   for(var index in copySelectRois){
+    //     copySelectRois[index].favor = props.getDBPositiveEmotionValue(characterData.selectRois[index].favor.name);
+    //     copySelectRois[index].malice = props.getDBNegativeEmotionValue(characterData.selectRois[index].malice.name);
+    //   }
+    //   setSelectRois(Object.assign([], copySelectRois));
+    // }
+
+  }
 
   const handleDownloadJsonFile = () => {
 
@@ -1402,17 +1493,20 @@ export default function Dx3rdDrawer(props) {
           <Typography variant="h6" className={classes.title}>
             キャラクタークリエイト
           </Typography>
-          <Tooltip title="JSON アップロード">
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleTest}
-            >
 
-              <CloudUploadIcon />
+          <input accept="text/json" className={classes.input} id="icon-button-file" type="file" onChange={handleUploadJsonFile} />
+          <label htmlFor="icon-button-file">
+            <Tooltip title="JSON アップロード">
+              <IconButton 
+                color="inherit" 
+                aria-label="upload json" 
+                component="span"
+              >
+                <CloudUploadIcon />
+              </IconButton>
+            </Tooltip>
+          </label>
 
-            </IconButton>
-          </Tooltip>
         </Toolbar>
       </AppBar>
 

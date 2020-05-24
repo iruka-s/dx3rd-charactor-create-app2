@@ -1,14 +1,13 @@
 import React from 'react';
-import { TextField, Table, TableBody, TableCell, TableHead, TableRow, Paper, MenuItem, Grid, Fab } from '@material-ui/core';
+import { TextField, Table, TableBody, TableHead, Paper, Fab } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import AddEffectDialog from './AddEffectDialog';
-import { effectRow, wording, generalID, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
+import { effectRow, generalID, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({
@@ -53,7 +52,6 @@ class EffectSettingView extends React.Component {
     const { classes } = this.props;
 
     let mySyndromeEffectList = this.getMySyndromeEffectList();
-    console.log(this.props.syndrome1);
 
     return (
       <div>
@@ -88,8 +86,6 @@ class EffectSettingView extends React.Component {
             <TableBody>
 
               {this.props.selectEffects.map((effect, index) => {
-
-                console.log(effect.dbInfo);
 
                 return (
                   <Dx3rdTableRow>

@@ -1,16 +1,15 @@
 import React from 'react';
-import { TextField, Table, TableBody, TableHead, Paper, MenuItem, Grid, Fab } from '@material-ui/core';
+import { Table, TableBody, TableHead, Paper, Grid, Fab } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import AddWeaponDialog from './AddWeaponDialog';
 import AddArmorDialog from './AddArmorDialog';
 import AddItemDialog from './AddItemDialog';
-import { weaponsRow, armorsRow, itemsRow, itemSortArray, targetArray, rangeArray, limitArray } from '../utils/CommonConst';
+import { weaponsRow, armorsRow, itemsRow, itemSortArray } from '../utils/CommonConst';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({

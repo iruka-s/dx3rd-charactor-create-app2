@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles';
-import { TableRow, TableCell, TablePagination } from "@material-ui/core";
+import { TableRow, TableCell } from "@material-ui/core";
 
 export const Dx3rdTableRow = withStyles({
     head: {
