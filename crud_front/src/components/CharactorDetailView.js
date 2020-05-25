@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Grid, Fab, MenuItem } from '@material-ui/core';
+import { TextField, Grid, Fab, MenuItem, Typography } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
@@ -16,7 +16,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { abilitiesArray, abilityTableRowNum } from '../utils/CommonConst';
+import { abilitiesArray, abilityTableRowNum, growTableTitle } from '../utils/CommonConst';
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdResultTableCell } from './Dx3rdStyledComponent';
 
 const styles = theme => ({
@@ -28,10 +28,15 @@ const styles = theme => ({
     minWidth: 650,
   },
   growAddButton: {
-    marginRight: 10,  // drawer.flexShrink: 0 を使う
+    marginRight: 10,
   },
   growDeleteButton: {
-    marginRight: 30,  // drawer.flexShrink: 0 を使う
+    marginRight: 30,
+  },
+  tableTitle: {
+    marginTop: 18,
+    marginLeft: 15,
+    flexGrow: 1,
   },
 });
 
@@ -406,6 +411,10 @@ class CharactorDetailView extends React.Component {
         </Grid>
 
         <Grid container justify="flex-end" xs={12}>
+          <Typography variant="h5" className={classes.tableTitle}>
+            {growTableTitle}
+          </Typography>
+
           <div className={classes.growAddButton}>
             <IconButton
               color="inherit"
@@ -417,6 +426,7 @@ class CharactorDetailView extends React.Component {
               </Fab>
             </IconButton>
           </div>
+
           <div className={classes.growDeleteButton}>
             {(this.props.growValues.length > 2) ?
               <IconButton
