@@ -14,6 +14,8 @@ export const appTitle = "ダブルクロスキャラクター管理";
 
 export const growTableTitle = "【成長点管理表】";
 
+export const purchaseTableTitle = "【財産点管理表】";
+
 export const mainSkillSortNum = {
   MELEE: 0,
   AVOID: 1,

@@ -16,7 +16,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { abilitiesArray, abilityTableRowNum, growTableTitle } from '../utils/CommonConst';
+import { abilitiesArray, abilityTableRowNum, growTableTitle, purchaseTableTitle } from '../utils/CommonConst';
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdResultTableCell } from './Dx3rdStyledComponent';
 
 const styles = theme => ({
@@ -24,7 +24,7 @@ const styles = theme => ({
     width: '100%',
     overflowX: 'auto',
   },
-  table: {
+  growTable: {
     minWidth: 650,
   },
   growAddButton: {
@@ -33,8 +33,16 @@ const styles = theme => ({
   growDeleteButton: {
     marginRight: 30,
   },
-  tableTitle: {
+  growTableTitle: {
     marginTop: 18,
+    marginLeft: 15,
+    flexGrow: 1,
+  },
+  purchaseTable: {
+    marginTop: 15,
+    minWidth: 650,
+  },
+  purchaseTableTitle: {
     marginLeft: 15,
     flexGrow: 1,
   },
@@ -410,8 +418,9 @@ class CharactorDetailView extends React.Component {
           <Grid item xs={12} />
         </Grid>
 
+        {/* 成長点管理表 */}
         <Grid container justify="flex-end" xs={12}>
-          <Typography variant="h5" className={classes.tableTitle}>
+          <Typography variant="h5" className={classes.growTableTitle}>
             {growTableTitle}
           </Typography>
 
@@ -479,7 +488,7 @@ class CharactorDetailView extends React.Component {
         </Dialog>
 
         <Paper className={classes.root}>
-          <Table className={classes.table} aria-label="grow table">
+          <Table className={classes.growTable} aria-label="grow table">
             <TableHead>
               <Dx3rdTableRow>
                 <Dx3rdTableCell width="20%" align="center"></Dx3rdTableCell>
@@ -539,6 +548,58 @@ class CharactorDetailView extends React.Component {
             </TableBody>
           </Table>
         </Paper>
+
+        <Grid  container spacing={8}>
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+        </Grid>
+
+        {/* 財産点管理表 */}
+        <Grid container justify="flex-end" xs={12}>
+          <Typography variant="h5" className={classes.purchaseTableTitle}>
+            {purchaseTableTitle}
+          </Typography>
+        </Grid>
+
+        <Paper className={classes.root}>
+          <Table className={classes.purchaseTable} aria-label="grow table">
+            <TableHead>
+              <Dx3rdTableRow>
+                <Dx3rdTableCell width="20%" align="center"></Dx3rdTableCell>
+                <Dx3rdTableCell width="10%" align="center">点数</Dx3rdTableCell>
+                <Dx3rdTableCell width="70%" align="center"></Dx3rdTableCell>
+              </Dx3rdTableRow>
+            </TableHead>
+
+            <TableBody>
+              <Dx3rdTableRow key={"default"}>
+                <Dx3rdTableCell align="center">常備化点</Dx3rdTableCell>
+                <Dx3rdTableCell align="center">
+                  {this.state.initExperiencePoint}
+                </Dx3rdTableCell>
+                <Dx3rdTableCell align="center"></Dx3rdTableCell>
+              </Dx3rdTableRow>
+
+              <Dx3rdTableRow key={"used"}>
+                <Dx3rdTableCell align="center">使用点</Dx3rdTableCell>
+                <Dx3rdTableCell align="center">
+                  {this.state.usedExperiencePoint}
+                </Dx3rdTableCell>
+                <Dx3rdTableCell align="center"></Dx3rdTableCell>
+              </Dx3rdTableRow>
+
+              <Dx3rdTableRow key={"remain"}>
+                <Dx3rdResultTableCell align="center">財産点</Dx3rdResultTableCell>
+                <Dx3rdResultTableCell align="center">
+                  {this.state.remainingExperiencePoint}
+                </Dx3rdResultTableCell>
+                <Dx3rdResultTableCell align="center"></Dx3rdResultTableCell>
+              </Dx3rdTableRow>
+            </TableBody>
+          </Table>
+        </Paper>
+
+        
       </div>
     );
   }
