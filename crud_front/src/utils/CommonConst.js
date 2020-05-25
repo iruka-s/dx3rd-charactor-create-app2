@@ -1,5 +1,6 @@
 export const ScreenPath = {
-  DETAIL: { path: "/", id: "detail", name: "キャラクター詳細設定" },
+  TOP: { path: "/", id: "top", name: "トップページ" },
+  DETAIL: { path: "/detail", id: "detail", name: "キャラクター詳細設定" },
   SKILL: { path: "/skill", id: "skill", name: "技能設定" },
   ABILITY: { path: "/ability", id: "ability", name: "能力値設定" },
   EFFECT: { path: "/effect", id: "effect", name: "エフェクト設定" },
@@ -383,7 +384,9 @@ export const generalID = "general";
 
 export const generalName = "一般";
 
-export const emptyName = "未選択";
+export const emptyID = "empty";
+
+export const emptyEffectName = "未選択";
 
 export const effectSyndromeArray = ["エンジェルハイロゥ", "バロール", "ブラックドッグ", "ブラム=ストーカー", "キュマイラ", "エグザイル", "ハヌマーン", "モルフェウス", "オルクス", "サラマンダー", "ソラリス"];
 
@@ -528,4 +531,12 @@ export const itemSortNum = {
   connection: "1",
   other: "2",
   disposable: "3"
+};
+
+export const effectLimit = {
+  none: '0',
+  eightyPercent: '1',
+  oneHundredPercent: '2',
+  oneHundredTwentyPercent: '3',
+  pureSyndrome: '4', 
 };

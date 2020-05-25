@@ -29,6 +29,7 @@ import { Route, Switch } from "react-router-dom";
 import useReactRouter from 'use-react-router';
 
 import { numCheck } from './Dx3rdUtils';
+import TopPageView from '../components/TopPageView';
 import CharactorDetailView from '../components/CharactorDetailView';
 import SkillSettingView from '../components/SkillSettingView';
 import AbilitySettingView from '../components/AbilitySettingView';
@@ -1205,11 +1206,6 @@ export default function Dx3rdDrawer(props) {
   };
 
   const handleUploadJsonFile = (e) => {
-
-    if(e.target.files.len > 1){
-      console.log("niconico")
-    }
-    console.log(e.target.files.len);
     
     var reader = new FileReader();
     reader.readAsText(e.target.files[0]);
@@ -1251,45 +1247,6 @@ export default function Dx3rdDrawer(props) {
       }
       setSelectRois(Object.assign([], copySelectRois));
     });
-
-    // reader.onload = function() {
-
-    //   var characterData = JSON.parse(reader.result);
-    //   setName(characterData.name);
-    //   setCodeName(characterData.codeName);
-    //   setSex(characterData.sex);
-    //   setAge(characterData.age);
-    //   setCover(characterData.cover);
-    //   setOrigin(characterData.origin);
-    //   setExperience(characterData.experience);
-    //   setEncounter(characterData.encounter);
-    //   setMainSkills(characterData.mainSkills);
-    //   setSubSkills(characterData.subSkills);
-    //   setUserAddSubSkills(characterData.userAddSubSkills);
-    //   setGrowValues(characterData.growValues);
-    //   setAbilityValues(characterData.abilityValues);
-    //   setSelectEffects(characterData.selectEffects);
-    //   setSelectWeapons(characterData.selectWeapons);
-    //   setSelectArmors(characterData.selectArmors);
-    //   setSelectItems(characterData.selectItems);
-
-    //   // プルダウン要素
-    //   setWorks(props.getDBWorksValue(characterData.works.name));
-    //   setImpulse(props.getDBImpulseValue(characterData.impulse.name));
-    //   setAwakening(props.getDBAwakeningValue(characterData.awakening.name));
-    //   setSyndrome1(props.getDBSyndromeValue(characterData.syndrome1.name));
-    //   setSyndrome2(props.getDBSyndromeValue(characterData.syndrome2.name));
-    //   setOptional(props.getDBSyndromeValue(characterData.optional.name));
-
-
-    //   let copySelectRois = characterData.selectRois;
-
-    //   for(var index in copySelectRois){
-    //     copySelectRois[index].favor = props.getDBPositiveEmotionValue(characterData.selectRois[index].favor.name);
-    //     copySelectRois[index].malice = props.getDBNegativeEmotionValue(characterData.selectRois[index].malice.name);
-    //   }
-    //   setSelectRois(Object.assign([], copySelectRois));
-    // }
 
   }
 
@@ -1535,6 +1492,13 @@ export default function Dx3rdDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
+          <Route
+            exact
+            path={ScreenPath.TOP.path}
+            render={
+              () => <TopPageView/>
+            }
+          />
           <Route
             exact
             path={ScreenPath.DETAIL.path}

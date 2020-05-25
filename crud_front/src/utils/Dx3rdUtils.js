@@ -1,3 +1,5 @@
+import { generalID, emptyID, emptyEffectName, effectLimit } from './CommonConst';
+
 export function numCheck(str) {
     // if (str.match(/[^d]/) !== null) {
     //     // スナックバーにエラー出すならここ
@@ -15,3 +17,34 @@ export function numCheck(str) {
 
     return value;
 };
+
+// エフェクトが取得可能であるかを判断する
+export function effectChecker(effect, syndrome1, syndrome2, optional) {
+
+  if(effect.syndrome === generalID){
+    return true;
+  }
+
+  if((effect.syndrome !== syndrome1.english_name)
+  && (effect.syndrome !== syndrome2.english_name)
+  && (effect.syndrome !== optional.english_name)
+  && (effect.syndrome !== generalID)) {
+    return false;
+  }
+
+  if((syndrome2 !== emptyID) && (effect.limit === effectLimit.pureSyndrome)){
+    return false;
+  }
+
+  if((optional !== emptyID) && (effect.limit === effectLimit.oneHundredPercent)){
+    return false;
+  }
+
+  if(effect.syndrome !== optional.english_name){
+    if(effect.limit === effectLimit.eightyPercent){
+      return false;
+    }
+  }
+
+  return true;
+}

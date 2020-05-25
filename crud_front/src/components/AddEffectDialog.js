@@ -17,7 +17,7 @@ import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import {
-  emptyName, effectRow, generalName, timingArray, targetArray,
+  emptyEffectName, effectRow, generalName, timingArray, targetArray,
   rangeArray, limitArray, skillArray, effectSyndromeNum, effectSyndromeArray
 } from '../utils/CommonConst';
 
@@ -128,14 +128,14 @@ const createSelectSyndromeArray = (syndrome1Name, syndrome2Name, optionalName) =
 
   let list = [];
 
-  if (syndrome1Name !== emptyName) {
+  if (syndrome1Name !== emptyEffectName) {
 
     list.push(syndrome1Name)
 
-    if (syndrome2Name !== emptyName) {
+    if (syndrome2Name !== emptyEffectName) {
       list.push(syndrome2Name)
 
-      if (optionalName !== emptyName) {
+      if (optionalName !== emptyEffectName) {
         list.push(optionalName)
       }
     }

@@ -29,6 +29,10 @@ export const Dx3rdTableCell = withStyles(theme => ({
     }
 }))(TableCell);
 
+export const Dx3rdErrorTableCell = withStyles(theme => ({
+    backgroundColor: "#ffff00",
+}))(TableCell);
+
 export const Dx3rdResultTableCell = withStyles(theme => ({
     body: {
         backgroundColor: "#3a3137",

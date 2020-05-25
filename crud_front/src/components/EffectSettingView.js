@@ -8,6 +8,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import AddEffectDialog from './AddEffectDialog';
 import { effectRow, generalID, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
+import { effectChecker } from '../utils/Dx3rdUtils';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({
@@ -37,10 +38,7 @@ class EffectSettingView extends React.Component {
     for (var index in this.props.dbEffects) {
 
       // 能力値設定画面で選択したシンドロームと一致しているエフェクトを追加
-      if ((this.props.dbEffects[index].syndrome === this.props.syndrome1.english_name)
-        || (this.props.dbEffects[index].syndrome === this.props.syndrome2.english_name)
-        || (this.props.dbEffects[index].syndrome === this.props.optional.english_name)
-        || (this.props.dbEffects[index].syndrome === generalID)) {
+      if(effectChecker(this.props.dbEffects[index], this.props.syndrome1, this.props.syndrome2, this.props.optional)){
         list.push(this.props.dbEffects[index]);
       }
     }
