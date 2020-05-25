@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
+import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdErrorTableCell } from './Dx3rdStyledComponent';
 import AddEffectDialog from './AddEffectDialog';
 import { effectRow, generalID, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
 import { effectChecker } from '../utils/Dx3rdUtils';
@@ -89,23 +89,18 @@ class EffectSettingView extends React.Component {
                   <Dx3rdTableRow>
 
                     {/* エフェクト名 */}
-                    <Dx3rdTableCell align="center">
-                      {effect.dbInfo.name}
-                    </Dx3rdTableCell>
-
-                    {/* レベル */}
-                    {(effect.dbInfo.syndrome === "none") ?
-
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
                       <Dx3rdTableCell align="center">
-                        <TextField
-                          fullWidth
-                          label=""
-                          value={""}
-                          disabled
-                          inputProps={{ min: 1, maxLength: 2 }}
-                        />
+                        {effect.dbInfo.name}
                       </Dx3rdTableCell>
-                      :
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        {effect.dbInfo.name}
+                      </Dx3rdErrorTableCell>
+                    }
+                    
+                    {/* レベル */}
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
                       <Dx3rdTableCell align="center">
                         <TextField
                           fullWidth
@@ -115,72 +110,140 @@ class EffectSettingView extends React.Component {
                           onChange={(e) => this.props.levelUpdate(index, e.target.value)}
                         />
                       </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        <TextField
+                          fullWidth
+                          label=""
+                          value={effect.level}
+                          inputProps={{ maxLength: 2 }}
+                          onChange={(e) => this.props.levelUpdate(index, e.target.value)}
+                        />
+                      </Dx3rdErrorTableCell>
                     }
 
-                    {(effect.dbInfo.syndrome === "none") ?
-                      // タイミング
-                      <Dx3rdTableCell align="center">
-                        -
-                      </Dx3rdTableCell>
-                      :
-                      // タイミング
+                    {/* タイミング */}
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
                       <Dx3rdTableCell align="center">
                         {timingArray[Number(effect.dbInfo.timing)]}
                       </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        {timingArray[Number(effect.dbInfo.timing)]}
+                      </Dx3rdErrorTableCell>
                     }
 
                     {/* 技能 */}
-                    <Dx3rdTableCell align="center">
-                      {skillArray[Number(effect.dbInfo.skill)]}
-                    </Dx3rdTableCell>
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
+                      <Dx3rdTableCell align="center">
+                        {skillArray[Number(effect.dbInfo.skill)]}
+                      </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        {skillArray[Number(effect.dbInfo.skill)]}
+                      </Dx3rdErrorTableCell>
+                    }
 
                     {/* 対象 */}
-                    <Dx3rdTableCell align="center">
-                      {targetArray[Number(effect.dbInfo.target)]}
-                    </Dx3rdTableCell>
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
+                      <Dx3rdTableCell align="center">
+                        {targetArray[Number(effect.dbInfo.target)]}
+                      </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        {targetArray[Number(effect.dbInfo.target)]}
+                      </Dx3rdErrorTableCell>
+                    }
 
                     {/* 射程 */}
-                    <Dx3rdTableCell align="center">
-                      {rangeArray[Number(effect.dbInfo.range)]}
-                    </Dx3rdTableCell>
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
+                      <Dx3rdTableCell align="center">
+                        {rangeArray[Number(effect.dbInfo.range)]}
+                      </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        {rangeArray[Number(effect.dbInfo.range)]}
+                      </Dx3rdErrorTableCell>
+                    }
 
                     {/* 侵食値 */}
-                    <Dx3rdTableCell align="center">
-                      {effect.dbInfo.erosion_point}
-                    </Dx3rdTableCell>
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
+                      <Dx3rdTableCell align="center">
+                        {effect.dbInfo.erosion_point}
+                      </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        {effect.dbInfo.erosion_point}
+                      </Dx3rdErrorTableCell>
+                    }
 
                     {/* 制限 */}
-                    <Dx3rdTableCell align="center">
-                      {limitArray[Number(effect.dbInfo.limit)]}
-                    </Dx3rdTableCell>
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
+                      <Dx3rdTableCell align="center">
+                        {limitArray[Number(effect.dbInfo.limit)]}
+                      </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        {limitArray[Number(effect.dbInfo.limit)]}
+                      </Dx3rdErrorTableCell>
+                    }
 
                     {/* 効果 */}
-                    {/* ここに乗せる情報を考える */}
-                    <Dx3rdTableCell align="center">
-                      追加する記法を考える
-                    </Dx3rdTableCell>
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
+                      // {/* ここに乗せる情報を考える */}
+                      <Dx3rdTableCell align="center">
+                        追加する記法を考える
+                      </Dx3rdTableCell>
+                    :
+                      // {/* ここに乗せる情報を考える */}
+                      <Dx3rdErrorTableCell align="center">
+                        追加する記法を考える
+                      </Dx3rdErrorTableCell>
+                    }
 
                     {/* 削除ボタン */}
-                    <Dx3rdTableCell align="center">
-                      <div className={classes.growDeleteButton}>
-                        {(index === 0) ?
-                          <div />
-                          :
-                          <IconButton
-                            className
-                            color="inherit"
-                            aria-label="remove"
-                            onClick={(e) => this.props.removeSelectEffects(index)}
-                          >
-                            <Fab size="small" color="secondary" >
-                              <RemoveIcon />
-                            </Fab>
+                    {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
+                      <Dx3rdTableCell align="center">
+                        <div className={classes.growDeleteButton}>
+                          {(index === 0) ?
+                            <div />
+                            :
+                            <IconButton
+                              className
+                              color="inherit"
+                              aria-label="remove"
+                              onClick={(e) => this.props.removeSelectEffects(index)}
+                            >
+                              <Fab size="small" color="secondary" >
+                                <RemoveIcon />
+                              </Fab>
 
-                          </IconButton>
-                        }
+                            </IconButton>
+                          }
+                        </div>
+                      </Dx3rdTableCell>
+                    :
+                      <Dx3rdErrorTableCell align="center">
+                        <div className={classes.growDeleteButton}>
+                          {(index === 0) ?
+                            <div />
+                            :
+                            <IconButton
+                              className
+                              color="inherit"
+                              aria-label="remove"
+                              onClick={(e) => this.props.removeSelectEffects(index)}
+                            >
+                              <Fab size="small" color="secondary" >
+                                <RemoveIcon />
+                              </Fab>
 
-                      </div>
-                    </Dx3rdTableCell>
+                            </IconButton>
+                          }
+
+                        </div>
+                      </Dx3rdErrorTableCell>
+                    }
                   </Dx3rdTableRow>
                 );
               })}
