@@ -16,7 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
-import { itemSortArray, itemsRow, itemSortNum } from '../utils/CommonConst';
+import { itemSortArray, itemsRow, itemSortNum, titleMap } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -91,8 +91,8 @@ const EnhancedTableToolbar = props => {
     <Toolbar
       className={clsx(classes.root)}
     >
-      <Typography className={classes.title} variant="h6" id="tableTitle">
-        【アイテム選択】
+      <Typography className={classes.title} variant="h5" id="tableTitle">
+        {titleMap.addItemTable}
       </Typography>
 
       <Tooltip title="Filter list">
@@ -218,7 +218,9 @@ export default function AddItemDialog(props) {
 
       <Grid container xs={12}>
         <Grid style={{ fontSize: '12pt', marginTop: '12pt' }} container xs={11}>
-          【アイテム】
+          <Typography className={classes.title} variant="h5" id="tableTitle">
+            {titleMap.itemTable}
+          </Typography>
         </Grid>
 
         <Grid style={{ fontSize: '15pt' }} container xs={1}>

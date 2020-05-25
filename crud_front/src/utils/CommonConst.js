@@ -10,11 +10,17 @@ export const ScreenPath = {
   PLAY: { path: "/play", id: "play", name: "プレイ用" },
 };
 
-export const appTitle = "ダブルクロスキャラクター管理";
-
-export const growTableTitle = "【成長点管理表】";
-
-export const purchaseTableTitle = "【財産点管理表】";
+export const titleMap = {
+  app: 'ダブルクロスキャラクター管理',
+  growTable: '【成長点管理表】',
+  purchaseTable: '【財産点管理表】',
+  weaponTable: '【武器】',
+  armorTable: '【防具】',
+  itemTable: '【アイテム】',
+  addWeaponTable: '【武器選択】',
+  addArmorTable: '【防具選択】',
+  addItemTable: '【アイテム選択】',
+};
 
 export const mainSkillSortNum = {
   MELEE: 0,

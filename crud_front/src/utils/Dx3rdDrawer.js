@@ -37,7 +37,7 @@ import EffectSettingView from '../components/EffectSettingView';
 import ItemSettingView from "../components/ItemSettingView";
 import RoisSettingView from "../components/RoisSettingView";
 import { skillTableInputTypes, abilityTableInputTypes, roisTableInputTypes } from "../action/ActionCreators";
-import { appTitle, mainSkillSortNum, abilityTableRowNum, ScreenPath, resurrect, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
+import { titleMap, mainSkillSortNum, abilityTableRowNum, ScreenPath, resurrect, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
 
 const jsonIcon = require('../images/json_icon.png');
 const pdfIcon = require('../images/pdf_icon.png');
@@ -1448,7 +1448,7 @@ export default function Dx3rdDrawer(props) {
           </IconButton>
 
           <Typography variant="h6" className={classes.title}>
-            {appTitle}
+            {titleMap.app}
           </Typography>
 
           <input accept="text/json" className={classes.input} id="icon-button-file" type="file" onChange={handleUploadJsonFile} />

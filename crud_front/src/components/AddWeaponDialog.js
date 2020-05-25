@@ -16,7 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
-import { weaponSortArray, weaponsRow, weaponSortNum } from '../utils/CommonConst';
+import { weaponSortArray, weaponsRow, weaponSortNum, titleMap } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -91,8 +91,8 @@ const EnhancedTableToolbar = props => {
     <Toolbar
       className={clsx(classes.root)}
     >
-      <Typography className={classes.title} variant="h6" id="tableTitle">
-        【武器選択】
+      <Typography className={classes.title} variant="h5" id="tableTitle">
+        {titleMap.addWeaponTable}
       </Typography>
 
       <Tooltip title="Filter list">
@@ -212,7 +212,9 @@ export default function AddWeaponDialog(props) {
 
       <Grid container xs={12}>
         <Grid style={{ fontSize: '12pt', marginTop: '12pt' }} container xs={11}>
-          【武器】
+          <Typography className={classes.title} variant="h5" id="tableTitle">
+            {titleMap.weaponTable}
+          </Typography>
         </Grid>
 
         <Grid style={{ fontSize: '15pt' }} container xs={1}>

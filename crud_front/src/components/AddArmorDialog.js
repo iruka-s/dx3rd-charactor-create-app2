@@ -16,7 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 import clsx from "clsx";
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
-import { armorSortArray, armorsRow, armorSortNum } from '../utils/CommonConst';
+import { armorSortArray, armorsRow, armorSortNum, titleMap } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -91,8 +91,8 @@ const EnhancedTableToolbar = props => {
     <Toolbar
       className={clsx(classes.root)}
     >
-      <Typography className={classes.title} variant="h6" id="tableTitle">
-        【防具選択】
+      <Typography className={classes.title} variant="h5" id="tableTitle">
+        {titleMap.addArmorTable}
       </Typography>
 
       <Tooltip title="Filter list">
@@ -209,7 +209,9 @@ export default function AddArmorDialog(props) {
 
       <Grid container xs={12}>
         <Grid style={{ fontSize: '12pt', marginTop: '12pt' }} container xs={11}>
-          【防具】
+          <Typography className={classes.title} variant="h5" id="tableTitle">
+            {titleMap.armorTable}
+          </Typography>
         </Grid>
 
         <Grid style={{ fontSize: '15pt' }} container xs={1}>

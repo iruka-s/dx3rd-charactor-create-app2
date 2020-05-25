@@ -16,7 +16,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { abilitiesArray, abilityTableRowNum, growTableTitle, purchaseTableTitle } from '../utils/CommonConst';
+import { abilitiesArray, abilityTableRowNum, titleMap } from '../utils/CommonConst';
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdResultTableCell } from './Dx3rdStyledComponent';
 
 const styles = theme => ({
@@ -421,7 +421,7 @@ class CharactorDetailView extends React.Component {
         {/* 成長点管理表 */}
         <Grid container justify="flex-end" xs={12}>
           <Typography variant="h5" className={classes.growTableTitle}>
-            {growTableTitle}
+            {titleMap.growTable}
           </Typography>
 
           <div className={classes.growAddButton}>
@@ -471,17 +471,16 @@ class CharactorDetailView extends React.Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="grow-delete-dialog">{"成長行削除ダイアログ"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               成長{this.props.growValues.length}を削除してもよろしいですか？
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => this.handleToDeleteGrowRow(true)} color="primary">
+            <Button onClick={() => this.handleToDeleteGrowRow(true)} color="inherit">
               OK
           </Button>
-            <Button onClick={() => this.handleToDeleteGrowRow(false)} color="primary" autoFocus>
+            <Button onClick={() => this.handleToDeleteGrowRow(false)} color="secondary" autoFocus>
               キャンセル
           </Button>
           </DialogActions>
@@ -557,7 +556,7 @@ class CharactorDetailView extends React.Component {
         {/* 財産点管理表 */}
         <Grid container justify="flex-end" xs={12}>
           <Typography variant="h5" className={classes.purchaseTableTitle}>
-            {purchaseTableTitle}
+            {titleMap.purchaseTable}
           </Typography>
         </Grid>
 
