@@ -157,14 +157,20 @@ export default function AddItemDialog(props) {
   };
 
   const handleAdd = () => {
-    let list = props.selectItems;
+    let addItemList = [];
+
     for (var index in props.dbItems) {
       if (selected.indexOf(props.dbItems[index].id) !== -1) {
-        list.push({ memo: "", dbInfo: props.dbItems[index] });
+        addItemList.push({ memo: "", dbInfo: props.dbItems[index] });
       }
     }
-    props.setSelectItems(Object.assign([], list));
+
+    props.addSelectItems(addItemList);
+
+    // ダイアログでの選択を解除
     setSelected([]);
+
+    // ダイアログを閉じる
     setOpen(false);
   };
 

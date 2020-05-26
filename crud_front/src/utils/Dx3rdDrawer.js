@@ -167,6 +167,7 @@ export default function Dx3rdDrawer(props) {
     { id: "otherval", name: "その他補正", body: "0", sense: "0", spirit: "0", society: "0", hp: "0", erosion: "0", action: "0", move: "0" },
     { id: "total", name: "合計値", body: "0", sense: "0", spirit: "0", society: "0", hp: "0", erosion: "0", action: "0", move: "0" }
   ]);
+  const [standbyPoint, setStandbyPoint] = React.useState("0");
   const [selectEffects, setSelectEffects] = React.useState([
     {
       level: "1",
@@ -280,6 +281,7 @@ export default function Dx3rdDrawer(props) {
 
   };
 
+  // ワークス変更時の技能設定
   const setSkillValue = (value, tempAbilities) => {
     let tempMainSkillList = initializeMainSkill(mainSkills);
     let tempSubSkillList = subSkills;
@@ -382,6 +384,8 @@ export default function Dx3rdDrawer(props) {
 
     setMainSkills(Object.assign([], tempMainSkillList));
     setSubSkills(Object.assign([], tempSubSkillList));
+
+    return tempMainSkillList;
   };
 
   const setInitErosion = (impulseVal, awakeningVal) => {
@@ -393,6 +397,14 @@ export default function Dx3rdDrawer(props) {
 
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
+
+    // 常備化ポイント再計算
+    let totalProcurement = 0
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].initVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].growVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].otherVal);
+
+    calcStandbyPoint(Number(list[abilityTableRowNum.TOTAL].society), totalProcurement);
   };
 
   const resetAbility = (list) => {
@@ -472,6 +484,14 @@ export default function Dx3rdDrawer(props) {
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
     calcAllSkillVal(list);
+
+    // 常備化ポイント再計算
+    let totalProcurement = 0
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].initVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].growVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].otherVal);
+
+    calcStandbyPoint(Number(list[abilityTableRowNum.TOTAL].society), totalProcurement);
   };
 
   const setSyndrome2Ability = (value) => {
@@ -485,6 +505,14 @@ export default function Dx3rdDrawer(props) {
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
     calcAllSkillVal(list);
+
+    // 常備化ポイント再計算
+    let totalProcurement = 0
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].initVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].growVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].otherVal);
+
+    calcStandbyPoint(Number(list[abilityTableRowNum.TOTAL].society), totalProcurement);
   };
 
   const setWorksAbility = (value) => {
@@ -518,8 +546,20 @@ export default function Dx3rdDrawer(props) {
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
 
-    setSkillValue(value, list);
+    let tempMainSkillList = setSkillValue(value, list);
+
+    // 常備化ポイント再計算
+    let totalProcurement = 0
+    totalProcurement = totalProcurement + Number(tempMainSkillList[mainSkillSortNum.PROCUREMENT].initVal);
+    totalProcurement = totalProcurement + Number(tempMainSkillList[mainSkillSortNum.PROCUREMENT].growVal);
+    totalProcurement = totalProcurement + Number(tempMainSkillList[mainSkillSortNum.PROCUREMENT].otherVal);
+
+    calcStandbyPoint(Number(list[abilityTableRowNum.TOTAL].society), totalProcurement);
   }
+
+  const calcStandbyPoint = (society, procurement) => {
+    setStandbyPoint(String((society * 2) + (procurement * 2)));
+  };
 
   const handleDrawerOpen = () => {
     setMenuOpen(true);
@@ -815,6 +855,14 @@ export default function Dx3rdDrawer(props) {
 
     }
     setMainSkills(Object.assign([], list));
+
+    // 常備化ポイント設定
+    let totalProcurement = 0
+    totalProcurement = totalProcurement + Number(list[mainSkillSortNum.PROCUREMENT].initVal);
+    totalProcurement = totalProcurement + Number(list[mainSkillSortNum.PROCUREMENT].growVal);
+    totalProcurement = totalProcurement + Number(list[mainSkillSortNum.PROCUREMENT].otherVal);
+
+    calcStandbyPoint(Number(abilityValues[abilityTableRowNum.TOTAL].society), totalProcurement);
   };
 
   const subSkillAbilityCheck = (skillId) => {
@@ -954,6 +1002,14 @@ export default function Dx3rdDrawer(props) {
     sumAbility(list);
     setAbilityValues(Object.assign([], list));
     calcAllSkillVal(list);
+
+    // 常備化ポイント再計算
+    let totalProcurement = 0
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].initVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].growVal);
+    totalProcurement = totalProcurement + Number(mainSkills[mainSkillSortNum.PROCUREMENT].otherVal);
+
+    calcStandbyPoint(Number(list[abilityTableRowNum.TOTAL].society), totalProcurement);
   };
 
   const handleToChangeRoisInput = (type, index, value) => {
@@ -1078,14 +1134,6 @@ export default function Dx3rdDrawer(props) {
     setSelectEffects(Object.assign([], list));
   }
 
-  // 削除ボタン押下時に武器行を削除する
-  const removeSelectWeapons = (index) => {
-    let list = selectWeapons;
-
-    list.splice(index, 1);
-    setSelectWeapons(Object.assign([], list));
-  }
-
   // 削除ボタン押下時にサブスキル行を削除する
   const removeSubSkills = (index) => {
     let list = subSkills;
@@ -1102,12 +1150,38 @@ export default function Dx3rdDrawer(props) {
     setUserAddSubSkills(Object.assign([], list));
   }
 
+  // 武器追加ダイアログで武器を追加する
+  const addSelectWeapons = (addWeaponList) => {
+    let list = selectWeapons;
+    setSelectWeapons(Object.assign([], list.concat(addWeaponList)));
+  }
+
+  // 削除ボタン押下時に武器行を削除する
+  const removeSelectWeapons = (index) => {
+    let list = selectWeapons;
+
+    list.splice(index, 1);
+    setSelectWeapons(Object.assign([], list));
+  }
+
+  // 防具追加ダイアログで防具を追加する
+  const addSelectArmors = (addArmorList) => {
+    let list = selectArmors;
+    setSelectArmors(Object.assign([], list.concat(addArmorList)));
+  }
+
   // 削除ボタン押下時に防具行を削除する
   const removeSelectArmors = (index) => {
     let list = selectArmors;
 
     list.splice(index, 1);
     setSelectArmors(Object.assign([], list));
+  }
+
+  // 防具追加ダイアログで防具を追加する
+  const addSelectItems = (addItemList) => {
+    let list = selectItems;
+    setSelectItems(Object.assign([], list.concat(addItemList)));
   }
 
   // 削除ボタン押下時にアイテム行を削除する
@@ -1229,6 +1303,7 @@ export default function Dx3rdDrawer(props) {
       setSelectWeapons(characterData.selectWeapons);
       setSelectArmors(characterData.selectArmors);
       setSelectItems(characterData.selectItems);
+      setStandbyPoint(characterData.standbyPoint);
 
       // プルダウン要素
       setWorks(props.getDBWorksValue(characterData.works.name));
@@ -1284,6 +1359,7 @@ export default function Dx3rdDrawer(props) {
     jsonFileContent["selectWeapons"] = selectWeapons;
     jsonFileContent["selectArmors"] = selectArmors;
     jsonFileContent["selectItems"] = selectItems;
+    jsonFileContent["standbyPoint"] = standbyPoint;
     jsonFileContent["selectRois"] = selectRois;
 
     const data = new Blob([JSON.stringify(jsonFileContent)], { type: 'text/json' });
@@ -1540,6 +1616,10 @@ export default function Dx3rdDrawer(props) {
               subSkills={subSkills}
               userAddSubSkills={userAddSubSkills}
               selectEffects={selectEffects}
+              selectWeapons={selectWeapons}
+              selectArmors={selectArmors}
+              selectItems={selectItems}
+              standbyPoint={standbyPoint}
             />}
           />
           <Route
@@ -1600,11 +1680,11 @@ export default function Dx3rdDrawer(props) {
                 dbArmors={props.dbArmors}
                 dbItems={props.dbItems}
                 selectWeapons={selectWeapons}
-                setSelectWeapons={setSelectWeapons}
+                addSelectWeapons={addSelectWeapons}
                 selectArmors={selectArmors}
-                setSelectArmors={setSelectArmors}
+                addSelectArmors={addSelectArmors}
                 selectItems={selectItems}
-                setSelectItems={setSelectItems}
+                addSelectItems={addSelectItems}
                 removeSelectWeapons={removeSelectWeapons}
                 removeSelectArmors={removeSelectArmors}
                 removeSelectItems={removeSelectItems}

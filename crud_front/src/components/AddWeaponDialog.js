@@ -157,14 +157,20 @@ export default function AddWeaponDialog(props) {
   };
 
   const handleAdd = () => {
-    let list = props.selectWeapons;
+    let addWeaponList = [];
+
     for (var index in props.dbWeapons) {
       if (selected.indexOf(props.dbWeapons[index].id) !== -1) {
-        list.push({ memo: "", dbInfo: props.dbWeapons[index] });
+        addWeaponList.push({ memo: "", dbInfo: props.dbWeapons[index] });
       }
     }
-    props.setSelectWeapons(Object.assign([], list));
+
+    props.addSelectWeapons(addWeaponList);
+
+    // ダイアログでの選択を解除
     setSelected([]);
+
+    // ダイアログを閉じる
     setOpen(false);
   };
 

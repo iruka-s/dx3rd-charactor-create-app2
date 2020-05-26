@@ -157,14 +157,20 @@ export default function AddArmorDialog(props) {
   };
 
   const handleAdd = () => {
-    let list = props.selectArmors;
+    let addArmorList = [];
+
     for (var index in props.dbArmors) {
       if (selected.indexOf(props.dbArmors[index].id) !== -1) {
-        list.push({ memo: "", dbInfo: props.dbArmors[index] });
+        addArmorList.push({ memo: "", dbInfo: props.dbArmors[index] });
       }
     }
-    props.setSelectArmors(Object.assign([], list));
+
+    props.addSelectArmors(addArmorList);
+
+    // ダイアログでの選択を解除
     setSelected([]);
+
+    // ダイアログを閉じる
     setOpen(false);
   };
 

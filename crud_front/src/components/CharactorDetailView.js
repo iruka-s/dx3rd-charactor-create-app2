@@ -56,6 +56,7 @@ class CharactorDetailView extends React.Component {
       initExperiencePoint: "130",
       usedExperiencePoint: "0",
       remainingExperiencePoint: "0",
+      usedStandbyPoint: "0",
     };
   }
 
@@ -279,8 +280,28 @@ class CharactorDetailView extends React.Component {
 
     this.setState({ usedExperiencePoint: usedExperiencePoint });
 
+
     // 残ポイントの計算
     this.setState({ remainingExperiencePoint: this.calcRemainingExperiencePoint(usedExperiencePoint) });
+
+
+    // 使用済み常備化ポイントの計算
+    let usedStandbyPoint = 0;
+
+    for(var weaponsIndex in this.props.selectWeapons) {
+      usedStandbyPoint = usedStandbyPoint + Number(this.props.selectWeapons[weaponsIndex].dbInfo.standby_point)
+    }
+
+    for(var armorsIndex in this.props.selectArmors) {
+      usedStandbyPoint = usedStandbyPoint + Number(this.props.selectArmors[armorsIndex].dbInfo.standby_point)
+    }
+
+    for(var itemsIndex in this.props.selectItems) {
+      usedStandbyPoint = usedStandbyPoint + Number(this.props.selectItems[itemsIndex].dbInfo.standby_point)
+    }
+
+    this.setState({ usedStandbyPoint: String(usedStandbyPoint) });
+
   };
 
   render() {
@@ -574,7 +595,7 @@ class CharactorDetailView extends React.Component {
               <Dx3rdTableRow key={"default"}>
                 <Dx3rdTableCell align="center">常備化点</Dx3rdTableCell>
                 <Dx3rdTableCell align="center">
-                  {this.state.initExperiencePoint}
+                  {this.props.standbyPoint}
                 </Dx3rdTableCell>
                 <Dx3rdTableCell align="center"></Dx3rdTableCell>
               </Dx3rdTableRow>
@@ -582,7 +603,7 @@ class CharactorDetailView extends React.Component {
               <Dx3rdTableRow key={"used"}>
                 <Dx3rdTableCell align="center">使用点</Dx3rdTableCell>
                 <Dx3rdTableCell align="center">
-                  {this.state.usedExperiencePoint}
+                  {this.state.usedStandbyPoint}
                 </Dx3rdTableCell>
                 <Dx3rdTableCell align="center"></Dx3rdTableCell>
               </Dx3rdTableRow>
@@ -590,7 +611,7 @@ class CharactorDetailView extends React.Component {
               <Dx3rdTableRow key={"remain"}>
                 <Dx3rdResultTableCell align="center">財産点</Dx3rdResultTableCell>
                 <Dx3rdResultTableCell align="center">
-                  {this.state.remainingExperiencePoint}
+                  {String(Number(this.props.standbyPoint) - Number(this.state.usedStandbyPoint))}
                 </Dx3rdResultTableCell>
                 <Dx3rdResultTableCell align="center"></Dx3rdResultTableCell>
               </Dx3rdTableRow>

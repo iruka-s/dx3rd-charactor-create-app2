@@ -39,8 +39,7 @@ class ItemSettingView extends React.Component {
 
         <AddWeaponDialog
           dbWeapons={this.props.dbWeapons}
-          selectWeapons={this.props.selectWeapons}
-          setSelectWeapons={this.props.setSelectWeapons}
+          addSelectWeapons={this.props.addSelectWeapons}
         />
 
         {/* 武器表 */}
@@ -141,8 +140,7 @@ class ItemSettingView extends React.Component {
 
         <AddArmorDialog
           dbArmors={this.props.dbArmors}
-          selectArmors={this.props.selectArmors}
-          setSelectArmors={this.props.setSelectArmors}
+          addSelectArmors={this.props.addSelectArmors}
         />
 
         {/* 防具表 */}
@@ -231,8 +229,7 @@ class ItemSettingView extends React.Component {
 
         <AddItemDialog
           dbItems={this.props.dbItems}
-          selectItems={this.props.selectItems}
-          setSelectItems={this.props.setSelectItems}
+          addSelectItems={this.props.addSelectItems}
         />
 
         {/* アイテム表 */}
