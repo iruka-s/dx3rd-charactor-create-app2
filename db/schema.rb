@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_054537) do
     t.text "armor_point"
     t.text "purchase_point"
     t.text "standby_point"
+    t.text "ability"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_054537) do
     t.text "skill"
     t.text "purchase_point"
     t.text "standby_point"
+    t.text "ability"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_054537) do
     t.text "range"
     t.text "purchase_point"
     t.text "standby_point"
+    t.text "ability"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

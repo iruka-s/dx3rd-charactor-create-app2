@@ -193,6 +193,7 @@ export default function AddItemDialog(props) {
   };
 
   const isContentFilter = num => {
+    
     if (num === itemSortNum.vehicle) {
       return (selectSort.indexOf(itemSortArray[Number(itemSortNum.vehicle)]) > -1);
     }
@@ -284,7 +285,6 @@ export default function AddItemDialog(props) {
                     const isItemSelected = isSelected(dbItem.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
-                    if (isContentFilter(dbItem.id)) {
 
                       return (
                         <Dx3rdTableRow
@@ -325,7 +325,6 @@ export default function AddItemDialog(props) {
                         </Dx3rdTableRow>
 
                       );
-                    }
                   })}
               </TableBody>
             </Table>

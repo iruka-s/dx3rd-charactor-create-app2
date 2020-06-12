@@ -237,7 +237,7 @@ export default function AddEffectDialog(props) {
     let array = [];
 
     for (var index in mySyndromeEffectList) {
-      if (isContentFilter(effectSyndromeArray[effectSyndromeNum[mySyndromeEffectList[index].syndrome]])) {
+      if (isContentFilter(effectSyndromeArray[Number(mySyndromeEffectList[index].syndrome)])) {
         array.push(mySyndromeEffectList[index]);
       }
     }
@@ -312,6 +312,7 @@ export default function AddEffectDialog(props) {
                 {effectFilter(props.mySyndromeEffectList)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((mySyndromeEffect, index) => {
+
                     const isItemSelected = isSelected(mySyndromeEffect.name);
                     const labelId = `enhanced-table-checkbox-${index}`;
 

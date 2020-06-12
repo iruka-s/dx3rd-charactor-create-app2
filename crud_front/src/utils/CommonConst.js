@@ -34,19 +34,19 @@ export const mainSkillSortNum = {
 };
 
 export const effectSyndromeNum = {
-  angelhighlow: 0,
-  balor: 1,
-  blackdog: 2,
-  bramstoker: 3,
-  chimera: 4,
-  exile: 5,
-  hanuman: 6,
-  morpheus: 7,
-  neumann: 8,
-  orcus: 9,
-  salamander: 10,
-  solaris: 11,
-  general: 12,
+  "general": "0",
+  "angelhighlow": "1",
+  "balor": "2",
+  "blackdog": "3",
+  "bramstoker": "4",
+  "chimera": "5",
+  "exile": "6",
+  "hanuman": "7",
+  "morpheus": "8",
+  "neumann": "9",
+  "orcus": "10",
+  "salamander": "11",
+  "solaris": "12",
 };
 
 export const abilityTableRowNum = {
@@ -400,7 +400,7 @@ export const emptyID = "empty";
 
 export const emptyEffectName = "未選択";
 
-export const effectSyndromeArray = ["エンジェルハイロゥ", "バロール", "ブラックドッグ", "ブラム=ストーカー", "キュマイラ", "エグザイル", "ハヌマーン", "モルフェウス", "オルクス", "サラマンダー", "ソラリス"];
+export const effectSyndromeArray = ["一般", "エンジェルハイロゥ", "バロール", "ブラックドッグ", "ブラム=ストーカー", "キュマイラ", "エグザイル", "ハヌマーン", "モルフェウス", "ノイマン", "オルクス", "サラマンダー", "ソラリス"];
 
 export const timingArray = ["マイナー", "メジャー", "リアクション", "オート", "メジャー/リアクション", "セットアップ", "クリンナップ", "イニシアチブ", "常時", "オート(リアクション)", "オート(肉体)", "オート(被ダメ時)"]
 
@@ -432,103 +432,6 @@ export const nullEffect = [
   "none", "", "", "", "", "", "", "", "-", "", "", "", "", "", "", "", "", "", ""
 ];
 
-export const effectContentNum = {
-  SYNDROME: 0,
-  NAME: 1,
-  MAXLEVEL: 2,
-  TIMING: 3,
-  SKILL: 4,
-  DIFFICULTY: 5,
-  TARGET: 6,
-  RANGE: 7,
-  EROSION: 8,
-  LIMIT: 9,
-  RESTRICTIONS: 10,
-  CONSTRAINT: 11,
-  SORT: 12,
-  EFFECTSORT1: 13,
-  EFFECT1: 14,
-  EFFECTSORT2: 15,
-  EFFECT2: 16,
-  EFFECTSORT3: 17,
-  EFFECT3: 18,
-};
-
-export const weaponContentNum = {
-  ID: 0,
-  NAME: 1,
-  SORT: 2,
-  SKILL: 3,
-  HIT: 4,
-  ATTACK: 5,
-  GUARD: 6,
-  RANGE: 7,
-  PURCHASE: 8,
-  STANDING: 9
-};
-
-export const armorContentNum = {
-  ID: 0,
-  NAME: 1,
-  SORT: 2,
-  DODGE: 3,
-  ACTION: 4,
-  ARMOR: 5,
-  PURCHASE: 6,
-  STANDING: 7
-};
-
-export const itemContentNum = {
-  ID: 0,
-  NAME: 1,
-  SORT: 2,
-  SKILL: 3,
-  PURCHASE: 4,
-  STANDING: 5
-};
-
-export const emotionContentNum = {
-  ID: 0,
-  NAME: 1
-};
-
-export const impulseContentNum = {
-  ID: 0,
-  NAME: 1,
-  EROSION: 2
-};
-
-export const awakeningContentNum = {
-  ID: 0,
-  NAME: 1,
-  EROSION: 2
-};
-
-export const worksContentNum = {
-  ID: 0,
-  NAME: 1,
-  ABILITY: 2,
-  SKILL1: 3,
-  VALUE1: 4,
-  SKILL2: 5,
-  VALUE2: 6,
-  SKILL3: 7,
-  VALUE3: 8,
-  SKILL4: 9,
-  VALUE4: 10,
-  SKILL5: 11,
-  VALUE5: 12,
-};
-
-export const syndromeContentNum = {
-  ID: 0,
-  NAME: 1,
-  BODY: 2,
-  SENSE: 3,
-  SPIRIT: 4,
-  SOCIETY: 5,
-};
-
 export const weaponSortNum = {
   melee: "0",
   shoot: "1"
@@ -552,3 +455,135 @@ export const effectLimit = {
   oneHundredTwentyPercent: '3',
   pureSyndrome: '4', 
 };
+
+// エフェクト情報の内数字に意味づけがされているもの
+export const dbEffectNumInfo = {
+  TIMING: {
+    MINOR: "0",
+    MAJOR: "1",
+    REACTION: "2",
+    AUTO: "3",
+    MAJORORREACTION: "4",
+    SETUP: "5",
+    CLEANUP: "6",
+    INITIATIVE: "7",
+    Always: "8",
+    AUTOREACTION: "9",
+    AUTOBODY: "10",
+    AUTODAMAGE: "11",
+  },
+  SKILL: {
+    NONE: "0",
+    SYNDROME: "1",
+    MELEE: "2",
+    SHOOT: "3",
+    RC: "4",
+    PERCEPTION: "5",
+    MELEESHOOT: "6",
+    INFOMATION: "7",
+    DRIVING: "8",
+    INTENTION: "9",
+    NEGOTIATION: "10",
+    PROCUREMENT: "11",
+    RCNEGOTIATION: "12",
+    AVOID: "13",
+    ARTKNOWLEDGEINFOMATION: "14",
+    BODY: "15",
+    SENSE: "16",
+    SPIRIT: "17",
+    BODYSENSE: "18",
+    SPIRITSOCIETY: "19",
+    ATTACK: "20",
+    ALL: "21",
+  },
+  DIFFICULTY: {
+    NONE: "0",
+    AUTO: "1",
+    BATTLE: "2",
+    TWENTY: "3",
+  },
+  TARGET: {
+    NONE: "0",
+    SELF: "1",
+    ONE: "2",
+    THREE: "3",
+    RANGE: "4",
+    RANGESELECT: "5",
+    SCENE: "6",
+    SCENESELECT: "7",
+    RANGEORRANGESELECT: "8",
+    LEVELPLUSONE: "9",
+    WEAPON: "10",
+  },
+  RANGE: {
+    NONE: "0",
+    CLOSEST: "1",
+    WEAPON: "2",
+    FIELDOFVIEW: "3",
+    TWENTYMETERS: "4",
+  },
+  LIMIT: {
+    NONE: "0",
+    EIGHTYPERCENT: "1",
+    ONEHUNDREDPERCENT: "2",
+    ONEHUNDREDTWENTYPERCENT: "3",
+    PURESYNDROME: "4",
+    SERVANT: "5",
+  },
+  COUNT: {
+    NONE: "0",
+    SCENELEVEL: "1",
+    SCENEONE: "2",
+    SCENARIOLEVEL: "3",
+    SCENARIOONE: "4",
+    SCENARIOTHREE: "5",
+    ROUNDONE: "6",
+    MAINONE: "7",
+    MAINONESCENARIOLEVEL: "8",
+  },
+  OTHER: {
+    MINOR: "0",
+    MAJOR: "1",
+    REACTION: "2",
+    AUTO: "3",
+    MAJORORREACTION: "4",
+    minor: "5",
+    minor: "6",
+    minor: "7",
+    minor: "8",
+    minor: "9",
+    minor: "10",
+    minor: "11",
+    minor: "12",
+  },
+  SORT: {
+    MINOR: "0",
+    MAJOR: "1",
+    REACTION: "2",
+    AUTO: "3",
+    MAJORORREACTION: "4",
+    minor: "5",
+    minor: "6",
+    minor: "7",
+    minor: "8",
+    minor: "9",
+    minor: "10",
+    minor: "11",
+    minor: "12",
+  },
+  EFFECT_SORT: {
+    MINOR: "0",
+    MAJOR: "1",
+    REACTION: "2",
+    AUTO: "3",
+    MAJORORREACTION: "4",
+    minor: "5",
+    minor: "6",
+    minor: "7",
+    minor: "8",
+    minor: "9",
+    minor: "10",
+    minor: "11",
+    minor: "12",
+  },
+}

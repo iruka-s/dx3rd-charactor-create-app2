@@ -8,6 +8,7 @@ class CreateArmors < ActiveRecord::Migration[6.0]
       t.text :armor_point
       t.text :purchase_point
       t.text :standby_point
+      t.text :ability
 
       t.timestamps
     end

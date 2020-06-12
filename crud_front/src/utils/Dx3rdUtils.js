@@ -1,4 +1,4 @@
-import { generalID, emptyID, emptyEffectName, effectLimit } from './CommonConst';
+import { generalID, emptyID, effectSyndromeNum, effectLimit } from './CommonConst';
 
 export function numCheck(str) {
     // if (str.match(/[^d]/) !== null) {
@@ -21,14 +21,14 @@ export function numCheck(str) {
 // エフェクトが取得可能であるかを判断する
 export function effectChecker(effect, syndrome1, syndrome2, optional) {
 
-  if(effect.syndrome === generalID){
+  if(effect.syndrome === effectSyndromeNum.general) {
     return true;
   }
 
-  if((effect.syndrome !== syndrome1.english_name)
-  && (effect.syndrome !== syndrome2.english_name)
-  && (effect.syndrome !== optional.english_name)
-  && (effect.syndrome !== generalID)) {
+  if((effect.syndrome !== effectSyndromeNum[syndrome1.english_name])
+  && (effect.syndrome !== effectSyndromeNum[syndrome2.english_name])
+  && (effect.syndrome !== effectSyndromeNum[optional.english_name])) 
+  {
     return false;
   }
 
@@ -40,11 +40,12 @@ export function effectChecker(effect, syndrome1, syndrome2, optional) {
     return false;
   }
 
-  if(effect.syndrome !== optional.english_name){
+  if(effect.syndrome !== effectSyndromeNum[optional.english_name]){
     if(effect.limit === effectLimit.eightyPercent){
       return false;
     }
   }
+  console.log("niconiconico")
 
   return true;
 }
