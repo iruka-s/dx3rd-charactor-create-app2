@@ -298,12 +298,12 @@ export default function AddEffectDialog(props) {
                   <Dx3rdTableCell width="5%" align="center">{effectRow.syndrome.value}</Dx3rdTableCell>
                   <Dx3rdTableCell width="15%" align="center">{effectRow.name.value}</Dx3rdTableCell>
                   <Dx3rdTableCell width="6%" align="center">{effectRow.level.value}</Dx3rdTableCell>
-                  <Dx3rdTableCell width="12%" align="center">{effectRow.timing.value}</Dx3rdTableCell>
+                  <Dx3rdTableCell width="10%" align="center">{effectRow.timing.value}</Dx3rdTableCell>
                   <Dx3rdTableCell width="7%" align="center">{effectRow.judge.value}</Dx3rdTableCell>
                   <Dx3rdTableCell width="10%" align="center">{effectRow.target.value}</Dx3rdTableCell>
-                  <Dx3rdTableCell width="9%" align="center">{effectRow.range.value}</Dx3rdTableCell>
+                  <Dx3rdTableCell width="7%" align="center">{effectRow.range.value}</Dx3rdTableCell>
                   <Dx3rdTableCell width="4%" align="center">{effectRow.erosion.value}</Dx3rdTableCell>
-                  <Dx3rdTableCell width="5%" align="center">{effectRow.limit.value}</Dx3rdTableCell>
+                  <Dx3rdTableCell width="9%" align="center">{effectRow.limit.value}</Dx3rdTableCell>
                   <Dx3rdTableCell width="23%" align="center">{effectRow.effect.value}</Dx3rdTableCell>
                 </Dx3rdTableRow>
               </TableHead>

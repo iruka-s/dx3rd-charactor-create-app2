@@ -421,11 +421,11 @@ export const armorSortArray = ["防具"];
 export const itemSortArray = ["ヴィークル", "コネ", "その他", "使い捨て"];
 
 export const resurrect = {
-  syndrome : 'general', name : 'リザレクト', max_level : '3', timing : '3', skill : '0', difficulty : '1', target : '1', range : '1', erosion_point : 'LVd10', limit : '0', count : '0', other : '19', sort : '0', effect_sort1 : '5', effect_content1 : 'BD:-戦闘不能', effect_sort2 : '6',  effect_content2 : '+LVD', effect_sort3 : '0', effect_content3 : ''
+  syndrome : '0', name : 'リザレクト', max_level : '3', timing : '3', skill : '0', difficulty : '1', target : '1', range : '1', erosion_point : 'LVd10', limit : '0', count : '0', other : '19', sort : '0', effect_sort1 : '5', effect_content1 : 'BD:-戦闘不能', effect_sort2 : '6',  effect_content2 : '+LVD', effect_sort3 : '0', effect_content3 : ''
 }
 
 export const wording = {
-  syndrome : 'general', name : 'ワーディング', max_level : '1', timing : '3', skill : '0', difficulty : '1', target : '6', range : '3', erosion_point : '0', limit : '0', count : '0', other : '0', sort : '0', effect_sort1 : '33', effect_content1 : '', effect_sort2 : '0',  effect_content2 : '', effect_sort3 : '0', effect_content3 : ''
+  syndrome : '0', name : 'ワーディング', max_level : '1', timing : '3', skill : '0', difficulty : '1', target : '6', range : '3', erosion_point : '0', limit : '0', count : '0', other : '0', sort : '0', effect_sort1 : '33', effect_content1 : '', effect_sort2 : '0',  effect_content2 : '', effect_sort3 : '0', effect_content3 : ''
 }
 
 export const nullEffect = [
