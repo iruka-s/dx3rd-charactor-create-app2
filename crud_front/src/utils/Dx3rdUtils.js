@@ -32,20 +32,19 @@ export function effectChecker(effect, syndrome1, syndrome2, optional) {
     return false;
   }
 
-  if((syndrome2 !== emptyID) && (effect.limit === effectLimit.pureSyndrome)){
+  if((syndrome2.english_name !== emptyID) && (effect.limit === effectLimit.pureSyndrome)){
     return false;
   }
 
-  if((optional !== emptyID) && (effect.limit === effectLimit.oneHundredPercent)){
+  if((optional.english_name !== emptyID) && (effect.limit === effectLimit.oneHundredPercent)){
     return false;
   }
 
-  if(effect.syndrome !== effectSyndromeNum[optional.english_name]){
+  if((optional.english_name !== emptyID) && (effect.syndrome === effectSyndromeNum[optional.english_name])) {
     if(effect.limit === effectLimit.eightyPercent){
       return false;
     }
   }
-  console.log("niconiconico")
 
   return true;
 }
