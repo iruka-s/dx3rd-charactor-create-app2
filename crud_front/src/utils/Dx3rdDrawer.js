@@ -36,6 +36,7 @@ import AbilitySettingView from '../components/AbilitySettingView';
 import EffectSettingView from '../components/EffectSettingView';
 import ItemSettingView from "../components/ItemSettingView";
 import RoisSettingView from "../components/RoisSettingView";
+import ComboSettingView from "../components/ComboSettingView";
 import { skillTableInputTypes, abilityTableInputTypes, roisTableInputTypes } from "../action/ActionCreators";
 import { titleMap, mainSkillSortNum, abilityTableRowNum, ScreenPath, resurrect, abilities, mainSkillSortName, subSkillSortName, skillRow } from '../utils/CommonConst';
 
@@ -185,6 +186,90 @@ export default function Dx3rdDrawer(props) {
     { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
     { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
     { srois: "0", name: "", favor: {}, malice: {}, memo: "" }
+  ]);
+  const [attackCombos, setAttackCombos] = React.useState([
+    {
+      name: "超電磁砲",
+      skill: "射撃",
+      judge: "5d + 7",
+      attack: "8",
+      target: "単体",
+      range: "視界",
+      other: "装甲無視,BD:邪毒ランク3,BD:+放心,隠密付与,クリ値-3(下限7)",
+      effects: [
+        "雷の残滓 Lv5",
+        "スタンボルト Lv1",
+        "死点撃ち Lv3",
+        "御使いの声 Lv3",
+        "コンセントレイト Lv3",
+      ],
+    },
+    {
+      name: "スパイラルカット",
+      skill: "白兵",
+      judge: "8d + 3",
+      attack: "5",
+      target: "単体",
+      range: "至近",
+      other: "これは俺たちの物語だ",
+      effects: [
+        "コンバットシステム Lv8",
+        "アドヴァイス Lv2",
+      ],
+    },
+    {
+      name: "不穏な呪言",
+      skill: "交渉",
+      judge: "2d + 19",
+      attack: "7",
+      target: "範囲(選択)",
+      range: "視界",
+      other: "おかか",
+      effects: [
+        "トランキリティ Lv3",
+        "毒の刃 Lv4",
+        "コンセントレイト Lv2",
+      ],
+    }
+  ]);
+  const [reactionCombos, setReactionCombos] = React.useState([
+    {
+      name: "オートリフレクション",
+      skill: "-",
+      judge: "-",
+      guard: "8",
+      other: "こっから先は一方通行だ",
+      effects: [
+        "雷の残滓 Lv5",
+        "スタンボルト Lv1",
+        "コンセントレイト Lv3",
+      ],
+    },
+    {
+      name: "イマジンブレーカー",
+      skill: "-",
+      judge: "-",
+      guard: "2",
+      other: "そのふざけた幻想をぶち殺す",
+      effects: [
+        "絶対の空間 Lv2",
+        "ハンドリング Lv4",
+        "力場の生成 Lv1",
+        "支配の因子 Lv2",
+      ],
+    },
+    {
+      name: "返し縫い",
+      skill: "回避",
+      judge: "4d + 3",
+      guard: "6",
+      other: "上手にできました",
+      effects: [
+        "がらんどうの肉体 Lv1",
+        "歪みの体 Lv5",
+        "踊る髪 Lv2",
+      ],
+    }
   ]);
 
   // ワークス初期化
@@ -1120,16 +1205,13 @@ export default function Dx3rdDrawer(props) {
   // レベルを保存
   const levelUpdate = (index, value) => {
     let list = selectEffects;
-
     list[index].level = numCheck(value);
-
     setSelectEffects(Object.assign([], list));
   }
 
   // 削除ボタン押下時にエフェクト行を削除する
   const removeSelectEffects = (index) => {
     let list = selectEffects;
-
     list.splice(index, 1);
     setSelectEffects(Object.assign([], list));
   }
@@ -1137,7 +1219,6 @@ export default function Dx3rdDrawer(props) {
   // 削除ボタン押下時にサブスキル行を削除する
   const removeSubSkills = (index) => {
     let list = subSkills;
-
     list.splice(index, 1);
     setSubSkills(Object.assign([], list));
   }
@@ -1145,7 +1226,6 @@ export default function Dx3rdDrawer(props) {
   // 削除ボタン押下時にユーザーが追加したサブスキル行を削除する
   const removeUserAddSubSkills = (index) => {
     let list = userAddSubSkills;
-
     list.splice(index, 1);
     setUserAddSubSkills(Object.assign([], list));
   }
@@ -1159,7 +1239,6 @@ export default function Dx3rdDrawer(props) {
   // 削除ボタン押下時に武器行を削除する
   const removeSelectWeapons = (index) => {
     let list = selectWeapons;
-
     list.splice(index, 1);
     setSelectWeapons(Object.assign([], list));
   }
@@ -1173,7 +1252,6 @@ export default function Dx3rdDrawer(props) {
   // 削除ボタン押下時に防具行を削除する
   const removeSelectArmors = (index) => {
     let list = selectArmors;
-
     list.splice(index, 1);
     setSelectArmors(Object.assign([], list));
   }
@@ -1187,9 +1265,22 @@ export default function Dx3rdDrawer(props) {
   // 削除ボタン押下時にアイテム行を削除する
   const removeSelectItems = (index) => {
     let list = selectItems;
-
     list.splice(index, 1);
     setSelectItems(Object.assign([], list));
+  }
+
+  // 削除ボタン押下時に攻撃コンボ行を削除する
+  const removeAttackCombo = (index) => {
+    let list = attackCombos;
+    list.splice(index, 1);
+    setAttackCombos(Object.assign([], list));
+  }
+
+  // 削除ボタン押下時にリアクションコンボ行を削除する
+  const removeReactionCombos = (index) => {
+    let list = reactionCombos;
+    list.splice(index, 1);
+    setReactionCombos(Object.assign([], list));
   }
 
   // ここでDBのシンドロームから能力値を抜き出し、abilityValueを更新する
@@ -1433,12 +1524,9 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"ロイス"} />
         </ListItem>
 
-        <ListItem button disabled key={ScreenPath.COMBO.id} onClick={() => handleToPage(ScreenPath.COMBO.id)}>
+        <ListItem button key={ScreenPath.COMBO.id} onClick={() => handleToPage(ScreenPath.COMBO.id)}>
           <ListItemIcon>
-            {/* <Tooltip title="コンボ">
-              <SportsHandball style={useStyles.menuButton} />
-            </Tooltip> */}
-            <Tooltip title="かいはつちゅう">
+            <Tooltip title="コンボ">
               <SportsHandball style={useStyles.menuButton} />
             </Tooltip>
           </ListItemIcon>
@@ -1703,6 +1791,18 @@ export default function Dx3rdDrawer(props) {
                 selectFavor={selectFavor}
                 selectMalice={selectMalice}
                 handleToChangeRoisInput={handleToChangeRoisInput}
+              />
+            }
+          />
+          <Route
+            exact
+            path={ScreenPath.COMBO.path}
+            render={
+              () => <ComboSettingView
+                attackCombos={attackCombos}
+                reactionCombos={reactionCombos}
+                removeAttackCombo={removeAttackCombo}
+                removeReactionCombos={removeReactionCombos}
               />
             }
           />

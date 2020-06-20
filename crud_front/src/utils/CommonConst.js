@@ -392,6 +392,68 @@ export const roisRow = {
   }
 };
 
+export const attackCombo = {
+  name: {
+    id: "Name",
+    value: "名前",
+  },
+  skill: {
+    id: "Skill",
+    value: "技能",
+  },
+  judge: {
+    id: "Judge",
+    value: "判定補正",
+  },
+  attack: {
+    id: "Attack",
+    value: "攻撃力",
+  },
+  target: {
+    id: "Target",
+    value: "対象",
+  },
+  range: {
+    id: "Range",
+    value: "範囲",
+  },
+  other: {
+    id: "Other",
+    value: "その他",
+  },
+  effects: {
+    id: "Effects",
+    value: "EF",
+  },
+};
+
+export const reactionCombo = {
+  name: {
+    id: "Name",
+    value: "名前",
+  },
+  skill: {
+    id: "Skill",
+    value: "技能",
+  },
+  judge: {
+    id: "Judge",
+    value: "判定補正",
+  },
+  guard: {
+    id: "Guard",
+    value: "G値",
+  },
+  other: {
+    id: "Other",
+    value: "その他",
+  },
+  effects: {
+    id: "Effects",
+    value: "EF",
+  },
+};
+
 export const generalID = "general";
 
 export const generalName = "一般";
