@@ -95,7 +95,7 @@ Effect.create([
   {:syndrome => '6',  :name => '踊る髪',                        :max_level => '1', :timing => '1', :skill => '6', :difficulty => '2', :target => '0', :range => '2', :erosion_point => '2', :limit => '0', :count => '0', :other => '0', :sort => '3', :effect_sort1 => '45', :effect_content1 => '',                              :effect_sort2 => '17', :effect_content2 => 'BD:+硬直', :effect_sort3 => '0', :effect_content3 => ''},
   {:syndrome => '6',  :name => '壁に耳あり',                    :max_level => '5', :timing => '1', :skill => '7', :difficulty => '0', :target => '0', :range => '0', :erosion_point => '2', :limit => '0', :count => '0', :other => '0', :sort => '0', :effect_sort1 => '2', :effect_content1 => '+LV+1',                           :effect_sort2 => '0', :effect_content2 => '', :effect_sort3 => '0', :effect_content3 => ''},
   {:syndrome => '6',  :name => '吸収',                          :max_level => '3', :timing => '1', :skill => '6', :difficulty => '0', :target => '0', :range => '2', :erosion_point => '2', :limit => '0', :count => '0', :other => '0', :sort => '3', :effect_sort1 => '45', :effect_content1 => '',                              :effect_sort2 => '17', :effect_content2 => 'AD:ダイス-LV', :effect_sort3 => '0', :effect_content3 => ''},
-  {:syndrome => '6',  :name => 'カンピュセスの籤',              :max_level => '5', :timing => '1', :skill => '4', :difficulty => '1', :target => '2', :range => '1', :erosion_point => '2', :limit => '0', :count => '0', :other => '24', :sort => '0', :effect_sort1 => '18', :effect_content1 => '+LVD+肉体',                      :effect_sort2 => '0', :effect_content2 => '', :effect_sort3 => '0', :effect_content3 => ''},
+  {:syndrome => '6',  :name => 'カンピュセスの籤',              :max_level => '5', :timing => '1', :skill => '4', :difficulty => '1', :target => '2', :range => '1', :erosion_point => '2', :limit => '0', :count => '0', :other => '8', :sort => '0', :effect_sort1 => '18', :effect_content1 => '+LVD+肉体',                      :effect_sort2 => '0', :effect_content2 => '', :effect_sort3 => '0', :effect_content3 => ''},
   {:syndrome => '6',  :name => '崩れずの群れ',                  :max_level => '1', :timing => '3', :skill => '0', :difficulty => '1', :target => '1', :range => '1', :erosion_point => '2', :limit => '0', :count => '7', :other => '0', :sort => '0', :effect_sort1 => '22', :effect_content1 => '行動済み無視',                    :effect_sort2 => '0', :effect_content2 => '', :effect_sort3 => '0', :effect_content3 => ''},
   {:syndrome => '6',  :name => '伸縮腕',                        :max_level => '3', :timing => '1', :skill => '2', :difficulty => '2', :target => '0', :range => '3', :erosion_point => '2', :limit => '0', :count => '0', :other => '0', :sort => '2', :effect_sort1 => '26', :effect_content1 => '視界',                           :effect_sort2 => '2', :effect_content2 => '+(LV-3)<=0', :effect_sort3 => '0', :effect_content3 => ''},
   {:syndrome => '6',  :name => '骨の剣',                        :max_level => '5', :timing => '0', :skill => '0', :difficulty => '1', :target => '0', :range => '1', :erosion_point => '3', :limit => '0', :count => '0', :other => '0', :sort => '0', :effect_sort1 => '41', :effect_content1 => '骨の剣',                         :effect_sort2 => '0', :effect_content2 => '', :effect_sort3 => '0', :effect_content3 => ''},
@@ -231,26 +231,26 @@ Effect.create([
 ])
 
 Weapon.create([
-  {:name => '素手',                     :sort => '0', :skill => '0', :hit => '0', :offensive_power => '-5', :guard_point => '0', :range => '至近', :purchase_point => '-', :standby_point => '0', :ability => '0'}, 
-  {:name => 'ナックルダスター',          :sort => '0', :skill => '0', :hit => '0', :offensive_power => '1', :guard_point => '0', :range => '至近', :purchase_point => '4', :standby_point => '1', :ability => '0'}, 
-  {:name => 'ナイフ',                   :sort => '2', :skill => '2', :hit => '-1', :offensive_power => '2', :guard_point => '0', :range => '至近/10m', :purchase_point => '6', :standby_point => '2', :ability => '0'}, 
-  {:name => '伸縮性警棒',               :sort => '0', :skill => '0', :hit => '0', :offensive_power => '2', :guard_point => '0', :range => '至近', :purchase_point => '5', :standby_point => '2', :ability => '1'}, 
-  {:name => '木刀',                    :sort => '0', :skill => '0', :hit => '-1', :offensive_power => '3', :guard_point => '2', :range => '至近', :purchase_point => '5', :standby_point => '3', :ability => '0'}, 
-  {:name => '日本刀',                   :sort => '0', :skill => '0', :hit => '-1', :offensive_power => '5', :guard_point => '3', :range => '至近', :purchase_point => '11', :standby_point => '5', :ability => '0'}, 
-  {:name => '西洋剣',                   :sort => '0', :skill => '0', :hit => '-1', :offensive_power => '4', :guard_point => '4', :range => '至近', :purchase_point => '11', :standby_point => '5', :ability => '0'}, 
-  {:name => 'チェーンソー',             :sort => '0', :skill => '0', :hit => '-5', :offensive_power => '6', :guard_point => '3', :range => '至近', :purchase_point => '10', :standby_point => '7', :ability => '0'}, 
-  {:name => 'ワイヤーウィップ',         :sort => '0', :skill => '0', :hit => '-2', :offensive_power => '6', :guard_point => '0', :range => '10m', :purchase_point => '12', :standby_point => '8', :ability => '0'}, 
-  {:name => '大木/巨岩',               :sort => '0', :skill => '0', :hit => '-4', :offensive_power => '8', :guard_point => '3', :range => '至近', :purchase_point => '11', :standby_point => '8', :ability => '2'}, 
-  {:name => '特殊プラスチックシールド', :sort => '0', :skill => '0', :hit => '-2', :offensive_power => '1', :guard_point => '4', :range => '至近', :purchase_point => '9', :standby_point => '4', :ability => '0'}, 
-  {:name => 'ジュラルミンシールド',     :sort => '0', :skill => '0', :hit => '-3', :offensive_power => '2', :guard_point => '6', :range => '至近', :purchase_point => '12', :standby_point => '8', :ability => '0'}, 
-  {:name => '電磁シールド',            :sort => '0', :skill => '0', :hit => '-2', :offensive_power => '2', :guard_point => '8', :range => '至近', :purchase_point => '17', :standby_point => '12', :ability => '5'}, 
-  {:name => 'パリィシールド',          :sort => '0', :skill => '0', :hit => '-3', :offensive_power => '0', :guard_point => '2', :range => '至近', :purchase_point => '17', :standby_point => '12', :ability => '3'}, 
-  {:name => 'クロスボウ',              :sort => '1', :skill => '1', :hit => '-2', :offensive_power => '2', :guard_point => '-', :range => '40m', :purchase_point => '7', :standby_point => '4', :ability => '4'}, 
-  {:name => '拳銃',                   :sort => '1', :skill => '1', :hit => '-1', :offensive_power => '3', :guard_point => '-', :range => '20m', :purchase_point => '10', :standby_point => '6', :ability => '0'}, 
-  {:name => '大型拳銃',                :sort => '1', :skill => '1', :hit => '-2', :offensive_power => '5', :guard_point => '-', :range => '20m', :purchase_point => '11', :standby_point => '7', :ability => '0'}, 
-  {:name => 'サブマシンガン',           :sort => '1', :skill => '1', :hit => '-1', :offensive_power => '8', :guard_point => '-', :range => '20m', :purchase_point => '14', :standby_point => '9', :ability => '4'}, 
-  {:name => 'アサルトライフル',         :sort => '1', :skill => '1', :hit => '-1', :offensive_power => '9', :guard_point => '-', :range => '100m', :purchase_point => '15', :standby_point => '10', :ability => '4'}, 
-  {:name => 'スナイパーライフル',       :sort => '1', :skill => '1', :hit => '0', :offensive_power => '11', :guard_point => '-', :range => '200m', :purchase_point => '19', :standby_point => '20', :ability => '4'}
+  {:name => '素手',                     :sort => '0', :skill => '0', :hit => '0', :attack_power => '-5', :guard_point => '0', :range => '至近', :purchase_point => '-', :standby_point => '0', :ability => '0'}, 
+  {:name => 'ナックルダスター',          :sort => '0', :skill => '0', :hit => '0', :attack_power => '1', :guard_point => '0', :range => '至近', :purchase_point => '4', :standby_point => '1', :ability => '0'}, 
+  {:name => 'ナイフ',                   :sort => '2', :skill => '2', :hit => '-1', :attack_power => '2', :guard_point => '0', :range => '至近/10m', :purchase_point => '6', :standby_point => '2', :ability => '0'}, 
+  {:name => '伸縮性警棒',               :sort => '0', :skill => '0', :hit => '0', :attack_power => '2', :guard_point => '0', :range => '至近', :purchase_point => '5', :standby_point => '2', :ability => '1'}, 
+  {:name => '木刀',                    :sort => '0', :skill => '0', :hit => '-1', :attack_power => '3', :guard_point => '2', :range => '至近', :purchase_point => '5', :standby_point => '3', :ability => '0'}, 
+  {:name => '日本刀',                   :sort => '0', :skill => '0', :hit => '-1', :attack_power => '5', :guard_point => '3', :range => '至近', :purchase_point => '11', :standby_point => '5', :ability => '0'}, 
+  {:name => '西洋剣',                   :sort => '0', :skill => '0', :hit => '-1', :attack_power => '4', :guard_point => '4', :range => '至近', :purchase_point => '11', :standby_point => '5', :ability => '0'}, 
+  {:name => 'チェーンソー',             :sort => '0', :skill => '0', :hit => '-5', :attack_power => '6', :guard_point => '3', :range => '至近', :purchase_point => '10', :standby_point => '7', :ability => '0'}, 
+  {:name => 'ワイヤーウィップ',         :sort => '0', :skill => '0', :hit => '-2', :attack_power => '6', :guard_point => '0', :range => '10m', :purchase_point => '12', :standby_point => '8', :ability => '0'}, 
+  {:name => '大木/巨岩',               :sort => '0', :skill => '0', :hit => '-4', :attack_power => '8', :guard_point => '3', :range => '至近', :purchase_point => '11', :standby_point => '8', :ability => '2'}, 
+  {:name => '特殊プラスチックシールド', :sort => '0', :skill => '0', :hit => '-2', :attack_power => '1', :guard_point => '4', :range => '至近', :purchase_point => '9', :standby_point => '4', :ability => '0'}, 
+  {:name => 'ジュラルミンシールド',     :sort => '0', :skill => '0', :hit => '-3', :attack_power => '2', :guard_point => '6', :range => '至近', :purchase_point => '12', :standby_point => '8', :ability => '0'}, 
+  {:name => '電磁シールド',            :sort => '0', :skill => '0', :hit => '-2', :attack_power => '2', :guard_point => '8', :range => '至近', :purchase_point => '17', :standby_point => '12', :ability => '5'}, 
+  {:name => 'パリィシールド',          :sort => '0', :skill => '0', :hit => '-3', :attack_power => '0', :guard_point => '2', :range => '至近', :purchase_point => '17', :standby_point => '12', :ability => '3'}, 
+  {:name => 'クロスボウ',              :sort => '1', :skill => '1', :hit => '-2', :attack_power => '2', :guard_point => '-', :range => '40m', :purchase_point => '7', :standby_point => '4', :ability => '4'}, 
+  {:name => '拳銃',                   :sort => '1', :skill => '1', :hit => '-1', :attack_power => '3', :guard_point => '-', :range => '20m', :purchase_point => '10', :standby_point => '6', :ability => '0'}, 
+  {:name => '大型拳銃',                :sort => '1', :skill => '1', :hit => '-2', :attack_power => '5', :guard_point => '-', :range => '20m', :purchase_point => '11', :standby_point => '7', :ability => '0'}, 
+  {:name => 'サブマシンガン',           :sort => '1', :skill => '1', :hit => '-1', :attack_power => '8', :guard_point => '-', :range => '20m', :purchase_point => '14', :standby_point => '9', :ability => '4'}, 
+  {:name => 'アサルトライフル',         :sort => '1', :skill => '1', :hit => '-1', :attack_power => '9', :guard_point => '-', :range => '100m', :purchase_point => '15', :standby_point => '10', :ability => '4'}, 
+  {:name => 'スナイパーライフル',       :sort => '1', :skill => '1', :hit => '0', :attack_power => '11', :guard_point => '-', :range => '200m', :purchase_point => '19', :standby_point => '20', :ability => '4'}
 ])
 
 Armor.create([
@@ -476,8 +476,8 @@ NegativeEmotion.create([
 # ])
 
 # Weapon.create([
-#   {:name => '素手', :sort => '0', :skill => '<白兵>', :hit => '0', :offensive_power => '-5', :guard_point => '0', :range => '至近', :purchase_point => '購入不可', :standby_point => '0'},
-#   {:name => 'クロスボウ', :sort => '1', :skill => '<射撃>', :hit => '-2', :offensive_power => '2', :guard_point => '-', :range => '40m', :purchase_point => '7', :standby_point => '4'}
+#   {:name => '素手', :sort => '0', :skill => '<白兵>', :hit => '0', :attack_power => '-5', :guard_point => '0', :range => '至近', :purchase_point => '購入不可', :standby_point => '0'},
+#   {:name => 'クロスボウ', :sort => '1', :skill => '<射撃>', :hit => '-2', :attack_power => '2', :guard_point => '-', :range => '40m', :purchase_point => '7', :standby_point => '4'}
 # ])
 
 # Armor.create([

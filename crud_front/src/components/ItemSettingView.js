@@ -84,7 +84,7 @@ class ItemSettingView extends React.Component {
 
                     {/* 攻撃力 */}
                     <Dx3rdTableCell align="center">
-                      {weapon.dbInfo.offensive_power}
+                      {weapon.dbInfo.attack_power}
                     </Dx3rdTableCell>
 
                     {/* 射程 */}

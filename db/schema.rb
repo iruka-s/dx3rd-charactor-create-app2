@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_054537) do
     t.text "sort"
     t.text "skill"
     t.text "hit"
-    t.text "offensive_power"
+    t.text "attack_power"
     t.text "guard_point"
     t.text "range"
     t.text "purchase_point"

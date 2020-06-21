@@ -315,7 +315,7 @@ export default function AddWeaponDialog(props) {
 
                         {/* 攻撃力 */}
                         <Dx3rdTableCell align="center">
-                          {dbWeapon.offensive_power}
+                          {dbWeapon.attack_power}
                         </Dx3rdTableCell>
 
                         {/* 射程 */}
