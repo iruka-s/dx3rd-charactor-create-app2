@@ -8,6 +8,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import { attackCombo, reactionCombo } from '../utils/CommonConst';
+import CreateComboDialog from './CreateComboDialog';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
 const styles = theme => ({
@@ -53,12 +54,9 @@ class ComboSettingView extends React.Component {
       <div>
 
         {/* 本来ここはコンボ作成ダイアログが入る */}
-        <Button 
-          // onClick={() => this.handleToDeleteGrowRow(true)} 
-          color="inherit"
-        >
-          コンボ作成
-        </Button>
+        <CreateComboDialog
+          selectEffects={this.props.selectEffects}
+        />
 
         {/* 武器表 */}
         <Paper className={classes.root}>

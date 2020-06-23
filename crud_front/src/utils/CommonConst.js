@@ -20,6 +20,7 @@ export const titleMap = {
   addWeaponTable: '【武器選択】',
   addArmorTable: '【防具選択】',
   addItemTable: '【アイテム選択】',
+  createComboTable: '【コンボ作成】',
 };
 
 export const mainSkillSortNum = {
@@ -699,7 +700,7 @@ export const dbEffectNumInfo = {
     CANUSEINPRESSURE: "44",
     GIVEDAMAGE: "45",
     RECEIVEDAMAGE: "46",
-    OPPONENTDAMAGE: "47",
+    DAMAGETOOPPONENT: "47",
     SUREHIT: "48",
     CANNOTREACTION: "49",
     MAXHP: "51",

@@ -1799,6 +1799,7 @@ export default function Dx3rdDrawer(props) {
             path={ScreenPath.COMBO.path}
             render={
               () => <ComboSettingView
+                selectEffects={selectEffects}
                 attackCombos={attackCombos}
                 reactionCombos={reactionCombos}
                 removeAttackCombo={removeAttackCombo}
