@@ -646,11 +646,11 @@ export const dbEffectNumInfo = {
   },
   SORT: {
     MINOR: "0",
-    MAJOR: "1",
-    REACTION: "2",
-    AUTO: "3",
-    MAJORORREACTION: "4",
-    minor: "5",
+    SHOOT: "1",
+    MELEE: "2",
+    MELEESHOOT: "3",
+    GUARD: "4",
+    DODGE: "5",
   },
   EFFECT_SORT: {
     NONE: "0",
