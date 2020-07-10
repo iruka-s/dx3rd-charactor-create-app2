@@ -651,6 +651,7 @@ export const dbEffectNumInfo = {
     MELEESHOOT: "3",
     GUARD: "4",
     DODGE: "5",
+    OTHERTHANGUARD: "6",
   },
   EFFECT_SORT: {
     NONE: "0",
