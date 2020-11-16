@@ -530,7 +530,7 @@ export const dbEffectNumInfo = {
     SETUP: "5",
     CLEANUP: "6",
     INITIATIVE: "7",
-    Always: "8",
+    ALWAYS: "8",
     AUTOREACTION: "9",
     AUTOBODY: "10",
     AUTODAMAGE: "11",
@@ -645,7 +645,7 @@ export const dbEffectNumInfo = {
 
   },
   SORT: {
-    MINOR: "0",
+    NONE: "0",
     SHOOT: "1",
     MELEE: "2",
     MELEESHOOT: "3",

@@ -58,7 +58,7 @@ class ComboSettingView extends React.Component {
           selectEffects={this.props.selectEffects}
         />
 
-        {/* 武器表 */}
+        {/* 攻撃コンボ */}
         <Paper className={classes.root}>
           <Table className={classes.table} aria-label="weapon table">
 
@@ -176,7 +176,7 @@ class ComboSettingView extends React.Component {
         </Grid>
 
 
-        {/* 防具表 */}
+        {/* リアクションコンボ */}
         <Paper className={classes.root}>
           <Table className={classes.table} aria-label="weapon table">
 
