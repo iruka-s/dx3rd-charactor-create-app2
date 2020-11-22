@@ -1,0 +1,1 @@
+docker run -w /home/crud_front -p 127.0.0.1:3000:3000 -it -v C:\Users\iruka\rb_workspace\dx3rd-charactor-create-app2:/home/ dx3rd-frontend

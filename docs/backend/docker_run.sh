@@ -1,0 +1,1 @@
+docker run -p 127.0.0.1:3001:3001 -it -v C:\Users\iruka\rb_workspace\dx3rd-charactor-create-app2:/home/ dx3rd-backend
