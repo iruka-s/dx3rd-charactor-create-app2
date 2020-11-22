@@ -14,7 +14,7 @@ docker build -t dx3rd-frontend docs\frontend
 ```
 DockerイメージからDockerコンテナを作成する
 ```
-docker run -w /home/crud_front -p 127.0.0.1:3000:3000 -it -v C:\Users\iruka\rb_workspace\dx3rd-charactor-create-app2:/home/ dx3rd-frontend
+docker run -w /home/crud_front -p 127.0.0.1:3000:3000 -it -v <path>:/home/ dx3rd-frontend
 ```
 必要なライブラリをインストールする。
 ```
@@ -32,11 +32,11 @@ docker commit <コンテナID> dx3rd-frontend
 ### 【バックエンド】
 クローンしたディレクトリ内で下記コマンドを実行し、Dockerコンテナをビルドする。
 ```
-docker build -t dx3rd-frontend docs\backend
+docker build -t dx3rd-backend docs\backend
 ```
 DockerイメージからDockerコンテナを作成する
 ```
-docker run -p 127.0.0.1:3001:3001 -it -v C:\Users\iruka\rb_workspace\dx3rd-charactor-create-app2\dx3rd-charactor-create-app2:/home/ dx3rd-backend
+docker run -p 127.0.0.1:3001:3001 -it -v <path>:/home/ dx3rd-backend
 ```
 
 `ruby`のライブラリをGemfileからインストールする。
@@ -62,7 +62,7 @@ docker commit <コンテナID> dx3rd-backend
 ### 【フロントエンド】
 DockerイメージからDockerコンテナを作成する
 ```
-docker run -w /home/crud_front -p 127.0.0.1:3000:3000 -it -v C:\Users\iruka\rb_workspace\dx3rd-charactor-create-app2:/home/ dx3rd-frontend
+docker run -w /home/crud_front -p 127.0.0.1:3000:3000 -it -v <path>:/home/ dx3rd-frontend
 ```
 サーバを起動する。
 ```
@@ -73,7 +73,7 @@ npm start
 
 DockerイメージからDockerコンテナを作成する
 ```
-docker run -p 127.0.0.1:3001:3001 -it -v C:\Users\iruka\rb_workspace\dx3rd-charactor-create-app2\dx3rd-charactor-create-app2:/home/ dx3rd-backend
+docker run -p 127.0.0.1:3001:3001 -it -v <path>:/home/ dx3rd-backend
 ```
 サーバを起動する。
 ```
