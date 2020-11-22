@@ -4,8 +4,8 @@
 ## 環境構築
 本アプリはRuby + Ruby on Railsで動作するバックエンドサーバと、<br>
 React + Material-UIで動作するフロントエンドサーバーから構成される。<br>
-それぞれのサーバはDockerコンテナ上に構築する。<br>
-サーバごとのDockerコンテナ構築手順を記す。
+それぞれのサーバはDockerコンテナ上に構築する。サーバごとのDockerコンテナ構築手順を記す。
+<br><br>
 
 ### 【フロントエンド】
 クローンしたディレクトリ内で下記コマンドを実行し、Dockerコンテナをビルドする。
@@ -26,8 +26,9 @@ docker ps
 ```
 構築したDockerコンテナを上書き保存する
 ```
-docker commit <コンテナID> dx3rd-frontend
+docker commit <containerID> dx3rd-frontend
 ```
+<br>
 
 ### 【バックエンド】
 クローンしたディレクトリ内で下記コマンドを実行し、Dockerコンテナをビルドする。
@@ -55,8 +56,9 @@ docker ps
 ```
 構築したDockerコンテナを上書き保存する
 ```
-docker commit <コンテナID> dx3rd-backend
+docker commit <containerID> dx3rd-backend
 ```
+<br>
 
 ## 実行手順
 ### 【フロントエンド】
@@ -68,6 +70,7 @@ docker run -w /home/crud_front -p 127.0.0.1:3000:3000 -it -v <path>:/home/ dx3rd
 ```
 npm start
 ```
+<br>
 
 ### 【バックエンド】
 
