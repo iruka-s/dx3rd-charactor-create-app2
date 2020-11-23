@@ -321,10 +321,8 @@ export default function AddEffectDialog(props) {
                         hover
                         onClick={event => handleClick(event, mySyndromeEffect.name)}
                         role="checkbox"
-                        aria-checked={isItemSelected}
                         tabIndex={-1}
                         key={mySyndromeEffect.name}
-                        selected={isItemSelected}
                       >
                         <Dx3rdTableCell padding="checkbox">
                           <Checkbox
