@@ -29,6 +29,15 @@ export const Dx3rdTableCell = withStyles(theme => ({
     }
 }))(TableCell);
 
+export const Dx3rdDisabledTableRow = withStyles({
+    head: {
+        height: "40px",
+    },
+    root: {
+        backgroundColor: "#c8c8c8"
+    }
+})(TableRow);
+
 export const Dx3rdErrorTableCell = withStyles(theme => ({
     head: {
         backgroundColor: "#3a3137",

@@ -15,7 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import clsx from "clsx";
 
-import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
+import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdDisabledTableRow } from './Dx3rdStyledComponent';
 import { effectRow, effectSyndromeArray, timingArray, skillArray, targetArray, rangeArray, limitArray, titleMap } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
@@ -211,76 +211,147 @@ export default function CreateComboDialog(props) {
                     const isEffectSelected = isSelected(effect.dbInfo.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
+                    if(true){
 
+                      /* 組み合わせ可能エフェクト表示 */
                       return (
                         <Dx3rdTableRow
-                        hover
-                        onClick={event => handleClick(event, effect.dbInfo.id)}
-                        role="checkbox"
-                        aria-checked={isEffectSelected}
-                        tabIndex={-1}
-                        key={effect.dbInfo.id}
-                        selected={isEffectSelected}
-                      >
-                        <Dx3rdTableCell padding="checkbox">
-                          <Checkbox
-                            checked={isEffectSelected}
-                            inputProps={{ 'aria-labelledby': labelId }}
-                          />
-                        </Dx3rdTableCell>
+                          hover
+                          onClick={event => handleClick(event, effect.dbInfo.id)}
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={effect.dbInfo.id}
+                        >
+                          <Dx3rdTableCell padding="checkbox">
+                            <Checkbox
+                              checked={isEffectSelected}
+                              inputProps={{ 'aria-labelledby': labelId }}
+                            />
+                          </Dx3rdTableCell>
 
-                        {/* シンドローム */}
-                        <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
-                          {effectSyndromeArray[Number(effect.dbInfo.syndrome)]}
-                        </Dx3rdTableCell>
+                          {/* シンドローム */}
+                          <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
+                            {effectSyndromeArray[Number(effect.dbInfo.syndrome)]}
+                          </Dx3rdTableCell>
 
-                        {/* エフェクト名 */}
-                        <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
-                          {effect.dbInfo.name}
-                        </Dx3rdTableCell>
+                          {/* エフェクト名 */}
+                          <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
+                            {effect.dbInfo.name}
+                          </Dx3rdTableCell>
 
-                        {/* レベル */}
-                        <Dx3rdTableCell align="center">
-                          {effect.level}
-                        </Dx3rdTableCell>
+                          {/* レベル */}
+                          <Dx3rdTableCell align="center">
+                            {effect.level}
+                          </Dx3rdTableCell>
 
-                        {/* タイミング */}
-                        <Dx3rdTableCell align="center">
-                          {timingArray[Number(effect.dbInfo.timing)]}
-                        </Dx3rdTableCell>
+                          {/* タイミング */}
+                          <Dx3rdTableCell align="center">
+                            {timingArray[Number(effect.dbInfo.timing)]}
+                          </Dx3rdTableCell>
 
-                        {/* 判定技能 */}
-                        <Dx3rdTableCell align="center">
-                          {skillArray[Number(effect.dbInfo.skill)]}
-                        </Dx3rdTableCell>
+                          {/* 判定技能 */}
+                          <Dx3rdTableCell align="center">
+                            {skillArray[Number(effect.dbInfo.skill)]}
+                          </Dx3rdTableCell>
 
-                        {/* 対象 */}
-                        <Dx3rdTableCell align="center">
-                          {targetArray[Number(effect.dbInfo.target)]}
-                        </Dx3rdTableCell>
+                          {/* 対象 */}
+                          <Dx3rdTableCell align="center">
+                            {targetArray[Number(effect.dbInfo.target)]}
+                          </Dx3rdTableCell>
 
-                        {/* 射程 */}
-                        <Dx3rdTableCell align="center">
-                          {rangeArray[Number(effect.dbInfo.range)]}
-                        </Dx3rdTableCell>
+                          {/* 射程 */}
+                          <Dx3rdTableCell align="center">
+                            {rangeArray[Number(effect.dbInfo.range)]}
+                          </Dx3rdTableCell>
 
-                        {/* 侵食値 */}
-                        <Dx3rdTableCell align="center">
-                          {effect.dbInfo.erosion_point}
-                        </Dx3rdTableCell>
+                          {/* 侵食値 */}
+                          <Dx3rdTableCell align="center">
+                            {effect.dbInfo.erosion_point}
+                          </Dx3rdTableCell>
 
-                        {/* 制限 */}
-                        <Dx3rdTableCell align="center">
-                          {limitArray[Number(effect.dbInfo.limit)]}
-                        </Dx3rdTableCell>
+                          {/* 制限 */}
+                          <Dx3rdTableCell align="center">
+                            {limitArray[Number(effect.dbInfo.limit)]}
+                          </Dx3rdTableCell>
 
-                        {/* 効果 */}
-                        <Dx3rdTableCell align="center">
-                          ここの表示方法は考える必要がある。
-                        </Dx3rdTableCell>
-                      </Dx3rdTableRow>
+                          {/* 効果 */}
+                          <Dx3rdTableCell align="center">
+                            ここの表示方法は考える必要がある。
+                          </Dx3rdTableCell>
+                        </Dx3rdTableRow>
 
                       );
+                    }
+                    else {
+
+                      /* 組み合わせ不可エフェクト表示 */
+                      return (
+                        <Dx3rdDisabledTableRow
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={effect.dbInfo.id}
+                        >
+                          <Dx3rdTableCell padding="checkbox">
+                            <Checkbox
+                              disabled
+                              checked={isEffectSelected}
+                              inputProps={{ 'aria-labelledby': labelId }}
+                            />
+                          </Dx3rdTableCell>
+
+                          {/* シンドローム */}
+                          <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
+                            {effectSyndromeArray[Number(effect.dbInfo.syndrome)]}
+                          </Dx3rdTableCell>
+
+                          {/* エフェクト名 */}
+                          <Dx3rdTableCell align="center" component="th" id={labelId} scope="row" padding="none">
+                            {effect.dbInfo.name}
+                          </Dx3rdTableCell>
+
+                          {/* レベル */}
+                          <Dx3rdTableCell align="center">
+                            {effect.level}
+                          </Dx3rdTableCell>
+
+                          {/* タイミング */}
+                          <Dx3rdTableCell align="center">
+                            {timingArray[Number(effect.dbInfo.timing)]}
+                          </Dx3rdTableCell>
+
+                          {/* 判定技能 */}
+                          <Dx3rdTableCell align="center">
+                            {skillArray[Number(effect.dbInfo.skill)]}
+                          </Dx3rdTableCell>
+
+                          {/* 対象 */}
+                          <Dx3rdTableCell align="center">
+                            {targetArray[Number(effect.dbInfo.target)]}
+                          </Dx3rdTableCell>
+
+                          {/* 射程 */}
+                          <Dx3rdTableCell align="center">
+                            {rangeArray[Number(effect.dbInfo.range)]}
+                          </Dx3rdTableCell>
+
+                          {/* 侵食値 */}
+                          <Dx3rdTableCell align="center">
+                            {effect.dbInfo.erosion_point}
+                          </Dx3rdTableCell>
+
+                          {/* 制限 */}
+                          <Dx3rdTableCell align="center">
+                            {limitArray[Number(effect.dbInfo.limit)]}
+                          </Dx3rdTableCell>
+
+                          {/* 効果 */}
+                          <Dx3rdTableCell align="center">
+                            ここの表示方法は考える必要がある。
+                          </Dx3rdTableCell>
+                        </Dx3rdDisabledTableRow>
+                      );
+                    }
+
                   })}
               </TableBody>
             </Table>
