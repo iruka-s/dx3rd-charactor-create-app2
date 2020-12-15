@@ -519,162 +519,205 @@ export const effectLimit = {
   pureSyndrome: '4', 
 };
 
-// エフェクト情報の内数字に意味づけがされているもの
-export const dbEffectNumInfo = {
-  TIMING: {
-    MINOR: "0",
-    MAJOR: "1",
-    REACTION: "2",
-    AUTO: "3",
-    MAJORREACTION: "4",
-    SETUP: "5",
-    CLEANUP: "6",
-    INITIATIVE: "7",
-    ALWAYS: "8",
-    AUTOREACTION: "9",
-    AUTOBODY: "10",
-    AUTODAMAGE: "11",
-    AUTOKNOCKDOWN: "12",
-  },
-  SKILL: {
-    NONE: "0",
-    SYNDROME: "1",
-    MELEE: "2",
-    SHOOT: "3",
-    RC: "4",
-    PERCEPTION: "5",
-    MELEESHOOT: "6",
-    INFOMATION: "7",
-    NEGOTIATION: "8",
-    RCNEGOTIATION: "9",
-    AVOID: "10",
-    BODY: "11",
-    SPIRIT: "12",
-    BODYSENSE: "13",
-    ALL: "14",
-  },
-  DIFFICULTY: {
-    NONE: "0",
-    AUTO: "1",
-    BATTLE: "2",
-  },
-  TARGET: {
-    NONE: "0",
-    SELF: "1",
-    ONE: "2",
-    THREE: "3",
-    RANGESELECT: "4",
-    SCENESELECT: "5",
-    RANGERANGESELECT: "6",
-    LEVELPLUSONE: "7",
-    WEAPON: "8",
-  },
-  RANGE: {
-    NONE: "0",
-    CLOSEST: "1",
-    WEAPON: "2",
-    FIELDOFVIEW: "3",
-  },
-  LIMIT: {
-    NONE: "0",
-    EIGHTYPERCENT: "1",
-    ONEHUNDREDPERCENT: "2",
-    ONEHUNDREDTWENTYPERCENT: "3",
-    PURESYNDROME: "4",
-  },
-  COUNT: {
-    NONE: "0",
-    SCENELEVEL: "1",
-    SCENEONE: "2",
-    SCENARIOLEVEL: "3",
-    SCENARIOONE: "4",
-    SCENARIOTHREE: "5",
-    ROUNDONE: "6",
-    MAINONE: "7",
-    MAINONESCENARIOLEVEL: "8",
-  },
-  OTHER: {
-    NONE: "0",
-    CANNOTCOMBINE: "1",
-    NOUPLEVELEROSION: "2",
-    BAREHANDSONLY: "3",
-    WEAPONREQUIRED: "4",
-    MELEETARGETED: "5",
-    CANNOTCOMBINECONCENTRATE: "6",
-    CANNOTSELECTOWN: "7",
-    BATTLECANNOTUSE: "8",
-    CANCOMBINEMAJOR: "9",
-    CANNOTPURCHASE: "10",
-    CANNOTANIMALTAMER: "11",
-    CANCOMBINEREACTION: "12",
-    CANNOTHPZERO: "13",
-    ONLYAGREE: "14",
-    AWAKENINGOVERD: "15",
-    COUNTLIMITNOTUP: "16",
-    OVERDNOEFFECT: "17",
-    CANNOTHEELRUNAWAY: "18",
-    RANGEATTACKNOEFFECT: "19",
-    BREAKUSEDWEAPON: "20",
-    CANUSEONLYWHENPERFECTBEAST: "21",
+// 組み合わせ結果表
+const SKILL_CONBINE_RESULT_TABLE = {
+  //               0     1     2    3    4    5    6    7    8    9    10    11    12    13    14
+  NONE:          ["0",  "1",  "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],  // 0
+  SYNDROME:      ["1",  "1",  "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "1" ],  // 1
+  MELEE:         ["2",  "2",  "2", "-", "-", "-", "2", "-", "-", "-", "-",  "2",  "-",  "2",  "2" ],  // 2
+  SHOOT:         ["3",  "3",  "-", "3", "-", "-", "3", "-", "-", "-", "-",  "-",  "-",  "3",  "3" ],  // 3
+  RC:            ["4",  "4",  "-", "-", "4", "-", "-", "-", "-", "4", "-",  "-",  "4",  "-",  "4" ],  // 4
+  PERCEPTION:    ["5",  "5",  "-", "-", "-", "5", "-", "-", "-", "-", "-",  "-",  "-",  "5",  "5" ],  // 5
+  MELEESHOOT:    ["6",  "6",  "2", "3", "-", "-", "6", "-", "-", "-", "-",  "2",  "-",  "6",  "6" ],  // 6
+  INFOMATION:    ["7",  "7",  "-", "-", "-", "-", "-", "7", "-", "-", "-",  "-",  "-",  "-",  "7" ],  // 7
+  NEGOTIATION:   ["8",  "8",  "-", "-", "-", "-", "-", "-", "8", "8", "-",  "-",  "-",  "-",  "8" ],  // 8
+  RCNEGOTIATION: ["9",  "9",  "-", "-", "4", "-", "-", "-", "8", "9", "-",  "-",  "4",  "-",  "9" ],  // 9
+  AVOID:         ["10", "10", "-", "-", "-", "-", "-", "-", "-", "-", "10", "10", "-",  "10", "10"],  // 10
+  BODY:          ["11", "11", "2", "-", "-", "-", "2", "-", "-", "-", "10", "11", "-",  "11", "11"],  // 11
+  SPIRIT:        ["12", "12", "-", "-", "4", "-", "-", "-", "-", "4", "-",  "-",  "12", "-",  "12"],  // 12
+  BODYSENSE:     ["13", "13", "2", "3", "-", "5", "6", "-", "-", "-", "10", "11", "-",  "13", "13"],  // 13
+  ALL:           ["14", "1",  "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],  // 14
+};
 
-  },
-  SORT: {
-    NONE: "0",
-    SHOOT: "1",
-    MELEE: "2",
-    MELEESHOOT: "3",
-    GUARD: "4",
-    DODGE: "5",
-    OTHERTHANGUARD: "6",
-  },
-  EFFECT_SORT: {
-    NONE: "0",
-    MYCRITICALPOINT: "1",
-    MYDICE: "2",
-    MYJUDGE: "3",
-    MYATTACK: "4",
-    MYGUARD: "5",
-    MYSTATE: "6",
-    MYHP: "7",
-    MYACTION: "8",
-    MYDAMAGE: "9",
-    MYARMOR: "10",
-    OPPONENTCRITICALPOINT: "11",
-    OPPONENTDICE: "12",
-    OPPONENTATTACK: "13",
-    OPPONENTSTATE: "14",
-    OPPONENTHP: "15",
-    OPPONENTDISTURBANCE: "16",
-    OPPONENTDAMAGE: "17",
-    CHANGEAVOIDSKILL: "18",
-    COVERING: "19",
-    CANNOTDODGE: "20",
-    BATTLEMOVE: "21",
-    FULLPOWERMOVE: "22",
-    CHANGERANGE: "23",
-    CHANGETARGET: "24",
-    CANNOTSELECTSAMEENGAGE: "25",
-    ENABLESELECTSAMEENGAGE: "26",
-    MAINPROCESSEXECUTE: "27",
-    STANDBYPOINT: "28",
-    EROSIONBASICVALUE: "29",
-    CHANGESKILL: "30",
-    USEEFFECT: "31",
-    CRITICALPOINTLOWERLIMIT: "32",
-    WEAPONCREATE: "33",
-    HPABSORPTION: "34",
-    IGNOREARMOR: "35",
-    CANUSEINPRESSURE: "36",
-    GIVEDAMAGE: "37",
-    RECEIVEDAMAGE: "38",
-    DAMAGETOOPPONENT: "39",
-    MAXHP: "40",
-    ASKTOGM: "41",
-    CANCHANGEEQUIPWEAPON: "42",
-    DOUBLEWEAPON: "43",
-    COUNTER: "44",
-    NERFJACK: "45",
-    OPPONENTEROSION: "46",
-    OVERTOSE: "47",
-  },
+export const TIMING_CONBINE_RESULT_TABLE = {
+  //                 0    1    2    3    4    5    6    7    8    9    10    11
+  MINOR:           ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",  "0" ],  // 0
+  MAJOR:           ["0", "1", "-", "-", "1", "-", "-", "-", "-", "-", "1",  "11"],  // 1
+  REACTION:        ["0", "-", "2", "-", "2", "-", "-", "-", "-", "2", "2",  "-" ],  // 2
+  AUTO:            ["0", "-", "-", "3", "-", "-", "-", "-", "-", "-", "3",  "-" ],  // 3
+  MAJORREACTION:   ["0", "1", "2", "-", "4", "-", "-", "-", "-", "2", "4",  "11"],  // 4
+  SETUP:           ["0", "-", "-", "-", "-", "5", "-", "-", "-", "-", "5",  "-" ],  // 5
+  CLEANUP:         ["0", "-", "-", "-", "-", "-", "6", "-", "-", "-", "6",  "-" ],  // 6
+  INITIATIVE:      ["0", "-", "-", "-", "-", "-", "-", "7", "-", "-", "7",  "-" ],  // 7
+  ALWAYS:          ["0", "-", "-", "-", "-", "-", "-", "-", "8", "-", "8",  "-" ],  // 8
+  AUTOREACTION:    ["0", "-", "2", "-", "2", "-", "-", "-", "-", "9", "9",  "-" ],  // 9
+  AUTOBODY:        ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],  // 10
+  MAJORINREACTION: ["0", "11","-", "-", "11","-", "-", "-", "-", "-", "11", "11"],  // 11
+};
+
+const TARGET_CONBINE_RESULT_TABLE = {
+  //                  0    1    2    3    4    5    6
+  NONE:             ["0", "1", "2", "3", "4", "5", "6"],  // 0
+  SELF:             ["1", "1", "1", "1", "1", "1", "1"],  // 1
+  ONE:              ["2", "1", "2", "2", "2", "2", "2"],  // 2
+  THREE:            ["3", "1", "2", "3", "3", "3", "3"],  // 3
+  RANGESELECT:      ["4", "1", "2", "3", "4", "4", "6"],  // 4
+  SCENESELECT:      ["5", "1", "2", "3", "4", "5", "6"],  // 5
+  LEVELPLUSONE:     ["6", "1", "2", "3", "6", "6", "6"],  // 6
+};
+
+const SORT_CONBINE_RESULT_TABLE = {
+  //                0    1    2    3    4    5    6
+  NONE:           ["0", "1", "2", "3", "4", "5", "6"],  // 0
+  SHOOT:          ["1", "1", "-", "1", "-", "-", "1"],  // 1
+  MELEE:          ["2", "-", "2", "2", "-", "-", "2"],  // 2
+  MELEESHOOT:     ["3", "1", "2", "3", "-", "-", "3"],  // 3
+  GUARD:          ["4", "-", "-", "-", "4", "-", "4"],  // 4
+  DODGE:          ["5", "-", "-", "-", "-", "5", "5"],  // 5
+  OTHERTHANGUARD: ["6", "1", "2", "3", "4", "5", "6"],  // 6
+};
+
+// 組み合わせ可不可チェック表
+const SKILL_CONBINABLE_RULE_TABLE = {
+  //              0     1      2      3      4      5      6      7      8      9      10     11     12     13     14
+  NONE:          [true, null, true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true],  // 0
+  SYNDROME:      [null, null, null,  null,  null,  null,  null,  null,  null,  null,  null,  null,  null,  null,  null],  // 1
+  MELEE:         [true, null, true,  false, false, false, true,  false, false, false, false, true,  false, true,  true],  // 2
+  SHOOT:         [true, null, false, true,  false, false, true,  false, false, false, false, false, false, true,  true],  // 3
+  RC:            [true, null, false, false, true,  false, false, false, false, true,  false, false, true,  false, true],  // 4
+  PERCEPTION:    [true, null, false, false, false, true,  false, false, false, false, false, false, false, true,  true],  // 5
+  MELEESHOOT:    [true, null, true,  true,  false, false, true,  false, false, false, false, true,  false, true,  true],  // 6
+  INFOMATION:    [true, null, false, false, false, false, false, true,  false, false, false, false, false, false, true],  // 7
+  NEGOTIATION:   [true, null, false, false, false, false, false, false, true,  true,  false, false, false, false, true],  // 8
+  RCNEGOTIATION: [true, null, false, false, true,  false, false, false, true,  true,  false, false, true,  false, true],  // 9
+  AVOID:         [true, null, false, false, false, false, false, false, false, false, true,  true,  false, true,  true],  // 10
+  BODY:          [true, null, true,  false, false, false, true,  false, false, false, true,  true,  false, true,  true],  // 11
+  SPIRIT:        [true, null, false, false, true,  false, false, false, false, true,  false, false, true,  false, true],  // 12
+  BODYSENSE:     [true, null, true,  true,  false, true,  true,  false, false, false, true,  true,  false, true,  true],  // 13
+  ALL:           [true, null, true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true],  // 14
+}
+
+const SORT_CONBINABLE_RULE_TABLE = {
+  //              0      1      2      3      4      5      6
+  NONE:           [true, true,  true,  true,  true,  true,  true ],  // 0
+  SHOOT:          [true, true,  false, true,  false, false, true ],  // 1
+  MELEE:          [true, false, true,  true,  false, false, true ],  // 2
+  MELEESHOOT:     [true, true,  true,  true,  false, false, true ],  // 3
+  GUARD:          [true, false, false, false, true,  false, false],  // 4
+  DODGE:          [true, false, false, false, false, true,  true ],  // 5
+  OTHERTHANGUARD: [true, true,  true,  true,  false, true,  true ],  // 6
+}
+
+const TIMING_CONBINABLE_RULE_TABLE = {
+  //                0      1      2      3      4      5      6      7      8      9      10     11
+  MINOR:           [true,  false, false, false, false, false, false, false, false, false, true,  false],  // 0
+  MAJOR:           [false, true,  false, false, true,  false, false, false, false, false, true,  true ],  // 1
+  REACTION:        [false, false, true,  false, true,  false, false, false, false, true,  true,  false],  // 2
+  AUTO:            [false, false, false, true,  false, false, false, false, false, false, true,  false],  // 3
+  MAJORREACTION:   [false, true,  true,  false, true,  false, false, false, false, true,  true,  true ],  // 4
+  SETUP:           [false, false, false, false, false, true,  false, false, false, false, true,  false],  // 5
+  CLEANUP:         [false, false, false, false, false, false, true,  false, false, false, true,  false],  // 6
+  INITIATIVE:      [false, false, false, false, false, false, false, true,  false, false, true,  false],  // 7
+  ALWAYS:          [false, false, false, false, false, false, false, false, true,  false, false, false],  // 8
+  AUTOREACTION:    [false, false, true,  false, true,  false, false, false, false, true,  true,  false],  // 9
+  AUTOBODY:        [true,  true,  true,  true,  true,  true,  true,  true,  false, true,  true,  true ],  // 10
+  MAJORINREACTION: [false, true,  false, false, true,  false, false, false, false, false, true,  true ],  // 11
+}
+
+// 組み合わせ結果決定関数群
+export const SKILL_DECIDE_FUNCS = {
+  '0':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.NONE[parseInt(skill)]},
+  '1':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.SYNDROME[parseInt(skill)]},
+  '2':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.MELEE[parseInt(skill)] },
+  '3':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.SHOOT[parseInt(skill)] },
+  '4':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.RC[parseInt(skill)] },
+  '5':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.PERCEPTION[parseInt(skill)] },
+  '6':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.MELEESHOOT[parseInt(skill)] },
+  '7':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.INFOMATION[parseInt(skill)] },
+  '8':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.NEGOTIATION[parseInt(skill)] },
+  '9':  function(skill){ return SKILL_CONBINE_RESULT_TABLE.RCNEGOTIATION[parseInt(skill)] },
+  '10': function(skill){ return SKILL_CONBINE_RESULT_TABLE.AVOID[parseInt(skill)] },
+  '11': function(skill){ return SKILL_CONBINE_RESULT_TABLE.BODY[parseInt(skill)] },
+  '12': function(skill){ return SKILL_CONBINE_RESULT_TABLE.SPIRIT[parseInt(skill)] },
+  '13': function(skill){ return SKILL_CONBINE_RESULT_TABLE.BODYSENSE[parseInt(skill)] },
+  '14': function(skill){ return SKILL_CONBINE_RESULT_TABLE.ALL[parseInt(skill)] },
+}
+
+export const TIMING_DECIDE_FUNCS = {
+  '0':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.MINOR[parseInt(timing)]},
+  '1':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.MAJOR[parseInt(timing)]},
+  '2':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.REACTION[parseInt(timing)] },
+  '3':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.AUTO[parseInt(timing)] },
+  '4':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.MAJORREACTION[parseInt(timing)] },
+  '5':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.SETUP[parseInt(timing)] },
+  '6':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.CLEANUP[parseInt(timing)] },
+  '7':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.INITIATIVE[parseInt(timing)] },
+  '8':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.ALWAYS[parseInt(timing)] },
+  '9':  function(timing){ return TIMING_CONBINE_RESULT_TABLE.AUTOREACTION[parseInt(timing)] },
+  '10': function(timing){ return TIMING_CONBINE_RESULT_TABLE.AUTOBODY[parseInt(timing)] },
+  '11': function(timing){ return TIMING_CONBINE_RESULT_TABLE.MAJORINREACTION[parseInt(timing)] },
+}
+
+export const TARGET_DECIDE_FUNCS = {
+  '0':  function(target){ return TARGET_CONBINE_RESULT_TABLE.NONE[parseInt(target)]},
+  '1':  function(target){ return TARGET_CONBINE_RESULT_TABLE.SELF[parseInt(target)]},
+  '2':  function(target){ return TARGET_CONBINE_RESULT_TABLE.ONE[parseInt(target)] },
+  '3':  function(target){ return TARGET_CONBINE_RESULT_TABLE.THREE[parseInt(target)] },
+  '4':  function(target){ return TARGET_CONBINE_RESULT_TABLE.RANGESELECT[parseInt(target)] },
+  '5':  function(target){ return TARGET_CONBINE_RESULT_TABLE.SCENESELECT[parseInt(target)] },
+  '6':  function(target){ return TARGET_CONBINE_RESULT_TABLE.LEVELPLUSONE[parseInt(target)] }
+}
+
+export const SORT_DECIDE_FUNCS = {
+  '0':  function(sort){ return SORT_CONBINE_RESULT_TABLE.NONE[parseInt(sort)]},
+  '1':  function(sort){ return SORT_CONBINE_RESULT_TABLE.SHOOT[parseInt(sort)]},
+  '2':  function(sort){ return SORT_CONBINE_RESULT_TABLE.MELEE[parseInt(sort)] },
+  '3':  function(sort){ return SORT_CONBINE_RESULT_TABLE.MELEESHOOT[parseInt(sort)] },
+  '4':  function(sort){ return SORT_CONBINE_RESULT_TABLE.GUARD[parseInt(sort)] },
+  '5':  function(sort){ return SORT_CONBINE_RESULT_TABLE.DODGE[parseInt(sort)] },
+  '6':  function(sort){ return SORT_CONBINE_RESULT_TABLE.OTHERTHANGUARD[parseInt(sort)] },
+}
+
+// 組み合わせ可不可チェック関数群
+export const SKILL_CONBINABLE_CHECK_FUNCS = {
+  '0':  function(skill){ return true },
+  '1':  function(skill){ return true }, // 「技能：シンドローム」は別途組み合わせ可不可判断が必要
+  '2':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.MELEE[parseInt(skill)] },
+  '3':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.SHOOT[parseInt(skill)] },
+  '4':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.RC[parseInt(skill)] },
+  '5':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.PERCEPTION[parseInt(skill)] },
+  '6':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.MELEESHOOT[parseInt(skill)] },
+  '7':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.INFOMATION[parseInt(skill)] },
+  '8':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.NEGOTIATION[parseInt(skill)] },
+  '9':  function(skill){ return SKILL_CONBINABLE_RULE_TABLE.RCNEGOTIATION[parseInt(skill)] },
+  '10': function(skill){ return SKILL_CONBINABLE_RULE_TABLE.AVOID[parseInt(skill)] },
+  '11': function(skill){ return SKILL_CONBINABLE_RULE_TABLE.BODY[parseInt(skill)] },
+  '12': function(skill){ return SKILL_CONBINABLE_RULE_TABLE.SPIRIT[parseInt(skill)] },
+  '13': function(skill){ return SKILL_CONBINABLE_RULE_TABLE.BODYSENSE[parseInt(skill)] },
+  '14': function(skill){ return true },
+}
+
+export const TIMING_CONBINABLE_CHECK_FUNCS = {
+  '0' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.MINOR[parseInt(timing)]},
+  '1' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.MAJOR[parseInt(timing)]},
+  '2' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.REACTION[parseInt(timing)] },
+  '3' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.AUTO[parseInt(timing)] },
+  '4' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.MAJORREACTION[parseInt(timing)] },
+  '5' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.SETUP[parseInt(timing)] },
+  '6' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.CLEANUP[parseInt(timing)] },
+  '7' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.INITIATIVE[parseInt(timing)] },
+  '8' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.ALWAYS[parseInt(timing)] },
+  '9' : function(timing){ return TIMING_CONBINABLE_RULE_TABLE.AUTOREACTION[parseInt(timing)] },
+  '10': function(timing){ return TIMING_CONBINABLE_RULE_TABLE.AUTOBODY[parseInt(timing)] },
+  '11': function(timing){ return TIMING_CONBINABLE_RULE_TABLE.MAJORINREACTION[parseInt(timing)] },
+}
+
+export const SORT_CONBINABLE_CHECK_FUNCS = {
+  '0': function(sort){ return SORT_CONBINABLE_RULE_TABLE.NONE[parseInt(sort)]},
+  '1': function(sort){ return SORT_CONBINABLE_RULE_TABLE.SHOOT[parseInt(sort)]},
+  '2': function(sort){ return SORT_CONBINABLE_RULE_TABLE.MELEE[parseInt(sort)] },
+  '3': function(sort){ return SORT_CONBINABLE_RULE_TABLE.MELEESHOOT[parseInt(sort)] },
+  '4': function(sort){ return SORT_CONBINABLE_RULE_TABLE.GUARD[parseInt(sort)] },
+  '5': function(sort){ return SORT_CONBINABLE_RULE_TABLE.DODGE[parseInt(sort)] },
+  '6': function(sort){ return SORT_CONBINABLE_RULE_TABLE.OTHERTHANGUARD[parseInt(sort)] },
 }
