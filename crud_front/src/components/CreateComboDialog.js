@@ -100,12 +100,12 @@ export default function CreateComboDialog(props) {
 
   const isSelected = id => selected.indexOf(id) !== -1;
 
-  const handleClick = (event, id) => {
-    const selectedIndex = selected.indexOf(id);
+  const handleClick = (event, effect) => {
+    const selectedIndex = selected.indexOf(effect.dbInfo.id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
+      newSelected = newSelected.concat(selected, effect.dbInfo.id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -217,7 +217,7 @@ export default function CreateComboDialog(props) {
                       return (
                         <Dx3rdTableRow
                           hover
-                          onClick={event => handleClick(event, effect.dbInfo.id)}
+                          onClick={event => handleClick(event, effect)}
                           role="checkbox"
                           tabIndex={-1}
                           key={effect.dbInfo.id}
