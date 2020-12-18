@@ -15,8 +15,10 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import clsx from "clsx";
 
+import { Combo } from "./items/Combo"
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdDisabledTableRow } from './Dx3rdStyledComponent';
-import { effectRow, effectSyndromeArray, timingArray, skillArray, targetArray, rangeArray, limitArray, titleMap } from '../utils/CommonConst';
+import { effectRow, effectSyndromeArray, timingArray, skillArray,
+         targetArray, rangeArray, limitArray, titleMap, DB_INFO } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -97,31 +99,41 @@ export default function CreateComboDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
   const [dense, setDense] = React.useState(false);
+  const [combo, setCombo] = React.useState(new Combo());
 
   const isSelected = id => selected.indexOf(id) !== -1;
 
   const handleClick = (event, effect) => {
     const selectedIndex = selected.indexOf(effect.dbInfo.id);
     let newSelected = [];
+    let newCombo = Object.create(combo)
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, effect.dbInfo.id);
-    } else if (selectedIndex === 0) {
+      newCombo.addEffect(effect)
+    }
+    else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
+      newCombo.removeEffect(effect)
+    }
+    else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
+      newCombo.removeEffect(effect)
+    }
+    else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
         selected.slice(selectedIndex + 1)
       );
+      newCombo.removeEffect(effect)
     }
-
+    setCombo(newCombo)
     setSelected(newSelected);
   };
 
   const handleClickOpen = () => {
     setOpen(true);
+    setCombo(new Combo())
   };
 
   const handleAdd = () => {
@@ -210,8 +222,10 @@ export default function CreateComboDialog(props) {
                   .map((effect, index) => {
                     const isEffectSelected = isSelected(effect.dbInfo.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
+                    let isViewAble = ((isEffectSelected && combo.isDeletable(effect)) ||
+                                     (!isEffectSelected && combo.isConbinable(effect)))
 
-                    if(true){
+                    if(isViewAble){
 
                       /* 組み合わせ可能エフェクト表示 */
                       return (
@@ -373,36 +387,52 @@ export default function CreateComboDialog(props) {
               <Grid item xs={2}>
                 <TextField
                   fullWidth
-                  id="comboJudge"
-                  label="判定補正"
+                  disabled
+                  id="comboSkill"
+                  label="技能"
+                  value={DB_INFO.SKILL[combo.skill]}
+                />
+              </Grid>
+
+              <Grid item xs={2}>
+                <TextField
+                  fullWidth
+                  disabled
+                  id="comboTiming"
+                  label="タイミング"
+                  value={DB_INFO.TIMING[combo.timing]}
                 />
               </Grid>
 
               <Grid item xs={1}>
                 <TextField
                   fullWidth
-                  id="comboAttack"
-                  label="攻撃力"
+                  disabled
+                  id="comboErosionPoint"
+                  label="侵食値"
+                  value={combo.erosionPoint}
                 />
               </Grid>
 
-              <Grid item xs={2}>
+              <Grid item xs={1}>
                 <TextField
                   fullWidth
+                  disabled
                   id="comboTarget"
                   label="対象"
+                  value={DB_INFO.TARGET[combo.target]}
                 />
               </Grid>
 
-              <Grid item xs={2}>
+              <Grid item xs={1}>
                 <TextField
                   fullWidth
+                  disabled
                   id="comboRange"
-                  label="射程"
+                  label="範囲"
+                  value={DB_INFO.RANGE[combo.range]}
                 />
               </Grid>
-
-              
 
               <Grid item xs={1}/>
             </Grid>
@@ -410,19 +440,32 @@ export default function CreateComboDialog(props) {
             <Grid container spacing={5}>
               <Grid item xs={1}/>
 
-              <Grid item xs={2}>
+              <Grid item xs={1}>
                 <TextField
                   fullWidth
-                  id="comboGuard"
-                  label="ガード値"
+                  disabled
+                  id="comboDifficulty"
+                  label="難易度"
+                  value={DB_INFO.DIFFICULTY[combo.difficulty]}
+                />
+              </Grid>
+
+              <Grid item xs={1}>
+                <TextField
+                  fullWidth
+                  disabled
+                  id="comboSort"
+                  label="種別"
+                  value={DB_INFO.SORT[combo.sort]}
                 />
               </Grid>
 
               <Grid item xs={8}>
                 <TextField
                   fullWidth
-                  id="comboOther"
-                  label="その他"
+                  disabled
+                  id="comboDetail"
+                  label="詳細"
                 />
               </Grid>
 

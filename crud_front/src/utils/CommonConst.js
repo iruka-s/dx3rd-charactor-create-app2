@@ -393,7 +393,7 @@ export const roisRow = {
   }
 };
 
-export const attackCombo = {
+export const ComboRow = {
   name: {
     id: "Name",
     value: "名前",
@@ -402,13 +402,13 @@ export const attackCombo = {
     id: "Skill",
     value: "技能",
   },
-  judge: {
-    id: "Judge",
-    value: "判定補正",
+  timing: {
+    id: "Timing",
+    value: "タイミング",
   },
-  attack: {
-    id: "Attack",
-    value: "攻撃力",
+  erosionPoint: {
+    id: "ErosionPoint",
+    value: "侵食値",
   },
   target: {
     id: "Target",
@@ -418,36 +418,17 @@ export const attackCombo = {
     id: "Range",
     value: "範囲",
   },
-  other: {
-    id: "Other",
-    value: "その他",
+  difficulty: {
+    id: "difficulty",
+    value: "難易度",
   },
-  effects: {
-    id: "Effects",
-    value: "EF",
+  sort: {
+    id: "sort",
+    value: "種別",
   },
-};
-
-export const reactionCombo = {
-  name: {
-    id: "Name",
-    value: "名前",
-  },
-  skill: {
-    id: "Skill",
-    value: "技能",
-  },
-  judge: {
-    id: "Judge",
-    value: "判定補正",
-  },
-  guard: {
-    id: "Guard",
-    value: "G値",
-  },
-  other: {
-    id: "Other",
-    value: "その他",
+  detail: {
+    id: "detail",
+    value: "詳細",
   },
   effects: {
     id: "Effects",
@@ -517,6 +498,75 @@ export const effectLimit = {
   oneHundredPercent: '2',
   oneHundredTwentyPercent: '3',
   pureSyndrome: '4', 
+};
+
+export const DB_INFO = {
+  SKILL: {
+    '': '-',
+    '0': '-',
+    '1': 'シンドローム',
+    '2': '白兵',
+    '3': '射撃',
+    '4': 'RC',
+    '5': '知覚',
+    '6': '白兵/射撃',
+    '7': '情報',
+    '8': '交渉',
+    '9': 'RC/交渉',
+    '10': '回避',
+    '11': '肉体',
+    '12': '精神',
+    '13': '肉体/感覚',
+    '14': '全て',
+  },
+  TIMING: {
+    '': '-',
+    '0': 'マイナー',
+    '1': 'メジャー',
+    '2': 'リアクション',
+    '3': 'オート',
+    '4': 'メジャー/リアクション',
+    '5': 'セットアップ',
+    '6': 'クリンナップ',
+    '7': 'イニシアチブ',
+    '8': '常時',
+    '9': 'オート',
+    '10': 'オート',
+    '11': 'オート',
+  },
+  TARGET: {
+    '': '-',
+    '0': '-',
+    '1': '自身',
+    '2': '1体',
+    '3': '3体',
+    '4': '範囲(選択)',
+    '5': 'シーン(選択)',
+    '6': 'LV+1',
+  },
+  RANGE: {
+    '': '-',
+    '0': '-',
+    '1': '近接',
+    '2': '武器',
+    '3': '視界',
+  },
+  DIFFICULTY: {
+    '': '-',
+    '0': '-',
+    '1': 'オート',
+    '2': '対抗',
+  },
+  SORT: {
+    '': '-',
+    '0': '-',
+    '1': '射撃',
+    '2': '白兵',
+    '3': '白兵/射撃',
+    '4': 'ガード',
+    '5': 'ドッジ',
+    '6': 'ガード以外',
+  },
 };
 
 // 組み合わせ結果表
