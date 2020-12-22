@@ -1,7 +1,7 @@
 import { SKILL_DECIDE_FUNCS, TIMING_DECIDE_FUNCS, 
     TARGET_DECIDE_FUNCS, SORT_DECIDE_FUNCS,
     SKILL_CONBINABLE_CHECK_FUNCS, TIMING_CONBINABLE_CHECK_FUNCS,
-    SORT_CONBINABLE_CHECK_FUNCS } from "../../utils/CommonConst"
+    SORT_CONBINABLE_CHECK_FUNCS, INTEGRATE_DETAIL_FUNC } from "./CommonConst.js"
 
 export class Combo {
 
@@ -13,6 +13,7 @@ export class Combo {
         this._range = ''
         this._difficulty = ''
         this._sort = ''
+        this._details = {}
         this._effects = []
     };
 
@@ -72,6 +73,14 @@ export class Combo {
         return this._sort
     }
 
+    set details(_details) {
+        this._details = _details
+    }
+
+    get details() {
+        return this._details
+    }
+
     set effects(_effects) {
         this._effects = _effects
     }
@@ -89,6 +98,17 @@ export class Combo {
         this._range = ""
         this._difficulty = ""
         this._sort = ""
+        this._details = {}
+    }
+
+    // 統合した詳細効果を取得
+    getIntegrationDetails() {
+        let results = []
+        for (var key in this._details) {
+            let result = INTEGRATE_DETAIL_FUNC[key](this._details[key])
+            results.push(result)
+        }
+        return results.join('/ ')
     }
 
     // 技能を決める
@@ -161,13 +181,33 @@ export class Combo {
         this.sort = SORT_DECIDE_FUNCS[effect.dbInfo.sort](this.sort)
     }
 
-    // 効果の内容を決める
-    decideEffectContents(effect){
-    
+    // 効果の詳細を決める
+    decideDetail(effect) {
+        let level = effect.level
+        let sort1 = effect.dbInfo.effect_sort1
+        let sort2 = effect.dbInfo.effect_sort2
+        let sort3 = effect.dbInfo.effect_sort3
+        let content1 = effect.dbInfo.effect_content1
+        let content2 = effect.dbInfo.effect_content2
+        let content3 = effect.dbInfo.effect_content3
+
+        if (!this._details[sort1]) {
+            this._details[sort1] = []
+        }
+        this._details[sort1].push(content1.replace('LV', level))
+
+        if (!this._details[sort2]) {
+            this._details[sort2] = []
+        }
+        this._details[sort2].push(content2.replace('LV', level))
+
+        if (!this._details[sort3]) {
+            this._details[sort3] = []
+        }
+        this._details[sort3].push(content3.replace('LV', level))
     }
 
     updateData() {
-    this._erosionPoint = 0
         for (let index in this._effects) {
             this.decideSkill(this._effects[index])
             this.decideTiming(this._effects[index])
@@ -176,6 +216,7 @@ export class Combo {
             this.decideRange(this._effects[index])
             this.decideDifficulty(this._effects[index])
             this.decideSort(this._effects[index])
+            this.decideDetail(this._effects[index])
         }
     }
 
@@ -183,6 +224,7 @@ export class Combo {
     addEffect(effect){
         if (this.isConbinable(effect)){
             this._effects.push(effect)
+            this.initializeParameter()
             this.updateData()
         }
     }
