@@ -1,7 +1,7 @@
 import { SKILL_DECIDE_FUNCS, TIMING_DECIDE_FUNCS, 
     TARGET_DECIDE_FUNCS, SORT_DECIDE_FUNCS,
     SKILL_CONBINABLE_CHECK_FUNCS, TIMING_CONBINABLE_CHECK_FUNCS,
-    SORT_CONBINABLE_CHECK_FUNCS, INTEGRATE_DETAIL_FUNC } from "./CommonConst.js"
+    SORT_CONBINABLE_CHECK_FUNCS, INTEGRATE_DETAIL_FUNC } from "../../utils/CommonConst.js"
 
 export class Combo {
 
@@ -109,6 +109,18 @@ export class Combo {
             results.push(result)
         }
         return results.join('/ ')
+    }
+
+    // 整形したエフェクトを取得
+    getPlasticSurgeryEffects() {
+        let results = []
+        for (var key in this._effects) {
+            let effectName = this._effects[key].dbInfo.name
+            let levelStr = this._effects[key].level
+            let result = effectName + ' Lv' + levelStr
+            results.push(result)
+        }
+        return results
     }
 
     // 技能を決める

@@ -187,57 +187,7 @@ export default function Dx3rdDrawer(props) {
     { srois: "0", name: "", favor: {}, malice: {}, memo: "" },
     { srois: "0", name: "", favor: {}, malice: {}, memo: "" }
   ]);
-  const [combos, setCombos] = React.useState([
-    {
-      name: "超電磁砲",
-      skill: "1",
-      timing: "4",
-      erosionPoint: "8",
-      target: "5",
-      range: "3",
-      difficulty: "1",
-      sort: '6',
-      detail: "装甲無視,BD:邪毒ランク3,BD:+放心,隠密付与,クリ値-3(下限7)",
-      effects: [
-        "雷の残滓 Lv5",
-        "スタンボルト Lv1",
-        "死点撃ち Lv3",
-        "御使いの声 Lv3",
-        "コンセントレイト Lv3",
-      ],
-    },
-    {
-      name: "スパイラルカット",
-      skill: "2",
-      timing: "2",
-      erosionPoint: "5",
-      target: "2",
-      range: "1",
-      difficulty: "2",
-      sort: '6',
-      detail: "装甲無視,BD:邪毒ランク3,BD:+放心,隠密付与,クリ値-3(下限7)",
-      effects: [
-        "コンバットシステム Lv8",
-        "アドヴァイス Lv2",
-      ],
-    },
-    {
-      name: "不穏な呪言",
-      skill: "8",
-      timing: "11",
-      erosionPoint: "7",
-      target: "4",
-      range: "3",
-      difficulty: "1",
-      sort: '6',
-      detail: "装甲無視,BD:邪毒ランク3,BD:+放心,隠密付与,クリ値-3(下限7)",
-      effects: [
-        "トランキリティ Lv3",
-        "毒の刃 Lv4",
-        "コンセントレイト Lv2",
-      ],
-    }
-  ]);
+  const [combos, setCombos] = React.useState([]);
 
   // ワークス初期化
   useEffect(() => {
@@ -1216,7 +1166,7 @@ export default function Dx3rdDrawer(props) {
     setSelectArmors(Object.assign([], list.concat(addArmorList)));
   }
 
-  // 削除ボタン押下時に防具行を削除する
+  // 削除ボタン押下時に防具を削除する
   const removeSelectArmors = (index) => {
     let list = selectArmors;
     list.splice(index, 1);
@@ -1229,14 +1179,21 @@ export default function Dx3rdDrawer(props) {
     setSelectItems(Object.assign([], list.concat(addItemList)));
   }
 
-  // 削除ボタン押下時にアイテム行を削除する
+  // 削除ボタン押下時にアイテムを削除する
   const removeSelectItems = (index) => {
     let list = selectItems;
     list.splice(index, 1);
     setSelectItems(Object.assign([], list));
   }
 
-  // 削除ボタン押下時に攻撃コンボ行を削除する
+  // 追加ボタン押下時にコンボを追加する
+  const addCombo = (combo) => {
+    let list = combos;
+    list.push(combo);
+    setCombos(Object.assign([], list));
+  }
+
+  // 削除ボタン押下時にコンボを削除する
   const removeCombo = (index) => {
     let list = combos;
     list.splice(index, 1);
@@ -1762,6 +1719,7 @@ export default function Dx3rdDrawer(props) {
                 selectEffects={selectEffects}
                 combos={combos}
                 removeCombo={removeCombo}
+                addCombo={addCombo}
               />
             }
           />

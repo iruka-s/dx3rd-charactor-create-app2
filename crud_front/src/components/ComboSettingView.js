@@ -53,9 +53,11 @@ class ComboSettingView extends React.Component {
     return (
       <div>
 
-        {/* 本来ここはコンボ作成ダイアログが入る */}
+        {/* コンボ作成ダイアログ */}
         <CreateComboDialog
           selectEffects={this.props.selectEffects}
+          combos={this.props.combos}
+          addCombo={this.props.addCombo}
         />
 
         {/* 攻撃コンボ */}

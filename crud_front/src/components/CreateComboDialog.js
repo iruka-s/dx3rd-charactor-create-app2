@@ -100,10 +100,11 @@ export default function CreateComboDialog(props) {
   const [selected, setSelected] = React.useState([]);
   const [dense, setDense] = React.useState(false);
   const [combo, setCombo] = React.useState(new Combo());
+  const [comboName, setComboName] = React.useState('');
 
   const isSelected = id => selected.indexOf(id) !== -1;
 
-  const handleClick = (event, effect) => {
+  const handleClickTableRow = (event, effect) => {
     const selectedIndex = selected.indexOf(effect.dbInfo.id);
     let newSelected = [];
     let newCombo = Object.create(combo)
@@ -131,27 +132,31 @@ export default function CreateComboDialog(props) {
     setSelected(newSelected);
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpenIcon = () => {
     setOpen(true);
     setCombo(new Combo())
   };
 
-  const handleAdd = () => {
-    // let addItemList = [];
+  const handleClickAddBotton = () => {
 
-    // for (var index in props.dbItems) {
-    //   if (selected.indexOf(props.dbItems[index].id) !== -1) {
-    //     addItemList.push({ memo: "", dbInfo: props.dbItems[index] });
-    //   }
-    // }
+    props.addCombo({
+      name: comboName,
+      skill: combo.skill,
+      timing: combo.timing,
+      erosionPoint: combo.erosionPoint,
+      target: combo.target,
+      range: combo.range,
+      difficulty: combo.difficulty,
+      sort: combo.sort,
+      detail: combo.getIntegrationDetails(),
+      effects: combo.getPlasticSurgeryEffects(),
+    })
 
-    // props.addSelectItems(addItemList);
+    // ダイアログでの選択を解除
+    setSelected([]);
 
-    // // ダイアログでの選択を解除
-    // setSelected([]);
-
-    // // ダイアログを閉じる
-    // setOpen(false);
+    // ダイアログを閉じる
+    setOpen(false);
   };
 
   const handleClose = () => {
@@ -168,7 +173,7 @@ export default function CreateComboDialog(props) {
             <IconButton
               color="inherit"
               aria-label="add"
-              onClick={handleClickOpen}
+              onClick={handleClickOpenIcon}
             >
               <Fab size="small" color="primary" >
                 <AddIcon />
@@ -231,7 +236,7 @@ export default function CreateComboDialog(props) {
                       return (
                         <Dx3rdTableRow
                           hover
-                          onClick={event => handleClick(event, effect)}
+                          onClick={event => handleClickTableRow(event, effect)}
                           role="checkbox"
                           tabIndex={-1}
                           key={effect.dbInfo.id}
@@ -379,8 +384,8 @@ export default function CreateComboDialog(props) {
                   fullWidth
                   id="comboName"
                   label="コンボ名"
-                  // value={this.props.sex}
-                  // onChange={(e) => this.props.addSelectSex(e.target.value)}
+                  value={comboName}
+                  onChange={(e) => setComboName(e.target.value)}
                 />
               </Grid>
 
@@ -466,6 +471,7 @@ export default function CreateComboDialog(props) {
                   disabled
                   id="comboDetail"
                   label="詳細"
+                  value={combo.getIntegrationDetails()}
                 />
               </Grid>
 
@@ -477,7 +483,7 @@ export default function CreateComboDialog(props) {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleAdd} variant="contained" color="primary">
+          <Button onClick={handleClickAddBotton} variant="contained" color="primary">
             追加
           </Button>
           <Button onClick={handleClose} variant="contained" color="secondary">
