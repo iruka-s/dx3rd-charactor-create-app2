@@ -1312,6 +1312,7 @@ export default function Dx3rdDrawer(props) {
       setSelectArmors(characterData.selectArmors);
       setSelectItems(characterData.selectItems);
       setStandbyPoint(characterData.standbyPoint);
+      setCombos(characterData.combos);
 
       // プルダウン要素
       setWorks(props.getDBWorksValue(characterData.works.name));
@@ -1369,6 +1370,7 @@ export default function Dx3rdDrawer(props) {
     jsonFileContent["selectItems"] = selectItems;
     jsonFileContent["standbyPoint"] = standbyPoint;
     jsonFileContent["selectRois"] = selectRois;
+    jsonFileContent["combos"] = combos;
 
     const data = new Blob([JSON.stringify(jsonFileContent)], { type: 'text/json' });
     const jsonURL = window.URL.createObjectURL(data);
