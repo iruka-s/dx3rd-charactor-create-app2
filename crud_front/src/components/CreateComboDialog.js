@@ -3,14 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Button, Grid, Dialog, Fab, Toolbar, Typography, TableContainer,
   Table, TableHead, TableBody, TextField,
-  Checkbox, Paper, Input, ListItemText
-} from '@material-ui/core';
+  Checkbox, Paper } from '@material-ui/core';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import clsx from "clsx";
@@ -98,7 +93,6 @@ export default function CreateComboDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
-  const [dense, setDense] = React.useState(false);
   const [combo, setCombo] = React.useState(new Combo());
   const [comboName, setComboName] = React.useState('');
 
@@ -203,7 +197,7 @@ export default function CreateComboDialog(props) {
             <Table
               className={classes.table}
               aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
+              size={'medium'}
               aria-label="enhanced table"
             >
               <TableHead>

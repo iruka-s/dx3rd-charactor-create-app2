@@ -1239,53 +1239,41 @@ export default function Dx3rdDrawer(props) {
     setSelectRois(Object.assign([], list));
   }
 
-  const handleToPage = (id) => {
-    switch (id) {
-      // キャラクター詳細
-      case ScreenPath.DETAIL.id:
-        history.push(ScreenPath.DETAIL.path);
-        break;
+  const handleToMoveTopView = () => {
+    history.push(ScreenPath.TOP.path);
+  }
 
-      // 技能値
-      case ScreenPath.SKILL.id:
-        history.push(ScreenPath.SKILL.path);
-        break;
+  const handleToMoveDetailView = () => {
+    history.push(ScreenPath.DETAIL.path);
+  }
 
-      // 能力値
-      case ScreenPath.ABILITY.id:
-        history.push(ScreenPath.ABILITY.path);
-        break;
+  const handleToMoveSkillView = () => {
+    history.push(ScreenPath.SKILL.path);
+  }
 
-      // エフェクト
-      case ScreenPath.EFFECT.id:
-        history.push(ScreenPath.EFFECT.path);
-        break;
+  const handleToMoveAbilityView = () => {
+    history.push(ScreenPath.ABILITY.path);
+  }
 
-      // アイテム
-      case ScreenPath.ITEMS.id:
-        history.push(ScreenPath.ITEMS.path);
-        break;
+  const handleToMoveEffectView = () => {
+    history.push(ScreenPath.EFFECT.path);
+  }
 
-      // ロイス
-      case ScreenPath.ROIS.id:
-        history.push(ScreenPath.ROIS.path);
-        break;
+  const handleToMoveItemsView = () => {
+    history.push(ScreenPath.ITEMS.path);
+  }
 
-      // コンボ
-      case ScreenPath.COMBO.id:
-        history.push(ScreenPath.COMBO.path);
-        break;
+  const handleToMoveRoisView = () => {
+    history.push(ScreenPath.ROIS.path);
+  }
 
-      // プレイ
-      case ScreenPath.PLAY.id:
-        history.push(ScreenPath.PLAY.path);
-        break;
+  const handleToMoveComboView = () => {
+    history.push(ScreenPath.COMBO.path);
+  }
 
-      // エラー
-      default:
-        break;
-    }
-  };
+  const handleToMovePlayView = () => {
+    history.push(ScreenPath.PLAY.path);
+  }
 
   const handleUploadJsonFile = (e) => {
     
@@ -1389,7 +1377,7 @@ export default function Dx3rdDrawer(props) {
   const drawer = (
     <div>
       <List>
-        <ListItem button key={ScreenPath.DETAIL.id} onClick={() => handleToPage(ScreenPath.DETAIL.id)}>
+        <ListItem button key={ScreenPath.DETAIL.id} onClick={() => handleToMoveDetailView()}>
           <ListItemIcon>
             <Tooltip title="キャラクター詳細">
               <EmojiPeople />
@@ -1398,7 +1386,7 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"キャラクター詳細"} />
         </ListItem>
 
-        <ListItem button key={ScreenPath.SKILL.id} onClick={() => handleToPage(ScreenPath.SKILL.id)}>
+        <ListItem button key={ScreenPath.SKILL.id} onClick={() => handleToMoveSkillView()}>
           <ListItemIcon>
             <Tooltip title="技能値">
               <EmojiObjects />
@@ -1407,7 +1395,7 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"技能値"} />
         </ListItem>
 
-        <ListItem button key={ScreenPath.ABILITY.id} onClick={() => handleToPage(ScreenPath.ABILITY.id)}>
+        <ListItem button key={ScreenPath.ABILITY.id} onClick={() => handleToMoveAbilityView()}>
           <ListItemIcon>
             <Tooltip title="能力値">
               <FitnessCenter />
@@ -1416,7 +1404,7 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"能力値"} />
         </ListItem>
 
-        <ListItem button key={ScreenPath.EFFECT.id} onClick={() => handleToPage(ScreenPath.EFFECT.id)}>
+        <ListItem button key={ScreenPath.EFFECT.id} onClick={() => handleToMoveEffectView()}>
           <ListItemIcon>
             <Tooltip title="エフェクト">
               <Whatshot />
@@ -1425,7 +1413,7 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"エフェクト"} />
         </ListItem>
 
-        <ListItem button key={ScreenPath.ITEMS.id} onClick={() => handleToPage(ScreenPath.ITEMS.id)}>
+        <ListItem button key={ScreenPath.ITEMS.id} onClick={() => handleToMoveItemsView()}>
           <ListItemIcon>
             <Tooltip title="アイテム">
               <Work />
@@ -1434,7 +1422,7 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"アイテム"} />
         </ListItem>
 
-        <ListItem button key={ScreenPath.ROIS.id} onClick={() => handleToPage(ScreenPath.ROIS.id)}>
+        <ListItem button key={ScreenPath.ROIS.id} onClick={() => handleToMoveRoisView()}>
           <ListItemIcon>
             <Tooltip title="ロイス">
               <People />
@@ -1443,7 +1431,7 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"ロイス"} />
         </ListItem>
 
-        <ListItem button key={ScreenPath.COMBO.id} onClick={() => handleToPage(ScreenPath.COMBO.id)}>
+        <ListItem button key={ScreenPath.COMBO.id} onClick={() => handleToMoveComboView()}>
           <ListItemIcon>
             <Tooltip title="コンボ">
               <SportsHandball style={useStyles.menuButton} />
@@ -1452,7 +1440,7 @@ export default function Dx3rdDrawer(props) {
           <ListItemText primary={"コンボ"} />
         </ListItem>
 
-        <ListItem button disabled key={ScreenPath.PLAY.id} onClick={() => handleToPage(ScreenPath.PLAY.id)}>
+        <ListItem button disabled key={ScreenPath.PLAY.id} onClick={() => handleToMovePlayView()}>
           <ListItemIcon>
             {/* <Tooltip title="プレイ">
               <SportsKabaddi />
@@ -1579,150 +1567,192 @@ export default function Dx3rdDrawer(props) {
             exact
             path={ScreenPath.TOP.path}
             render={
-              () => <TopPageView/>
+              () => { return <TopPageView/> }
             }
           />
           <Route
             exact
             path={ScreenPath.DETAIL.path}
-            render={() => <CharactorDetailView
-              growValues={growValues}
-              growRowDeleteDialogOpen={growRowDeleteDialogOpen}
-              handleToOpenDeleteDialog={handleToOpenDeleteDialog}
-              setGrowPoint={setGrowPoint}
-              handleToGrowMemo={handleToGrowMemo}
-              handleToAddGrowRow={handleToAddGrowRow}
-              deleteGrowRow={deleteGrowRow}
-              dbImpulses={props.dbImpulses}
-              dbAwakenings={props.dbAwakenings}
-              dbWorks={props.dbWorks}
-              name={name}
-              addSelectName={addSelectName}
-              codeName={codeName}
-              addSelectCodeName={addSelectCodeName}
-              sex={sex}
-              addSelectSex={addSelectSex}
-              age={age}
-              addSelectAge={addSelectAge}
-              cover={cover}
-              addSelectCover={addSelectCover}
-              origin={origin}
-              addSelectOrigin={addSelectOrigin}
-              experience={experience}
-              addSelectExperience={addSelectExperience}
-              encounter={encounter}
-              addSelectEncounter={addSelectEncounter}
-              works={works}
-              addSelectWorks={addSelectWorks}
-              impulse={impulse}
-              addSelectImpulse={addSelectImpulse}
-              awakening={awakening}
-              addSelectAwakening={addSelectAwakening}
-              abilityValues={abilityValues}
-              mainSkills={mainSkills}
-              subSkills={subSkills}
-              userAddSubSkills={userAddSubSkills}
-              selectEffects={selectEffects}
-              selectWeapons={selectWeapons}
-              selectArmors={selectArmors}
-              selectItems={selectItems}
-              standbyPoint={standbyPoint}
-            />}
+            render={() => {
+              if (!props.dbImpulses.length || !props.dbAwakenings.length || !props.dbWorks.length) {
+                handleToMoveTopView()
+                return <TopPageView/>
+              }
+              return <CharactorDetailView
+                growValues={growValues}
+                growRowDeleteDialogOpen={growRowDeleteDialogOpen}
+                handleToOpenDeleteDialog={handleToOpenDeleteDialog}
+                setGrowPoint={setGrowPoint}
+                handleToGrowMemo={handleToGrowMemo}
+                handleToAddGrowRow={handleToAddGrowRow}
+                deleteGrowRow={deleteGrowRow}
+                dbImpulses={props.dbImpulses}
+                dbAwakenings={props.dbAwakenings}
+                dbWorks={props.dbWorks}
+                name={name}
+                addSelectName={addSelectName}
+                codeName={codeName}
+                addSelectCodeName={addSelectCodeName}
+                sex={sex}
+                addSelectSex={addSelectSex}
+                age={age}
+                addSelectAge={addSelectAge}
+                cover={cover}
+                addSelectCover={addSelectCover}
+                origin={origin}
+                addSelectOrigin={addSelectOrigin}
+                experience={experience}
+                addSelectExperience={addSelectExperience}
+                encounter={encounter}
+                addSelectEncounter={addSelectEncounter}
+                works={works}
+                addSelectWorks={addSelectWorks}
+                impulse={impulse}
+                addSelectImpulse={addSelectImpulse}
+                awakening={awakening}
+                addSelectAwakening={addSelectAwakening}
+                abilityValues={abilityValues}
+                mainSkills={mainSkills}
+                subSkills={subSkills}
+                userAddSubSkills={userAddSubSkills}
+                selectEffects={selectEffects}
+                selectWeapons={selectWeapons}
+                selectArmors={selectArmors}
+                selectItems={selectItems}
+                standbyPoint={standbyPoint}
+              />
+            }}
           />
           <Route
             exact
             path={ScreenPath.SKILL.path}
             render={
-              () => <SkillSettingView
-                handleToChangeMainSkillInput={handleToChangeMainSkillInput}
-                handleToChangeSubSkillInput={handleToChangeSubSkillInput}
-                mainSkills={mainSkills}
-                subSkills={subSkills}
-                removeSubSkills={removeSubSkills}
-                removeUserAddSubSkills={removeUserAddSubSkills}
-                userAddSubSkills={userAddSubSkills}
-                selectUserAddSubSkill={selectUserAddSubSkill}
-                handleToSubSkillRow={handleToSubSkillRow}
-                handleToChangeUserAddSubSkillInput={handleToChangeUserAddSubSkillInput}
-              />
+              () => {
+                if (!props.dbWorks.length) {
+                  handleToMoveTopView()
+                  return <TopPageView/>
+                }
+                return <SkillSettingView
+                  handleToChangeMainSkillInput={handleToChangeMainSkillInput}
+                  handleToChangeSubSkillInput={handleToChangeSubSkillInput}
+                  mainSkills={mainSkills}
+                  subSkills={subSkills}
+                  removeSubSkills={removeSubSkills}
+                  removeUserAddSubSkills={removeUserAddSubSkills}
+                  userAddSubSkills={userAddSubSkills}
+                  selectUserAddSubSkill={selectUserAddSubSkill}
+                  handleToSubSkillRow={handleToSubSkillRow}
+                  handleToChangeUserAddSubSkillInput={handleToChangeUserAddSubSkillInput}
+                />
+              }
             }
           />
           <Route
             exact
             path={ScreenPath.ABILITY.path}
             render={
-              () => <AbilitySettingView
-                dbSyndromes={props.dbSyndromes}
-                syndrome1={syndrome1}
-                syndrome2={syndrome2}
-                optional={optional}
-                abilityValues={abilityValues}
-                handleSyndromeChange={handleSyndromeChange}
-                handleToChangeAbilityInput={handleToChangeAbilityInput}
-              />
+              () => {
+                if (!props.dbSyndromes.length) {
+                  handleToMoveTopView()
+                  return <TopPageView/>
+                }
+                return <AbilitySettingView
+                  dbSyndromes={props.dbSyndromes}
+                  syndrome1={syndrome1}
+                  syndrome2={syndrome2}
+                  optional={optional}
+                  abilityValues={abilityValues}
+                  handleSyndromeChange={handleSyndromeChange}
+                  handleToChangeAbilityInput={handleToChangeAbilityInput}
+                />
+              }
             }
           />
           <Route
             exact
             path={ScreenPath.EFFECT.path}
             render={
-              () => <EffectSettingView
-                dbEffects={props.dbEffects}
-                syndrome1={syndrome1}
-                syndrome2={syndrome2}
-                optional={optional}
-                selectEffects={selectEffects}
-                setSelectEffects={setSelectEffects}
-                levelUpdate={levelUpdate}
-                removeSelectEffects={removeSelectEffects}
-              />
+              () => {
+                if (!props.dbEffects.length) {
+                  handleToMoveTopView()
+                  return <TopPageView/>
+                }
+                return <EffectSettingView
+                  dbEffects={props.dbEffects}
+                  syndrome1={syndrome1}
+                  syndrome2={syndrome2}
+                  optional={optional}
+                  selectEffects={selectEffects}
+                  setSelectEffects={setSelectEffects}
+                  levelUpdate={levelUpdate}
+                  removeSelectEffects={removeSelectEffects}
+                />
+              }
             }
           />
           <Route
             exact
             path={ScreenPath.ITEMS.path}
             render={
-              () => <ItemSettingView
-                dbWeapons={props.dbWeapons}
-                dbArmors={props.dbArmors}
-                dbItems={props.dbItems}
-                selectWeapons={selectWeapons}
-                addSelectWeapons={addSelectWeapons}
-                selectArmors={selectArmors}
-                addSelectArmors={addSelectArmors}
-                selectItems={selectItems}
-                addSelectItems={addSelectItems}
-                removeSelectWeapons={removeSelectWeapons}
-                removeSelectArmors={removeSelectArmors}
-                removeSelectItems={removeSelectItems}
-              />
+              () => {
+                if (!props.dbWeapons.length || !props.dbArmors.length || !props.dbItems.length) {
+                  handleToMoveTopView()
+                  return <TopPageView/>
+                }
+                return <ItemSettingView
+                  dbWeapons={props.dbWeapons}
+                  dbArmors={props.dbArmors}
+                  dbItems={props.dbItems}
+                  selectWeapons={selectWeapons}
+                  addSelectWeapons={addSelectWeapons}
+                  selectArmors={selectArmors}
+                  addSelectArmors={addSelectArmors}
+                  selectItems={selectItems}
+                  addSelectItems={addSelectItems}
+                  removeSelectWeapons={removeSelectWeapons}
+                  removeSelectArmors={removeSelectArmors}
+                  removeSelectItems={removeSelectItems}
+                />
+              }
             }
           />
           <Route
             exact
             path={ScreenPath.ROIS.path}
             render={
-              () => <RoisSettingView
-                dbPositiveEmotions={props.dbPositiveEmotions}
-                dbNegativeEmotions={props.dbNegativeEmotions}
-                selectRois={selectRois}
-                setSelectRois={setSelectRois}
-                selectFavor={selectFavor}
-                selectMalice={selectMalice}
-                handleToChangeRoisInput={handleToChangeRoisInput}
-              />
+              () => {
+                if (!props.dbPositiveEmotions.length || !props.dbNegativeEmotions.length) {
+                  handleToMoveTopView()
+                  return <TopPageView/>
+                }
+                return <RoisSettingView
+                  dbPositiveEmotions={props.dbPositiveEmotions}
+                  dbNegativeEmotions={props.dbNegativeEmotions}
+                  selectRois={selectRois}
+                  setSelectRois={setSelectRois}
+                  selectFavor={selectFavor}
+                  selectMalice={selectMalice}
+                  handleToChangeRoisInput={handleToChangeRoisInput}
+                />
+              }
             }
           />
           <Route
             exact
             path={ScreenPath.COMBO.path}
             render={
-              () => <ComboSettingView
-                selectEffects={selectEffects}
-                combos={combos}
-                removeCombo={removeCombo}
-                addCombo={addCombo}
-              />
+              () => {
+                if (!props.dbWorks.length) {
+                  handleToMoveTopView()
+                  return <TopPageView/>
+                }
+                return <ComboSettingView
+                  selectEffects={selectEffects}
+                  combos={combos}
+                  removeCombo={removeCombo}
+                  addCombo={addCombo}
+                />
+              }
             }
           />
         </Switch>
