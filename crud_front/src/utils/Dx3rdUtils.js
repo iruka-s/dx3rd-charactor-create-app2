@@ -1,4 +1,4 @@
-import { generalID, emptyID, effectSyndromeNum, effectLimit } from './CommonConst';
+import { emptyID, effectSyndromeNum, effectLimit } from './CommonConst';
 
 export function numCheck(str) {
     // if (str.match(/[^d]/) !== null) {

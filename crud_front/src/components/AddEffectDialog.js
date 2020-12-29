@@ -153,7 +153,6 @@ export default function AddEffectDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [selectSort, setSelectSort] = React.useState(selectSyndromeArray);
 
@@ -289,7 +288,7 @@ export default function AddEffectDialog(props) {
             <Table
               className={classes.table}
               aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
+              size={'medium'}
               aria-label="enhanced table"
             >
               <TableHead>

@@ -7,7 +7,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdErrorTableCell } from './Dx3rdStyledComponent';
 import AddEffectDialog from './AddEffectDialog';
-import { effectRow, generalID, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
+import { effectRow, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
 import { effectChecker } from '../utils/Dx3rdUtils';
 
 // inputValueの初期値はワークスに応じて変わる必要がある

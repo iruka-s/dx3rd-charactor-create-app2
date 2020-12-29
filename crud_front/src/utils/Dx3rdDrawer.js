@@ -230,7 +230,7 @@ export default function Dx3rdDrawer(props) {
 
     setSelectRois(Object.assign([], list));
 
-  }, [props.dbPositiveEmotions]);
+  }, [props.dbPositiveEmotions, selectRois]);
 
   // ネガティブ感情初期化
   useEffect(() => {
@@ -243,7 +243,7 @@ export default function Dx3rdDrawer(props) {
 
     setSelectRois(Object.assign([], list));
 
-  }, [props.dbNegativeEmotions]);
+  }, [props.dbNegativeEmotions, selectRois]);
 
   const createSkillList = (useWorks) => {
     let list = [];
@@ -675,7 +675,7 @@ export default function Dx3rdDrawer(props) {
     // ワークス変更で追加されたサブスキルの技能値計算
     let tempSubSkillList = subSkills;
 
-    for (var index in tempSubSkillList) {
+    for (let index in tempSubSkillList) {
       tempSubSkillList[index].judgeVal
         = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL][subSkillAbilityCheck(tempSubSkillList[index].id)],
           tempSubSkillList[index].initVal, tempSubSkillList[index].growVal, tempSubSkillList[index].otherVal);
@@ -685,7 +685,7 @@ export default function Dx3rdDrawer(props) {
 
     // ユーザーが追加したサブスキルの技能値計算
     let tempUserAddSubSkillList = userAddSubSkills;
-    for (var index in tempUserAddSubSkillList) {
+    for (let index in tempUserAddSubSkillList) {
       tempUserAddSubSkillList[index].judgeVal
         = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL][subSkillAbilityCheck(tempUserAddSubSkillList[index].id)],
           tempUserAddSubSkillList[index].initVal, tempUserAddSubSkillList[index].growVal, tempUserAddSubSkillList[index].otherVal);
@@ -1096,7 +1096,7 @@ export default function Dx3rdDrawer(props) {
 
     for (var index in list) {
 
-      if (index == targetIndex) {
+      if (index === targetIndex) {
         list[index].point = numCheck(value);
         break;
       }
@@ -1111,7 +1111,7 @@ export default function Dx3rdDrawer(props) {
 
     for (var index in list) {
 
-      if (index == targetIndex) {
+      if (index === targetIndex) {
         list[index].memo = value;
         break;
       }

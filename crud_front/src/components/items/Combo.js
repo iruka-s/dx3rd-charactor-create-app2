@@ -335,7 +335,7 @@ export class Combo {
                 let isContainSameSyndrome = false
 
                 for(let otherEffectsIndex in otherEffects) {
-                    if(targetSyndrome == otherEffects[otherEffectsIndex].dbInfo.syndrome &&
+                    if(targetSyndrome === otherEffects[otherEffectsIndex].dbInfo.syndrome &&
                         otherEffects[otherEffectsIndex].dbInfo.skill !== '1') {
                         isContainSameSyndrome = true
                         break;
