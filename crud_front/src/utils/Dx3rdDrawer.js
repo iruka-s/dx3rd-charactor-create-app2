@@ -230,7 +230,7 @@ export default function Dx3rdDrawer(props) {
 
     setSelectRois(Object.assign([], list));
 
-  }, [props.dbPositiveEmotions, selectRois]);
+  }, [props.dbPositiveEmotions]);
 
   // ネガティブ感情初期化
   useEffect(() => {
@@ -243,7 +243,7 @@ export default function Dx3rdDrawer(props) {
 
     setSelectRois(Object.assign([], list));
 
-  }, [props.dbNegativeEmotions, selectRois]);
+  }, [props.dbNegativeEmotions]);
 
   const createSkillList = (useWorks) => {
     let list = [];
