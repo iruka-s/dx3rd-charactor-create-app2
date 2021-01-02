@@ -128,6 +128,8 @@ DockerイメージからDockerコンテナを作成する
 ```
 docker run -w /home/crud_front -p 127.0.0.1:3000:3000 -it -v <path>:/home/ dx3rd-frontend
 ```
+※```<path>```にはクローンしたディレクトリまでの絶対パス(```pwd```コマンドの実行結果)を入力する。<br>
+<br>
 必要なライブラリをインストールする。
 ```
 npm install
