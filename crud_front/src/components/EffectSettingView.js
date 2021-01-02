@@ -7,7 +7,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 import { Dx3rdTableRow, Dx3rdTableCell, Dx3rdErrorTableCell } from './Dx3rdStyledComponent';
 import AddEffectDialog from './AddEffectDialog';
-import { effectRow, timingArray, targetArray, rangeArray, limitArray, skillArray } from '../utils/CommonConst';
+import { effectRow, timingArray, targetArray, rangeArray, limitArray, skillArray, INTEGRATE_DETAIL_FUNC } from '../utils/CommonConst';
 import { effectChecker } from '../utils/Dx3rdUtils';
 
 // inputValueの初期値はワークスに応じて変わる必要がある
@@ -43,6 +43,29 @@ class EffectSettingView extends React.Component {
       }
     }
     return list;
+  }
+
+  // エフェクトの中身を作成する
+  makeEffectContent(effect) {
+    let sort1 = effect.dbInfo.effect_sort1
+    let sort2 = effect.dbInfo.effect_sort2
+    let sort3 = effect.dbInfo.effect_sort3
+    let content1 = effect.dbInfo.effect_content1
+    let content2 = effect.dbInfo.effect_content2
+    let content3 = effect.dbInfo.effect_content3
+
+    let results = []
+    if (sort1 !== '0' && sort1 !== '') {
+      results.push(INTEGRATE_DETAIL_FUNC[sort1]([content1]))
+    }
+    if (sort2 !== '0' && sort2 !== '') {
+      results.push(INTEGRATE_DETAIL_FUNC[sort2]([content2]))
+    }
+    if (sort3 !== '0' && sort3 !== '') {
+      results.push(INTEGRATE_DETAIL_FUNC[sort3]([content3]))
+    }
+
+    return results.join('/ ')
   }
 
   render() {
@@ -192,12 +215,12 @@ class EffectSettingView extends React.Component {
                     {(effectChecker(effect.dbInfo, this.props.syndrome1, this.props.syndrome2, this.props.optional)) ?
                       // {/* ここに乗せる情報を考える */}
                       <Dx3rdTableCell align="center">
-                        追加する記法を考える
+                        {this.makeEffectContent(effect)}
                       </Dx3rdTableCell>
                     :
                       // {/* ここに乗せる情報を考える */}
                       <Dx3rdErrorTableCell align="center">
-                        追加する記法を考える
+                        {this.makeEffectContent(effect)}
                       </Dx3rdErrorTableCell>
                     }
 

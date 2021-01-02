@@ -18,8 +18,8 @@ import clsx from "clsx";
 import { Dx3rdTableRow, Dx3rdTableCell } from './Dx3rdStyledComponent';
 import {
   emptyEffectName, effectRow, generalName, timingArray, targetArray,
-  rangeArray, limitArray, skillArray, effectSyndromeNum, effectSyndromeArray
-} from '../utils/CommonConst';
+  rangeArray, limitArray, skillArray, effectSyndromeNum, effectSyndromeArray,
+  INTEGRATE_DETAIL_FUNC } from '../utils/CommonConst';
 
 const maxWidth = 'xl';
 
@@ -232,6 +232,29 @@ export default function AddEffectDialog(props) {
     }
   };
 
+  // エフェクトの中身を作成する
+  const makeEffectContent = (dbEffect) => {
+    let sort1 = dbEffect.effect_sort1
+    let sort2 = dbEffect.effect_sort2
+    let sort3 = dbEffect.effect_sort3
+    let content1 = dbEffect.effect_content1
+    let content2 = dbEffect.effect_content2
+    let content3 = dbEffect.effect_content3
+
+    let results = []
+    if (sort1 !== '0' && sort1 !== '') {
+      results.push(INTEGRATE_DETAIL_FUNC[sort1]([content1]))
+    }
+    if (sort2 !== '0' && sort2 !== '') {
+      results.push(INTEGRATE_DETAIL_FUNC[sort2]([content2]))
+    }
+    if (sort3 !== '0' && sort3 !== '') {
+      results.push(INTEGRATE_DETAIL_FUNC[sort3]([content3]))
+    }
+
+    return results.join('/ ')
+  }
+
   const effectFilter = (mySyndromeEffectList) => {
     let array = [];
 
@@ -377,7 +400,7 @@ export default function AddEffectDialog(props) {
 
                         {/* 効果 */}
                         <Dx3rdTableCell align="center">
-                          ここの表示方法は考える必要がある。
+                          {makeEffectContent(mySyndromeEffect)}
                         </Dx3rdTableCell>
                       </Dx3rdTableRow>
 
