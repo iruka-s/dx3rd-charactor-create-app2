@@ -175,6 +175,8 @@ docker commit <containerID> dx3rd-backend
 <br>
 
 ## 実行手順
+フロントエンドサーバとバックエンドサーバを起動した後、任意のWebブラウザで```http://localhost:3000/```にアクセスする。
+
 ### 【フロントエンド】
 DockerイメージからDockerコンテナを作成する
 ```
