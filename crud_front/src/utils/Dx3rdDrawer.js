@@ -273,7 +273,7 @@ export default function Dx3rdDrawer(props) {
 
   const initializeMainSkill = (mainSkillList) => {
 
-    let list = mainSkillList;
+    let list = Object.assign([], mainSkillList);
 
     for (var index in list) {
       list[index].initVal = "0";
@@ -285,71 +285,104 @@ export default function Dx3rdDrawer(props) {
 
   // ワークス変更時の技能設定
   const setSkillValue = (value, tempAbilities) => {
-    let tempMainSkillList = initializeMainSkill(mainSkills);
-    let tempSubSkillList = subSkills;
+    let tempMainSkillList = initializeMainSkill(Object.assign([], mainSkills));
+    let tempSubSkillList = Object.assign([], subSkills);
 
     let worksSkillList = createSkillList(value);
 
     var tempSubSkill;
 
+    for (let index in tempMainSkillList) {
+
+      let abilityPoint = 0
+      if (tempMainSkillList[index].id === mainSkillSortName.MELEE.ID || 
+        tempMainSkillList[index].id === mainSkillSortName.AVOID.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].body
+      }
+      else if (tempMainSkillList[index].id === mainSkillSortName.SHOOT.ID ||
+        tempMainSkillList[index].id === mainSkillSortName.PERCEPTION.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].sense
+      }
+      else if (tempMainSkillList[index].id === mainSkillSortName.RC.ID ||
+        tempMainSkillList[index].id === mainSkillSortName.INTENTION.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].spirit
+      }
+      else if (tempMainSkillList[index].id === mainSkillSortName.NEGOTIATION.ID ||
+        tempMainSkillList[index].id === mainSkillSortName.PROCUREMENT.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].society
+      }
+
+      if (tempMainSkillList[index].id === worksSkillList[0].id.split(":")[0]) {
+        tempMainSkillList[index].initVal = worksSkillList[0].value;
+      }
+      else if (tempMainSkillList[index].id === worksSkillList[1].id.split(":")[0]) {
+        tempMainSkillList[index].initVal = worksSkillList[1].value;
+      }
+      else if (tempMainSkillList[index].id === worksSkillList[2].id.split(":")[0]) {
+        tempMainSkillList[index].initVal = worksSkillList[2].value;
+      }
+      else if (tempMainSkillList[index].id === worksSkillList[3].id.split(":")[0]) {
+        tempMainSkillList[index].initVal = worksSkillList[3].value;
+      }
+      else if (tempMainSkillList[index].id === worksSkillList[4].id.split(":")[0]) {
+        tempMainSkillList[index].initVal = worksSkillList[4].value;
+      }
+      else {
+        tempMainSkillList[index].initVal = 0;
+      }
+      tempMainSkillList[index].judgeVal = makeJudgeVal(
+        abilityPoint,
+        tempMainSkillList[index].initVal,
+        tempMainSkillList[index].growVal,
+        tempMainSkillList[index].otherVal
+      );
+    }
+
+    for (let index in tempSubSkillList) {
+
+      let abilityPoint = 0
+      if (tempSubSkillList[index].id === subSkillSortName.DRIVING.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].body
+      }
+      else if (tempSubSkillList[index].id === subSkillSortName.ART.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].sense
+      }
+      else if (tempSubSkillList[index].id === subSkillSortName.KNOWLEDGE.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].spirit
+      }
+      else if (tempSubSkillList[index].id === subSkillSortName.INFOMATION.ID) {
+          abilityPoint = tempAbilities[abilityTableRowNum.TOTAL].society
+      }
+
+      if (tempSubSkillList[index].id === worksSkillList[0].id.split(":")[0]) {
+        tempSubSkillList[index].initVal = worksSkillList[0].value;
+      }
+      else if (tempSubSkillList[index].id === worksSkillList[1].id.split(":")[0]) {
+        tempSubSkillList[index].initVal = worksSkillList[1].value;
+      }
+      else if (tempSubSkillList[index].id === worksSkillList[2].id.split(":")[0]) {
+        tempSubSkillList[index].initVal = worksSkillList[2].value;
+      }
+      else if (tempSubSkillList[index].id === worksSkillList[3].id.split(":")[0]) {
+        tempSubSkillList[index].initVal = worksSkillList[3].value;
+      }
+      else if (tempSubSkillList[index].id === worksSkillList[4].id.split(":")[0]) {
+        tempSubSkillList[index].initVal = worksSkillList[4].value;
+      }
+      else {
+        tempSubSkillList[index].initVal = 0;
+      }
+      tempSubSkillList[index].judgeVal = makeJudgeVal(
+        abilityPoint,
+        tempSubSkillList[index].initVal,
+        tempSubSkillList[index].growVal,
+        tempSubSkillList[index].otherVal
+      );
+    }
+
     for (var index in worksSkillList) {
 
       switch (worksSkillList[index].id.split(":")[0]) {
-        case mainSkillSortName.MELEE.ID:
-          tempMainSkillList[mainSkillSortNum.MELEE].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.MELEE].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].body, tempMainSkillList[mainSkillSortNum.MELEE].initVal,
-              tempMainSkillList[mainSkillSortNum.MELEE].growVal, tempMainSkillList[mainSkillSortNum.MELEE].otherVal);
-          break;
-
-        case mainSkillSortName.AVOID.ID:
-          tempMainSkillList[mainSkillSortNum.AVOID].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.AVOID].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].body, tempMainSkillList[mainSkillSortNum.AVOID].initVal,
-              tempMainSkillList[mainSkillSortNum.AVOID].growVal, tempMainSkillList[mainSkillSortNum.AVOID].otherVal);
-          break;
-
-        case mainSkillSortName.SHOOT.ID:
-          tempMainSkillList[mainSkillSortNum.SHOOT].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.SHOOT].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].sense, tempMainSkillList[mainSkillSortNum.SHOOT].initVal,
-              tempMainSkillList[mainSkillSortNum.SHOOT].growVal, tempMainSkillList[mainSkillSortNum.SHOOT].otherVal);
-          break;
-
-        case mainSkillSortName.PERCEPTION.ID:
-          tempMainSkillList[mainSkillSortNum.PERCEPTION].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.PERCEPTION].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].sense, tempMainSkillList[mainSkillSortNum.PERCEPTION].initVal,
-              tempMainSkillList[mainSkillSortNum.PERCEPTION].growVal, tempMainSkillList[mainSkillSortNum.PERCEPTION].otherVal);
-          break;
-
-        case mainSkillSortName.RC.ID:
-          tempMainSkillList[mainSkillSortNum.RC].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.RC].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].spirit, tempMainSkillList[mainSkillSortNum.RC].initVal,
-              tempMainSkillList[mainSkillSortNum.RC].growVal, tempMainSkillList[mainSkillSortNum.RC].otherVal);
-          break;
-
-        case mainSkillSortName.INTENTION.ID:
-          tempMainSkillList[mainSkillSortNum.INTENTION].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.INTENTION].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].spirit, tempMainSkillList[mainSkillSortNum.INTENTION].initVal,
-              tempMainSkillList[mainSkillSortNum.INTENTION].growVal, tempMainSkillList[mainSkillSortNum.INTENTION].otherVal);
-          break;
-
-        case mainSkillSortName.NEGOTIATION.ID:
-          tempMainSkillList[mainSkillSortNum.NEGOTIATION].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.NEGOTIATION].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].society, tempMainSkillList[mainSkillSortNum.NEGOTIATION].initVal,
-              tempMainSkillList[mainSkillSortNum.NEGOTIATION].growVal, tempMainSkillList[mainSkillSortNum.NEGOTIATION].otherVal);
-          break;
-
-        case mainSkillSortName.PROCUREMENT.ID:
-          tempMainSkillList[mainSkillSortNum.PROCUREMENT].initVal = worksSkillList[index].value;
-          tempMainSkillList[mainSkillSortNum.PROCUREMENT].judgeVal
-            = makeJudgeVal(tempAbilities[abilityTableRowNum.TOTAL].society, tempMainSkillList[mainSkillSortNum.PROCUREMENT].initVal,
-              tempMainSkillList[mainSkillSortNum.PROCUREMENT].growVal, tempMainSkillList[mainSkillSortNum.PROCUREMENT].otherVal);
-          break;
 
         case subSkillSortName.DRIVING.ID:
           tempSubSkill = { id: subSkillSortName.DRIVING.ID, name: subSkillSortName.DRIVING.NAME + "：" + worksSkillList[index].id.split(":")[1], initVal: worksSkillList[index].value, growVal: "0", otherVal: "0", judgeVal: "", memo: "" };
